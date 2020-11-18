@@ -8,7 +8,7 @@ using std::string;
 
 class Pessoa {
 
-	private:
+	protected:
 
 		short cpf;
 		string nome;
