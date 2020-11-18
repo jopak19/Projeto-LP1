@@ -2,13 +2,13 @@
 
 ###### PETFERA ######
 
-#Membros:
+### Membros:
     Débora Tayná
     João Paulo Siqueira
-    Rodrigo Gomes
+    Rodrigo Gomes da Rocha
 
-#Descrição:
+#### Descrição:
 
 
-#Endereço do repositório: 
+### Endereço do repositório: 
     https://github.com/jopak19/Projeto-LP1
