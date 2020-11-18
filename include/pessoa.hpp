@@ -8,14 +8,17 @@ using std::string;
 
 class Pessoa {
 
-	public:
-		short getIdade();
-		short getCpf();
-		string getNome();
-
 	private:
-		string nome;
-		short idade;
-		short cpf;
 
+		short cpf;
+		string nome;
+		string dataNascimento;
+		
+	public:
+
+		Pessoa(short cpf, string nome,string dataNascimento);
+		string getDataNascimento() const;
+		short getCpf() const;
+		string getNome() const;
+		void alterarDados(short cpf, string nome, string dataNascimento);
 };
