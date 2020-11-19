@@ -1,7 +1,12 @@
 # include "animal.hpp"
+# include "veterinario.hpp"
+# include "tratador.hpp"
 
-Animal::Animal(string codigo, string peso, string altura, short idade, string especie):
-	codigo(codigo), peso(peso), altura(altura), idade(idade), especie(especie){
+Animal::Animal(string codigo, string peso, 
+	string altura, short idade, string especie, 
+	shared_ptr<Veterinario> veterinario, shared_ptr<Tratador> tratador):
+	codigo(codigo), peso(peso), altura(altura), 
+	idade(idade), especie(especie), veterinario(veterinario), tratador(tratador){
 }
 
 string Animal::getCodigo() const {

@@ -1,11 +1,11 @@
 #pragma once
+
 #include "pessoa.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
-
 
 class Veterinario : public Pessoa {
 
@@ -26,8 +26,6 @@ public:
     short getCodigoCrmv() const;
     void setCodigoCrmv(short codigo);
 
-    
-    
 /*Imprimir um veterinario*/
 	friend ostream& operator<< (ostream &o, Veterinario v);	
 };

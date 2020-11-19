@@ -1,4 +1,6 @@
-# include "tratador.hpp"
+#include "tratador.hpp"
+#include "nivelseguranca.hpp"
+#include "animal.hpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -7,26 +9,27 @@ using std::setw;
 
 /*Método construtor*/
 
-Tratador::Tratador(short cpf, string nome, string dataNascimento, Nivel nivelSeguranca, int animaisTratados): Pessoa(cpf, nome, dataNascimento), nivelSeguranca(nivelSeguranca),animaisTratados(0){}
+Tratador::Tratador(short cpf, string nome, 
+ string dataNascimento, NivelSeguranca nivelSeguranca): Pessoa(cpf, nome, dataNascimento), 
+ nivelSeguranca(nivelSeguranca){}
 
 
 /*Gets e sets*/
-int Tratador::getAnimaisTratados(){
+int Tratador::getQuantidadeAnimaisTratados(){
+    return this->quantidadeAnimaisTratados;
+}
+
+vector<shared_ptr<Animal>> Tratador::getAnimaisTratados(){
     return this->animaisTratados;
 }
 
-Nivel Tratador::getNivelSeguranca(){
+NivelSeguranca Tratador::getNivelSeguranca(){
     return this->nivelSeguranca;
 }
 
-void Tratador::setAnimaisTratados(int animais){
-    this->animaisTratados = animais;
-}
-
-void Tratador::setNivelSeguranca(Nivel nivel){
+void Tratador::setNivelSeguranca(NivelSeguranca nivel){
     this->nivelSeguranca = nivel;
 }
-
 
 /*Médoto para imprimir tratador*/
 ostream& 
