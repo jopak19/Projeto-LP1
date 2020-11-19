@@ -7,23 +7,24 @@ using std::setw;
 
 /*Método construtor*/
 
-Tratador::Tratador(short cpf, string nome, string dataNascimento, Nivel nivel_seguranca, int animais_tratados): Pessoa(cpf, nome, dataNascimento), nivel_seguranca(nivel_seguranca),animais_tratados(0){}
-
+Tratador::Tratador(short cpf, string nome, string dataNascimento, Nivel nivelSeguranca, int animaisTratados): Pessoa(cpf, nome, dataNascimento), nivelSeguranca(nivelSeguranca),animaisTratados(0){}
 
 
 /*Gets e sets*/
-int Tratador::getAnimais_tratados(){
-    return this->animais_tratados;
-}
-Nivel Tratador::getNivel_seguranca(){
-    return this->nivel_seguranca;
+int Tratador::getAnimaisTratados(){
+    return this->animaisTratados;
 }
 
-void Tratador::setAnimais_tratados(int animais){
-    this->animais_tratados = animais;
+Nivel Tratador::getNivelSeguranca(){
+    return this->nivelSeguranca;
 }
-void Tratador::setNivel_seguranca(Nivel nivel){
-    this->nivel_seguranca = nivel;
+
+void Tratador::setAnimaisTratados(int animais){
+    this->animaisTratados = animais;
+}
+
+void Tratador::setNivelSeguranca(Nivel nivel){
+    this->nivelSeguranca = nivel;
 }
 
 
@@ -33,11 +34,13 @@ operator<< (ostream &o, Tratador t){
 
 /*Exibir o enum nível*/
     string nivel = "";
-    if (t.getNivel_seguranca() == 0){
+    if (t.getNivelSeguranca() == 0){
         nivel = "Verde";
-    }else if(t.getNivel_seguranca() == 1){
+
+    } else if(t.getNivelSeguranca() == 1){
         nivel = "Vermelho";
-    }else{
+
+    } else {
         nivel = "Azul";
     }
 

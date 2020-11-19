@@ -13,23 +13,24 @@ enum Nivel {
 };
 
 class Tratador : public Pessoa {
+
 private:
 
 /*Atributos específicos da classe tratador*/
-	Nivel nivel_seguranca;
-    int animais_tratados;
+	Nivel nivelSeguranca;
+    int animaisTratados;
 
 public:
 
 /*Metodo contrutor*/
-	Tratador (short cpf, string nome, string dataNascimento, Nivel nivel_seguranca, int animais_tratados);
+	Tratador (short cpf, string nome, string dataNascimento, Nivel nivelSeguranca, int animaisTratados);
 
 /*Metodos gets e sets específicos de tratador*/
-    int getAnimais_tratados();
-    Nivel getNivel_seguranca();
+    int getAnimaisTratados();
+    Nivel getNivelSeguranca();
 
-    void setAnimais_tratados(int animais);
-    void setNivel_seguranca(Nivel nivel);
+    void setAnimaisTratados(int animais);
+    void setNivelSeguranca(Nivel nivel);
     
     
 /*Imprimir um tratador*/
