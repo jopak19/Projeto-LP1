@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "animal.hpp"
 
 using namespace std;
 
@@ -13,18 +14,22 @@ private:
 
 /*Atributos específicos da classe veterinario*/
 	short codigoCrmv;
-    int animaisTratados; //duvida se ficara aqui ou outra classe para relacionar !!!
+    vector<shared_ptr<Animal>> animaisTratados;
+    int quantidadeAnimaisTratados;
 
 public:
 
 /*Metodo contrutor*/
-	Veterinario (short cpf, string nome, string dataNascimento, short codigoCrmv, int animaisTratados);
+	Veterinario (short cpf, string nome, string dataNascimento,
+                short codigoCrmv);
 
 /*Metodos gets e sets específicos do veterinario*/
-    int getAnimaisTratados() const;
-    void setAnimaisTratados(int animais);
+    int getQuantidadeAnimaisTratados() const;
+    vector<shared_ptr<Animal>> getAnimaisTratados() const;
     short getCodigoCrmv() const;
     void setCodigoCrmv(short codigo);
+    void adiconarAnimalTratado(shared_ptr<Animal> animal);
+    void removeAnimalTratado(shared_ptr<Animal> animal);
 
 /*Imprimir um veterinario*/
 	friend ostream& operator<< (ostream &o, Veterinario v);	
