@@ -8,6 +8,9 @@
 
 using namespace std;
 
+// Resolve problema de dependência circular
+class Animal;
+
 class Veterinario : public Pessoa {
 
 private:

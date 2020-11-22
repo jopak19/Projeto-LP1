@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// Resolve problema de dependência circular
+//Resolve problemas de dependência circular
 class Animal;
 
 class Tratador : public Pessoa {

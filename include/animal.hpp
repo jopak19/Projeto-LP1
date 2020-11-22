@@ -10,8 +10,9 @@ using std::vector;
 using std::string;
 using std::shared_ptr;
 
-// Resolve problema de dependência circular
+//Resolve problema de dependência circular
 class Tratador;
+class Veterinario;
 
 class Animal {
 
@@ -22,8 +23,8 @@ class Animal {
 		string altura;
 		short idade;
 		string especie;
-		shared_ptr<Tratador> tratador;
 		shared_ptr<Veterinario> veterinario;
+		shared_ptr<Tratador> tratador;
 
 	public:
 
