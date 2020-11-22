@@ -3,8 +3,6 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include "tratador.hpp"
-#include "veterinario.hpp"
 
 using std::vector;
 using std::string;

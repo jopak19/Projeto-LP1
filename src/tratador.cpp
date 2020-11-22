@@ -8,20 +8,10 @@ using std::setfill;
 using std::setw;
 
 /*Método construtor*/
-
 Tratador::Tratador(short cpf, string nome, 
- string dataNascimento, NivelSeguranca nivelSeguranca): Pessoa(cpf, nome, dataNascimento), 
+ string dataNascimento, NivelSeguranca nivelSeguranca): Funcionario(cpf, nome, dataNascimento), 
  nivelSeguranca(nivelSeguranca){}
 
-
-/*Gets e sets*/
-int Tratador::getQuantidadeAnimaisTratados(){
-    return this->quantidadeAnimaisTratados;
-}
-
-vector<shared_ptr<Animal>> Tratador::getAnimaisTratados(){
-    return this->animaisTratados;
-}
 
 NivelSeguranca Tratador::getNivelSeguranca(){
     return this->nivelSeguranca;
