@@ -1,22 +1,22 @@
-# include "pessoa.hpp"
+# include "funcionario.hpp"
 
-Pessoa::Pessoa(short cpf, string nome,string dataNascimento):
+Funcionario::Funcionario(short cpf, string nome,string dataNascimento):
 	cpf(cpf), nome(nome), dataNascimento(dataNascimento){
 }
 
-string Pessoa::getNome() const{
+string Funcionario::getNome() const{
 	return this->nome;
 }
 
-string Pessoa::getDataNascimento() const {
+string Funcionario::getDataNascimento() const {
 	return this->dataNascimento;
 }
 
-short Pessoa::getCpf() const {
+short Funcionario::getCpf() const {
 	return this->cpf;
 }
 
-void Pessoa::alterarDados(short cpf, string nome, string dataNascimento) {
+void Funcionario::alterarDados(short cpf, string nome, string dataNascimento) {
 
 	this->cpf = cpf;
 	this->nome = nome;

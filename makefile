@@ -7,7 +7,7 @@ PROG = $(BIN)/programa
 CC = g++
 CPPFLAGS = -Wall -std=c++11 -I./include
 
-OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/pessoa.o $(BIN)/tratador.o $(BIN)/veterinario.o
+OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o
 
 all : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -29,8 +29,8 @@ $(BIN)/mamifero.o : $(SRC)/mamifero.cpp $(INC)/mamifero.hpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/mamifero.cpp -o $@
 $(BIN)/reptil.o : $(SRC)/reptil.cpp $(INC)/reptil.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/reptil.cpp -o $@
-$(BIN)/pessoa.o : $(SRC)/pessoa.cpp $(INC)/pessoa.hpp 
-	$(CC) $(CPPFLAGS) -c $(SRC)/pessoa.cpp -o $@
+$(BIN)/funcionario.o : $(SRC)/funcionario.cpp $(INC)/funcionario.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/funcionario.cpp -o $@
 $(BIN)/tratador.o : $(SRC)/tratador.cpp $(INC)/tratador.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/tratador.cpp -o $@
 $(BIN)/veterinario.o : $(SRC)/veterinario.cpp $(INC)/veterinario.hpp 
