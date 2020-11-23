@@ -13,7 +13,7 @@ class Funcionario {
 
 	protected:
 
-		short cpf;
+		string cpf;
 		string nome;
 		string dataNascimento;
 		vector<shared_ptr<Animal>> animaisTratados;
@@ -21,13 +21,13 @@ class Funcionario {
 		
 	public:
 
-		Funcionario(short cpf, string nome,string dataNascimento);
+		Funcionario(string cpf, string nome,string dataNascimento);
 		string getDataNascimento() const;
-		short getCpf() const;
+		string getCpf() const;
 		string getNome() const;
 
 		// TODO Sobrescrever esse método nas classes derivadas
-		void alterarDados(short cpf, string nome, string dataNascimento);
+		void alterarDados(string cpf, string nome, string dataNascimento);
 
 		void adicionarAnimalTratado(shared_ptr<Animal> animal);
     	void removerAnimalTratado(shared_ptr<Animal> animal);

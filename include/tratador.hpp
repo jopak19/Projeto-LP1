@@ -20,11 +20,11 @@ private:
 
 public:
 
-	Tratador (short cpf, string nome, string dataNascimento, 
+	Tratador (string cpf, string nome, string dataNascimento, 
         NivelSeguranca nivelSeguranca);
 
 
-    NivelSeguranca getNivelSeguranca();
+    NivelSeguranca getNivelSeguranca() const;
     void setNivelSeguranca(NivelSeguranca nivel);
     
 	friend ostream& operator<< (ostream &o, Tratador t);	

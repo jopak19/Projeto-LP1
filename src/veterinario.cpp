@@ -7,13 +7,14 @@ using std::setw;
 
 /*Método construtor*/
 
-Veterinario::Veterinario(short cpf, string nome, string dataNascimento, short codigoCrmv): 
+Veterinario::Veterinario(string cpf, string nome, string dataNascimento, string codigoCrmv): 
             Funcionario(cpf, nome, dataNascimento), codigoCrmv(codigoCrmv){}
 
-short Veterinario::getCodigoCrmv() const{
+string Veterinario::getCodigoCrmv() const{
     return this->codigoCrmv;
 }
-void Veterinario::setCodigoCrmv(short codigo){
+
+void Veterinario::setCodigoCrmv(string codigo){
     this->codigoCrmv = codigo;
 }
 

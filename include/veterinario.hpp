@@ -16,16 +16,16 @@ class Veterinario : public Funcionario {
 private:
 
 /*Atributos específicos da classe veterinario*/
-	short codigoCrmv;
+	string codigoCrmv;
   
 
 public:
 
-	Veterinario (short cpf, string nome, string dataNascimento,
-                short codigoCrmv);
+	Veterinario (string cpf, string nome, string dataNascimento,
+                string codigoCrmv);
 
-    short getCodigoCrmv() const;
-    void setCodigoCrmv(short codigo);
+    string getCodigoCrmv() const;
+    void setCodigoCrmv(string codigo);
    
 	friend ostream& operator<< (ostream &o, Veterinario v);	
 };

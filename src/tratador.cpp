@@ -8,12 +8,11 @@ using std::setfill;
 using std::setw;
 
 /*Método construtor*/
-Tratador::Tratador(short cpf, string nome, 
+Tratador::Tratador(string cpf, string nome, 
  string dataNascimento, NivelSeguranca nivelSeguranca): Funcionario(cpf, nome, dataNascimento), 
  nivelSeguranca(nivelSeguranca){}
 
-
-NivelSeguranca Tratador::getNivelSeguranca(){
+NivelSeguranca Tratador::getNivelSeguranca() const{
     return this->nivelSeguranca;
 }
 

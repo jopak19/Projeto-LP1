@@ -12,14 +12,15 @@ using namespace std;
 class PetFera {
 
     public:
+
+       
         // PetFera(string nome, int identificador); TODO
         // ~PetFera(); TODO
-        string getNome() const;
-        int getIdentificador() const;
+        //string getNome() const;
+        //int getIdentificador() const;
         vector<shared_ptr<Animal>> getAnimais() const;
         vector<shared_ptr<Tratador>> getTratadores() const;
         vector<shared_ptr<Veterinario>> getVeterinarios() const;
-        
         bool cadastrarAnimal(shared_ptr<Animal> animal);
         bool cadastrarTratador(shared_ptr<Tratador> tratador);
         bool cadastrarVeterinario(shared_ptr<Veterinario> veterinario);
