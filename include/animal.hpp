@@ -3,10 +3,16 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <iostream>
+#include <iomanip>
 
 using std::vector;
 using std::string;
 using std::shared_ptr;
+using std::ostream;
+using std::setfill;
+using std::setw;
+using std::endl;
 
 //Resolve problema de dependência circular
 class Tratador;
@@ -48,4 +54,6 @@ class Animal {
 		void setIdade(short idade);
 		void setEspecie(string especie);
 		void alterarDados(string codigo, string peso, string altura, short idade, string especie);
+
+		friend ostream& operator<< (ostream &o, Animal a);
 };
