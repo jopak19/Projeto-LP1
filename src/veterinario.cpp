@@ -23,8 +23,10 @@ ostream&
 operator<< (ostream &o, Veterinario v){
 
 /*Como o Veterinario será exibido em tela*/
-o << setfill(' ') << setw(30) << v.getNome()
-		<< setfill(' ') << setw(15) << v.getCpf()
-		<< setfill(' ') << v.getCodigoCrmv();
+    o << "Nome" << setfill(' ') << setw(15) 
+    << "CPF" << setfill(' ') << setw(15) 
+    << "CRMV" << endl
+    << v.getNome() << setfill(' ') << setw(15) 
+    << v.getCpf() << setfill(' ') << setw(15) << v.getCodigoCrmv() << endl;
 	return o;
 }
