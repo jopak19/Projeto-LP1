@@ -23,7 +23,6 @@ public:
 	Tratador (string cpf, string nome, string dataNascimento, 
         NivelSeguranca nivelSeguranca);
 
-
     NivelSeguranca getNivelSeguranca() const;
     void setNivelSeguranca(NivelSeguranca nivel);
     

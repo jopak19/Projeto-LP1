@@ -45,6 +45,11 @@ int main(int argc, char const *argv[])
 	petfera->cadastrarVeterinario(vet2);
 	petfera->cadastrarVeterinario(vet3);
 	
+	shared_ptr<Tratador> tratadorAchado = petfera->getTratador("5335345");
+	cout << *tratadorAchado << endl;
+
+	cout << "-------------------" << endl;
+
 	petfera->listarTratadores();
 	petfera->listarVeterinarios();
 

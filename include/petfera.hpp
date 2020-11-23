@@ -12,7 +12,6 @@ using namespace std;
 class PetFera {
 
     public:
-
        
         // PetFera(string nome, int identificador); TODO
         // ~PetFera(); TODO
@@ -21,6 +20,9 @@ class PetFera {
         vector<shared_ptr<Animal>> getAnimais() const;
         vector<shared_ptr<Tratador>> getTratadores() const;
         vector<shared_ptr<Veterinario>> getVeterinarios() const;
+        shared_ptr<Animal> getAnimal(string codigo) const;
+        shared_ptr<Veterinario> getVeterinario(string cpf) const;
+        shared_ptr<Tratador> getTratador(string cpf) const;
         bool cadastrarAnimal(shared_ptr<Animal> animal);
         bool cadastrarTratador(shared_ptr<Tratador> tratador);
         bool cadastrarVeterinario(shared_ptr<Veterinario> veterinario);

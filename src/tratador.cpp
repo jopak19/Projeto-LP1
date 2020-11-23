@@ -21,8 +21,7 @@ void Tratador::setNivelSeguranca(NivelSeguranca nivel){
 }
 
 /*Médoto para imprimir tratador*/
-ostream& 
-operator<< (ostream &o, Tratador t){
+ostream& operator<< (ostream &o, Tratador t){
 
 /*Exibir o enum nível*/
     string nivel = "";

@@ -1,6 +1,5 @@
-# include "animal.hpp"
-# include "veterinario.hpp"
-# include "tratador.hpp"
+#include "animal.hpp"
+
 
 Animal::Animal(string codigo, string peso, 
 	string altura, short idade, string especie, 
@@ -76,4 +75,19 @@ void Animal::alterarDados(string codigo, string peso, string altura, short idade
 	if(especie != NULL)
 		this->especie = especie;
 	*/
+}
+
+ostream& operator<< (ostream &o, Animal a){
+
+	o << "Código" << setfill(' ') << setw(15) 
+    << "Peso" << setfill(' ') << setw(15) 
+    << "Altura" 
+    << "Especie" << endl
+    << a.getCodigo() << setfill(' ') << setw(15) 
+    << a.getPeso() << setfill(' ') << setw(15) 
+   	<< a.getAltura() << setfill(' ') << setw(15)
+   	<< a.getEspecie() << setfill(' ') << setw(15)
+    << endl;
+
+	return o;
 }
