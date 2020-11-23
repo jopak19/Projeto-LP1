@@ -35,19 +35,18 @@ bool PetFera::cadastrarVeterinario(shared_ptr<Veterinario> veterinario){
     return true;
 }
 
-/*
 bool PetFera::realizarVenda(){
+	return false;
 
 }
 
 bool PetFera::removerTratador(){
-
+	return true;
 }
 
 bool PetFera::removerVeterinario(){
-
+	return true;
 }
-*/
 
 void PetFera::editarAnimal(shared_ptr<Animal> animal){
 
@@ -63,12 +62,23 @@ void PetFera::editarVeterinario(shared_ptr<Veterinario> veterinario){
 
 void PetFera::listarAnimais() const{
 
+/*
+	for(int i = 0; i < (int) this->animais.size(); i++){
+		cout << *this->animais.at(i) << endl;
+	}*/
 }
 
 void PetFera::listarTratadores() const{
+
+	for(int i = 0; i < (int) this->tratadores.size(); i++){
+		cout << *this->tratadores.at(i) << endl;
+	}
 
 }
 
 void PetFera::listarVeterinarios() const{
 
+	for(int i = 0; i < (int) this->veterinarios.size(); i++){
+		cout << *this->veterinarios.at(i) << endl;
+	}
 }

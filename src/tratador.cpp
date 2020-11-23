@@ -26,10 +26,10 @@ operator<< (ostream &o, Tratador t){
 
 /*Exibir o enum nível*/
     string nivel = "";
-    if (t.getNivelSeguranca() == 0){
+    if (t.getNivelSeguranca() == Verde){
         nivel = "Verde";
 
-    } else if(t.getNivelSeguranca() == 1){
+    } else if(t.getNivelSeguranca() == Vermelho){
         nivel = "Vermelho";
 
     } else {
@@ -37,8 +37,11 @@ operator<< (ostream &o, Tratador t){
     }
 
 /*Como o tratador será exibido em tela*/
-o << setfill(' ') << setw(30) << t.getNome()
-		<< setfill(' ') << setw(15) << t.getCpf()
-		<< setfill(' ') << nivel;
+    o << "Nome" << setfill(' ') << setw(15) 
+    << "CPF" << setfill(' ') << setw(15) 
+    << "Nível" << endl
+    << t.getNome() << setfill(' ') << setw(15) 
+    << t.getCpf() << setfill(' ') << setw(15) << nivel << endl;
+
 	return o;
 }
