@@ -1,6 +1,5 @@
 #include "animal.hpp"
 
-
 Animal::Animal(string codigo, string peso, 
 	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
 	idade(idade), especie(especie), perigoso(perigoso){
@@ -49,8 +48,6 @@ bool Animal::setVeterinario(shared_ptr<Veterinario> veterinario){
 }
 
 bool Animal::setTratador(shared_ptr<Tratador> tratador){
-
-	// TODO: Fazer validação com o nível de segurança
 	this->tratador = tratador;
 	return true;
 }
