@@ -15,7 +15,10 @@ Mamifero::Mamifero(string codigo,
                    string especie,
                    Gestacao gestacao):
                    Animal(codigo, peso, altura, idade, especie),
-                   gestacao(gestacao){};
+                   gestacao(gestacao){
+
+    this->nivelSeguranca = Verde;
+};
 
 Gestacao Mamifero::getGestacao() const{
     return this->gestacao;

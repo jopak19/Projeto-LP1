@@ -13,7 +13,10 @@ Ave::Ave(string codigo,
 		string especie,
         bool aquatica,
         bool podeVoar): Animal(codigo, peso, altura, idade, especie),
-        aquatica(aquatica), podeVoar(podeVoar){};
+        aquatica(aquatica), podeVoar(podeVoar){
+
+        this->nivelSeguranca = Azul;
+};
 
 bool Ave::getAquatica() const{
     return this->aquatica;

@@ -34,6 +34,10 @@ shared_ptr<Tratador> Animal::getTratador() const {
 	return this->tratador;
 }
 
+NivelSeguranca Animal::getNivelSeguranca() const {
+	return this->nivelSeguranca;
+}
+
 bool Animal::setVeterinario(shared_ptr<Veterinario> veterinario){
 	this->veterinario = veterinario;
 	return true;

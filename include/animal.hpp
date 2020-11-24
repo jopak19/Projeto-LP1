@@ -5,6 +5,7 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
+#include "nivelseguranca.hpp"
 
 using std::vector;
 using std::string;
@@ -20,7 +21,7 @@ class Veterinario;
 
 class Animal {
 
-	private:
+	protected:
 
 		string codigo;
 		string peso;
@@ -29,6 +30,7 @@ class Animal {
 		string especie;
 		shared_ptr<Veterinario> veterinario;
 		shared_ptr<Tratador> tratador;
+		NivelSeguranca nivelSeguranca;
 
 	public:
 
@@ -47,6 +49,7 @@ class Animal {
 		string getEspecie() const;
 		shared_ptr<Veterinario> getVeterinario() const;
 		shared_ptr<Tratador> getTratador() const;
+		NivelSeguranca getNivelSeguranca() const;
 		bool setVeterinario(shared_ptr<Veterinario> veterinario);
 		bool setTratador(shared_ptr<Tratador> tratador);
 		void setCodigo(string codigo);

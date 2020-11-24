@@ -15,7 +15,11 @@ Reptil::Reptil(string codigo,
                 string periodoDeMudadepele,
                 TipoDePele tipoDePele):
                 Animal(codigo, peso, altura, idade, especie),
-                periodoDeMudaDePele(periodoDeMudadepele), tipoDePele(tipoDePele){};
+                periodoDeMudaDePele(periodoDeMudadepele), tipoDePele(tipoDePele){
+
+    this->nivelSeguranca = Verde;
+
+};
 
 //getters e setters
 string Reptil::getPeriodoDeMudadepele() const{

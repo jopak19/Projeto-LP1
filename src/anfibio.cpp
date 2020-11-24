@@ -15,7 +15,10 @@ Anfibio::Anfibio(string codigo,
                 string periodoDeMudadepele,
                 int temperaturaDoAmbiente):
                 Animal(codigo, peso, altura, idade, especie),
-                periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){};
+                periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){
+
+    this->nivelSeguranca = Verde;
+};
 
 //getters e setters
 string Anfibio::getPeriodoDeMudadepele() const{
