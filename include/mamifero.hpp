@@ -25,7 +25,8 @@ public:
                 string altura, 
                 short idade, 
                 string especie,
-                Gestacao gestacao
+                Gestacao gestacao,
+                bool perigoso
                 );
 
     Gestacao getGestacao() const;

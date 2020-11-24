@@ -25,7 +25,8 @@ class Reptil : public Animal{
                     short idade, 
                     string especie,
                     string periodoDeMudadepele,
-                    TipoDePele tipoDePele);
+                    TipoDePele tipoDePele,
+                    bool perigoso);
 
         string getPeriodoDeMudadepele() const;
         void setPeriodoDeMudadepele(string periodo);

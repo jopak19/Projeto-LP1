@@ -13,11 +13,12 @@ Reptil::Reptil(string codigo,
                 short idade, 
                 string especie,
                 string periodoDeMudadepele,
-                TipoDePele tipoDePele):
-                Animal(codigo, peso, altura, idade, especie),
+                TipoDePele tipoDePele,
+                bool perigoso = false):
+                Animal(codigo, peso, altura, idade, especie, perigoso),
                 periodoDeMudaDePele(periodoDeMudadepele), tipoDePele(tipoDePele){
 
-    this->nivelSeguranca = Verde;
+    this->nivelSeguranca = Azul;
 
 };
 

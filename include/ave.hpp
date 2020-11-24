@@ -21,7 +21,8 @@ public:
 		short idade, 
 		string especie,
         bool aquatica,
-        bool podeVoar);
+        bool podeVoar,
+        bool perigoso = false);
 
     bool getAquatica() const;
     void setAquatica(bool aquatica);

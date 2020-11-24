@@ -1,7 +1,7 @@
 #include "nativo.hpp"
 
-Nativo::Nativo (int marcacaoPermanente, bool perigoso, bool emExtincao, Bioma biomaOrigem):
-                Silvestre(marcacaoPermanente, perigoso, emExtincao),
+Nativo::Nativo (int marcacaoPermanente, bool emExtincao, Bioma biomaOrigem):
+                Silvestre(marcacaoPermanente, emExtincao),
                 biomaOrigem(biomaOrigem){};
 
 

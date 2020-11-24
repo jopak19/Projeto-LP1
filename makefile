@@ -7,7 +7,7 @@ PROG = $(BIN)/programa
 CC = g++
 CPPFLAGS = -Wall -std=c++11 -I./include
 
-OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o
+OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o $(BIN)/anfibioexotico.o $(BIN)/anfibionativo.o $(BIN)/aveexotico.o $(BIN)/avenativo.o $(BIN)/mamiferoexotico.o $(BIN)/mamiferonativo.o $(BIN)/reptilexotico.o $(BIN)/reptilnativo.o
 
 all : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -43,6 +43,22 @@ $(BIN)/exotico.o : $(SRC)/exotico.cpp $(INC)/exotico.hpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/exotico.cpp -o $@
 $(BIN)/silvestre.o : $(SRC)/silvestre.cpp $(INC)/silvestre.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/silvestre.cpp -o $@
+$(BIN)/anfibioexotico.o : $(SRC)/anfibioexotico.cpp $(INC)/anfibioexotico.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/anfibioexotico.cpp -o $@
+$(BIN)/anfibionativo.o : $(SRC)/anfibionativo.cpp $(INC)/anfibionativo.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/anfibionativo.cpp -o $@
+$(BIN)/aveexotico.o : $(SRC)/aveexotico.cpp $(INC)/aveexotico.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/aveexotico.cpp -o $@
+$(BIN)/avenativo.o : $(SRC)/avenativo.cpp $(INC)/avenativo.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/avenativo.cpp -o $@
+$(BIN)/mamiferoexotico.o : $(SRC)/mamiferoexotico.cpp $(INC)/mamiferoexotico.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/mamiferoexotico.cpp -o $@
+$(BIN)/mamiferonativo.o : $(SRC)/mamiferonativo.cpp $(INC)/mamiferonativo.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/mamiferonativo.cpp -o $@
+$(BIN)/reptilexotico.o : $(SRC)/reptilexotico.cpp $(INC)/reptilexotico.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/reptilexotico.cpp -o $@
+$(BIN)/reptilnativo.o : $(SRC)/reptilnativo.cpp $(INC)/reptilnativo.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/reptilnativo.cpp -o $@
 
 clean:
 	rm -f core $(PROG) $(OBJS)

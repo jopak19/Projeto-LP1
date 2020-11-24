@@ -20,7 +20,8 @@ public:
             short idade, 
             string especie,
             string periodoDeMudadepele,
-            int temperaturaDoAmbiente);
+            int temperaturaDoAmbiente,
+            bool perigoso);
 
     string getPeriodoDeMudadepele() const;
     void setPeriodoDeMudadepele(string periodo);

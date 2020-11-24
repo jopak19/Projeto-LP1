@@ -19,7 +19,7 @@ protected:
 
 public:
 
-	Nativo (int marcacaoPermanente, bool perigoso, bool emExtincao, Bioma biomaOrigem);
+	Nativo (int marcacaoPermanente, bool emExtincao, Bioma biomaOrigem);
 
     Bioma getBiomaOrigem() const;
     void setBiomaOrigem(Bioma bioma);

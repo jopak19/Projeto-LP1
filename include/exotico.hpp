@@ -14,7 +14,7 @@ class Exotico : public Silvestre{
 
     public:
 
-	    Exotico (int marcacaoPermanente, bool perigoso, bool emExtincao, string territorioDeOrigem);
+	    Exotico (int marcacaoPermanente, bool emExtincao, string territorioDeOrigem);
 
         string getTerritorioDeOrigem() const;
         void setTerritorioDeOrigem(string territorio);

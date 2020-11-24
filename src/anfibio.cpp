@@ -13,11 +13,12 @@ Anfibio::Anfibio(string codigo,
                 short idade, 
                 string especie,
                 string periodoDeMudadepele,
-                int temperaturaDoAmbiente):
-                Animal(codigo, peso, altura, idade, especie),
+                int temperaturaDoAmbiente,
+                bool perigoso = false):
+                Animal(codigo, peso, altura, idade, especie, perigoso),
                 periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){
 
-    this->nivelSeguranca = Verde;
+    this->nivelSeguranca = Azul;
 };
 
 //getters e setters

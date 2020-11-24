@@ -2,8 +2,8 @@
 
 
 Animal::Animal(string codigo, string peso, 
-	string altura, short idade, string especie):codigo(codigo), peso(peso), altura(altura), 
-	idade(idade), especie(especie){
+	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
+	idade(idade), especie(especie), perigoso(perigoso){
 }
 
 string Animal::getCodigo() const {
@@ -37,7 +37,12 @@ shared_ptr<Tratador> Animal::getTratador() const {
 NivelSeguranca Animal::getNivelSeguranca() const {
 	return this->nivelSeguranca;
 }
-
+bool Animal::getPerigoso() const{
+	return this->perigoso;
+};
+void Animal::setPerigoso(bool perigoso){
+	this->perigoso = perigoso;
+};
 bool Animal::setVeterinario(shared_ptr<Veterinario> veterinario){
 	this->veterinario = veterinario;
 	return true;
