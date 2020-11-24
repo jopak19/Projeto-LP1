@@ -7,7 +7,7 @@ PROG = $(BIN)/programa
 CC = g++
 CPPFLAGS = -Wall -std=c++11 -I./include
 
-OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o
+OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o
 
 all : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -35,6 +35,8 @@ $(BIN)/tratador.o : $(SRC)/tratador.cpp $(INC)/tratador.hpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/tratador.cpp -o $@
 $(BIN)/veterinario.o : $(SRC)/veterinario.cpp $(INC)/veterinario.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/veterinario.cpp -o $@
+$(BIN)/interface.o : $(SRC)/interface.cpp $(INC)/interface.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/interface.cpp -o $@
 
 clean:
 	rm -f core $(PROG) $(OBJS)

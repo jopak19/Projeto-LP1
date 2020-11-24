@@ -90,8 +90,8 @@ bool PetFera::realizarVenda(string codigoAnimal){
 	shared_ptr<Veterinario> vet = animal->getVeterinario();
 	shared_ptr<Tratador> tra = animal->getTratador();
 
-	vet->removerAnimalTratado(animal);
-	tra->removerAnimalTratado(animal);
+	vet->removerAnimalTratado(codigoAnimal);
+	tra->removerAnimalTratado(codigoAnimal);
 	this->removerAnimal(codigoAnimal);
 
 	return true;
@@ -165,3 +165,5 @@ void PetFera::listarVeterinarios() const{
 		cout << *this->veterinarios.at(i) << endl;
 	}
 }
+
+

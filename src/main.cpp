@@ -1,10 +1,8 @@
 #include <iostream>
-#include <memory>
-#include "petfera.hpp"
+#include "interface.hpp" 
 #include "tratador.hpp"
 #include "veterinario.hpp"
 #include "nivelseguranca.hpp"
-
 #include <vector>
 #include <string>
 #include <memory>
@@ -17,8 +15,15 @@ using std::shared_ptr;
 int main(int argc, char const *argv[])
 {
 
+    //teste       
+
 	// Apenas testes
 	PetFera *petfera = new PetFera();
+    Interface *inter = new Interface();
+    inter->setPet(petfera);
+    inter->menu();
+
+/*
 	shared_ptr<Tratador> tratador = make_shared<Tratador>(
 		"5335345", "Fulano1", "12/03/2001", Vermelho);
 
@@ -62,7 +67,7 @@ int main(int argc, char const *argv[])
 	petfera->listarTratadores();
 	petfera->listarVeterinarios();
 
-
+*/
 	delete petfera;
 
 	return 0;
