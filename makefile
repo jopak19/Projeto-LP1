@@ -7,7 +7,7 @@ PROG = $(BIN)/programa
 CC = g++
 CPPFLAGS = -Wall -std=c++11 -I./include
 
-OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o
+OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o
 
 all : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -37,6 +37,12 @@ $(BIN)/veterinario.o : $(SRC)/veterinario.cpp $(INC)/veterinario.hpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/veterinario.cpp -o $@
 $(BIN)/interface.o : $(SRC)/interface.cpp $(INC)/interface.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/interface.cpp -o $@
+$(BIN)/nativo.o : $(SRC)/nativo.cpp $(INC)/nativo.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/nativo.cpp -o $@
+$(BIN)/exotico.o : $(SRC)/exotico.cpp $(INC)/exotico.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/exotico.cpp -o $@
+$(BIN)/silvestre.o : $(SRC)/silvestre.cpp $(INC)/silvestre.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/silvestre.cpp -o $@
 
 clean:
 	rm -f core $(PROG) $(OBJS)
