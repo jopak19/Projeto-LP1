@@ -7,7 +7,7 @@ using namespace std;
 
 class Anfibio : public Animal{
 
-private:
+protected:
 
 /*Atributos específicos da classe Anfibio*/
     string periodoDeMudaDePele;

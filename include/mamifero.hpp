@@ -14,7 +14,7 @@ enum Gestacao {
 
 class Mamifero : public Animal{
 
-private:
+protected:
 
 /*Atributos específicos da classe Mamifero*/
     Gestacao gestacao;
