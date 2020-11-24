@@ -2,10 +2,8 @@
 
 
 Animal::Animal(string codigo, string peso, 
-	string altura, short idade, string especie, 
-	shared_ptr<Veterinario> veterinario, shared_ptr<Tratador> tratador):
-	codigo(codigo), peso(peso), altura(altura), 
-	idade(idade), especie(especie), veterinario(veterinario), tratador(tratador){
+	string altura, short idade, string especie):codigo(codigo), peso(peso), altura(altura), 
+	idade(idade), especie(especie){
 }
 
 string Animal::getCodigo() const {
@@ -34,6 +32,18 @@ shared_ptr<Veterinario> Animal::getVeterinario() const {
 
 shared_ptr<Tratador> Animal::getTratador() const {
 	return this->tratador;
+}
+
+bool Animal::setVeterinario(shared_ptr<Veterinario> veterinario){
+	this->veterinario = veterinario;
+	return true;
+}
+
+bool Animal::setTratador(shared_ptr<Tratador> tratador){
+
+	// TODO: Fazer validação com o nível de segurança
+	this->tratador = tratador;
+	return true;
 }
 
 void Animal::setCodigo(string codigo){

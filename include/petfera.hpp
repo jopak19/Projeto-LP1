@@ -23,7 +23,8 @@ class PetFera {
         shared_ptr<Animal> getAnimal(string codigo) const;
         shared_ptr<Veterinario> getVeterinario(string cpf) const;
         shared_ptr<Tratador> getTratador(string cpf) const;
-        bool cadastrarAnimal(shared_ptr<Animal> animal);
+        bool cadastrarAnimal(shared_ptr<Animal> animal, 
+            string cpfTratador, string cpfVeterinario);
         bool cadastrarTratador(shared_ptr<Tratador> tratador);
         bool cadastrarVeterinario(shared_ptr<Veterinario> veterinario);
         bool realizarVenda(string codigoAnimal);
