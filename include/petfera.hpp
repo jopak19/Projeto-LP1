@@ -7,7 +7,9 @@
 #include <string>
 #include <memory>
 
-using namespace std;
+using std::shared_ptr;
+using std::string;
+using std::vector;
 
 class PetFera {
 

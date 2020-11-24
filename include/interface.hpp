@@ -4,8 +4,10 @@
 using namespace std;
 
 class Interface {
+
 private:
     PetFera* pet;
+    
 public:
     void setPet(PetFera* p);
     void menu();

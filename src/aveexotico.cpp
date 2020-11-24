@@ -7,18 +7,18 @@ using std::setw;
 using std::string;
 
 AveExotico::AveExotico (string codigo, 
-                                string peso, 
-                                string altura, 
-                                short idade, 
-                                string especie,
-                                bool aquatica,
-                                bool podeVoar,
-                                int marcacaoPermanente,
-                                bool emExtincao,
-                                string territorioDeOrigem,
-                                bool perigoso):
-                                Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
-                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+                        string peso, 
+                        string altura, 
+                        short idade, 
+                        string especie,
+                        bool aquatica,
+                        bool podeVoar,
+                        int marcacaoPermanente,
+                        bool emExtincao,
+                        string territorioDeOrigem,
+                        bool perigoso):
+                        Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
+                        Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 

@@ -6,19 +6,19 @@ using std::setfill;
 using std::setw;
 using std::string;
 
-ReptilNativo::ReptilNativo     (string codigo, 
-                                string peso, 
-                                string altura, 
-                                short idade, 
-                                string especie,
-                                string periodoDeMudadepele,
-                                TipoDePele tipoDePele,
-                                int marcacaoPermanente,
-                                bool emExtincao,
-                                Bioma biomaOrigem,
-                                bool perigoso):
-                                Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
-                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+ReptilNativo::ReptilNativo(string codigo, 
+                            string peso, 
+                            string altura, 
+                            short idade, 
+                            string especie,
+                            string periodoDeMudadepele,
+                            TipoDePele tipoDePele,
+                            int marcacaoPermanente,
+                            bool emExtincao,
+                            Bioma biomaOrigem,
+                            bool perigoso):
+                            Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
+                            Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 

@@ -1,14 +1,4 @@
 #include "petfera.hpp"
-#include "animal.hpp"
-#include "tratador.hpp"
-#include "veterinario.hpp"
-#include <vector>
-#include <string>
-#include <memory>
-
-using std::shared_ptr;
-using std::string;
-using std::vector;
 
 vector<shared_ptr<Animal>> PetFera::getAnimais() const{
 	return this->animais;
@@ -26,11 +16,11 @@ shared_ptr<Animal> PetFera::getAnimal(string codigo) const{
 
 	for(int i = 0; i < (int) this->animais.size(); i++){
 
-		Animal an = *this->animais.at(i);
-		string codigo2 = an.getCodigo();
+		shared_ptr<Animal> an = this->animais.at(i);
+		string codigo2 = an->getCodigo();
 
 		if(codigo.compare(codigo2) == 0){
-			return this->animais.at(i);
+			return an;
 		}
 	}
 	return nullptr;
@@ -40,11 +30,11 @@ shared_ptr<Veterinario> PetFera::getVeterinario(string cpf) const {
 
 	for(int i = 0; i < (int) this->veterinarios.size(); i++){
 		
-		Veterinario vet = *this->veterinarios.at(i);
-		string cpf2 = vet.getCpf();
+		shared_ptr<Veterinario> vet = this->veterinarios.at(i);
+		string cpf2 = vet->getCpf();
 
 		if(cpf.compare(cpf2) == 0){
-			return this->veterinarios.at(i);
+			return vet;
 		}
 	}
 	return nullptr;
@@ -54,11 +44,11 @@ shared_ptr<Tratador> PetFera::getTratador(string cpf) const {
 
 	for(int i = 0; i < (int) this->tratadores.size(); i++){
 
-		Tratador tra = *this->tratadores.at(i);
-		string cpf2 = tra.getCpf();
+		shared_ptr<Tratador> tra = this->tratadores.at(i);
+		string cpf2 = tra->getCpf();
 	
 		if(cpf.compare(cpf2) == 0){
-			return this->tratadores.at(i);
+			return tra;
 		}
 	}
 	return nullptr;
@@ -115,8 +105,8 @@ bool PetFera::removerTratador(string cpfTratador){
 
 	for(int i = 0; i < (int) this->tratadores.size(); i++){
 
-		Tratador tra = *this->tratadores.at(i);
-		string cpf = tra.getCpf();
+		shared_ptr<Tratador> tra = this->tratadores.at(i);
+		string cpf = tra->getCpf();
 	
 		if(cpfTratador.compare(cpf) == 0){
 			this->tratadores.erase(this->tratadores.begin() + i);
@@ -131,8 +121,8 @@ bool PetFera::removerVeterinario(string cpfVeterinario){
 
 	for(int i = 0; i < (int) this->veterinarios.size(); i++){
 
-		Veterinario vet = *this->veterinarios.at(i);
-		string cpf = vet.getCpf();
+		shared_ptr<Veterinario> vet = this->veterinarios.at(i);
+		string cpf = vet->getCpf();
 	
 		if(cpfVeterinario.compare(cpf) == 0){
 			this->veterinarios.erase(this->veterinarios.begin() + i);
@@ -144,7 +134,17 @@ bool PetFera::removerVeterinario(string cpfVeterinario){
 
 bool PetFera::removerAnimal(string codigoAnimal){
 
-	return true;	
+	for(int i = 0; i < (int) this->animais.size(); i++){
+
+		shared_ptr<Animal> animal = this->animais.at(i);
+		string codigo = animal->getCodigo();
+	
+		if(codigo.compare(codigoAnimal) == 0){
+			this->animais.erase(this->animais.begin() + i);
+			return true;
+		}
+	}
+	return false;
 }
 
 void PetFera::listarAnimais() const{
