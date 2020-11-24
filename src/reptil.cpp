@@ -39,7 +39,7 @@ ostream& operator<< (ostream &o, Reptil animal){
      /*Como o Reptil será exibido em tela*/
     string tipoPele;
 
-    if(animal.getTipoDepele() == CARAPAÇA){
+    if(animal.getTipoDepele() == CARAPACA){
         tipoPele = "carapaça";
     } else if(animal.getTipoDepele() == ESCAMAS){
         tipoPele = "escamas";

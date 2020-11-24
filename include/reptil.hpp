@@ -6,7 +6,7 @@ using namespace std;
 
 enum TipoDePele{
     ESCAMAS,
-    CARAPAÇA,
+    CARAPACA,
     PLACADERMICA
 };
 
