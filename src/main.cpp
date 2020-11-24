@@ -21,12 +21,14 @@ int main(int argc, char const *argv[])
 	PetFera *petfera = new PetFera();
     Interface *inter = new Interface();
     inter->setPet(petfera);
+    shared_ptr<Tratador> tratador = make_shared<Tratador>(
+		"5335345", "Fulano1", "12/03/2001", Vermelho);
+    inter->menu();
     inter->menu();
 
-/*
-	shared_ptr<Tratador> tratador = make_shared<Tratador>(
-		"5335345", "Fulano1", "12/03/2001", Vermelho);
 
+	
+/*
 	shared_ptr<Tratador> tratador2 = make_shared<Tratador>(
 		"5686767", "Fulano2", "12/03/2001", Verde);
 

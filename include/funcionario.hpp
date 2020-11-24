@@ -26,11 +26,15 @@ class Funcionario {
 		string getCpf() const;
 		string getNome() const;
 
+        void setDataNascimento(string dataNascimento);
+		void setCpf(string cpf);
+		void setNome(string nome);
+
 		void adicionarAnimalTratado(shared_ptr<Animal> animal);
     	bool removerAnimalTratado(string codigoAnimal);
     	int getQuantidadeAnimaisTratados() const;
     	vector<shared_ptr<Animal>> getAnimaisTratados() const;
 
     	// TODO Sobrescrever esse método nas classes derivadas
-		void alterarDados(string cpf, string nome, string dataNascimento);
+		
 };
