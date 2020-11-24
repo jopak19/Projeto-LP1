@@ -1,18 +1,28 @@
 #pragma once
+#include "silvestre.hpp"
 
-class Nativo{
+enum Bioma{
+    AMAZONIA,
+    CAATINGA,
+    PAMPA,
+    CERRADO,
+    PANTANAL,
+    MATAATLANTICA
+};
 
-private:
+class Nativo : public Silvestre{
+
+protected:
 
 /*Atributos específicos da classe Nativo*/
-	int marcacaoPermanente;
+    Bioma biomaOrigem;
 
 public:
 
-	Nativo (int marcacaoPermanente);
+	Nativo (int marcacaoPermanente, bool perigoso, bool emExtincao, Bioma biomaOrigem);
 
-    int getMarcacaoPermanente() const;
-    void setMarcacaoPermanente(int marcacao);
+    Bioma getBiomaOrigem() const;
+    void setBiomaOrigem(Bioma bioma);
     	
 };
 

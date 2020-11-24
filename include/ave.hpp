@@ -7,7 +7,7 @@ using namespace std;
 
 class Ave : public Animal{
 
-private:
+protected:
 
 /*Atributos específicos da classe Ave*/
 	bool aquatica;

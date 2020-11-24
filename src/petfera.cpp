@@ -66,9 +66,20 @@ shared_ptr<Tratador> PetFera::getTratador(string cpf) const {
 
 bool PetFera::cadastrarAnimal(shared_ptr<Animal> animal, string cpfTratador, string cpfVeterinario){
    	
-	//TODO: Adicionar o tratador e o veterinario
+   	shared_ptr<Tratador> trat = this->getTratador(cpfTratador);
+   	NivelSeguranca segAnimal = animal->getNivelSeguranca(); 
+   	NivelSeguranca segTratador = trat->getNivelSeguranca();
 
+   	if(segTratador < segAnimal){
+   		return false;
+   	}
+	
+	animal->setTratador(trat);
+
+	shared_ptr<Veterinario> vet = this->getVeterinario(cpfVeterinario);
+	animal->setVeterinario(vet);
    	this->animais.push_back(animal);
+
    	return true;
 }
 

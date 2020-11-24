@@ -1,11 +1,5 @@
 #include "tratador.hpp"
-#include "nivelseguranca.hpp"
-#include "animal.hpp"
-#include <iostream>
-#include <string>
-#include <iomanip>
-using std::setfill;
-using std::setw;
+
 
 /*Método construtor*/
 Tratador::Tratador(string cpf, string nome, 
