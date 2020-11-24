@@ -17,6 +17,16 @@ string Funcionario::getCpf() const {
 }
 
 
+void Funcionario::setDataNascimento(string dataNascimento){
+    this->dataNascimento = nome;
+}
+void Funcionario::setCpf(string cpf){
+    this->cpf = cpf;
+}
+void Funcionario::setNome(string nome){
+    this->nome = nome;
+}
+
 void Funcionario::adicionarAnimalTratado(shared_ptr<Animal> animal){
 	this->animaisTratados.push_back(animal);
 }
@@ -44,9 +54,3 @@ vector<shared_ptr<Animal>> Funcionario::getAnimaisTratados() const {
 	return this->animaisTratados;
 }
 
-void Funcionario::alterarDados(string cpf, string nome, string dataNascimento) {
-
-	this->cpf = cpf;
-	this->nome = nome;
-	this->dataNascimento = nome;
-}

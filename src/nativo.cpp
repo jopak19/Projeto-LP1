@@ -1,11 +1,13 @@
 #include "nativo.hpp"
 
-Nativo::Nativo (int marcacaoPermanente):
-                marcacaoPermanente(marcacaoPermanente){};
+Nativo::Nativo (int marcacaoPermanente, bool perigoso, bool emExtincao, Bioma biomaOrigem):
+                Silvestre(marcacaoPermanente, perigoso, emExtincao),
+                biomaOrigem(biomaOrigem){};
 
-int Nativo::getMarcacaoPermanente() const{
-    return this->marcacaoPermanente;
+
+Bioma Nativo::getBiomaOrigem() const{
+    return this->biomaOrigem;
 };
-void Nativo::setMarcacaoPermanente(int marcacao){
-    this->marcacaoPermanente = marcacao;
-}
+void Nativo::setBiomaOrigem(Bioma bioma){
+    this->biomaOrigem = bioma;
+};

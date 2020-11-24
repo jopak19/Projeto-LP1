@@ -12,7 +12,7 @@ enum TipoDePele{
 
 class Reptil : public Animal{
 
-    private:
+    protected:
 
     /*Atributos específicos da classe Reptil*/
         string periodoDeMudaDePele;

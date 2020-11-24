@@ -1,5 +1,5 @@
 #include "interface.hpp"
-
+using namespace std;
 void Interface::setPet(PetFera* p){
     pet=p;
 }
@@ -112,14 +112,14 @@ void Interface::opcoes(string escolha){
         cout << "1-Verde | 2-Vermelho | 3-Azul";
         cin >> nivel;
         if(nivel == "1"){
-             Tratador* tratador = new Tratador(nome, cpf, dataNascimento,Verde);
-             //adicionar tratador ao petfera
+             shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Verde);
+             pet->cadastrarTratador(tratador);
         }else if(nivel == "2"){
-            Tratador* tratador = new Tratador(nome, cpf, dataNascimento,Vermelho);
-             //adicionar tratador ao petfera
+             shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Vermelho);
+              pet->cadastrarTratador(tratador);
         }else if(nivel == "3"){
-            Tratador* tratador = new Tratador(nome, cpf, dataNascimento,Azul);
-             //adicionar tratador ao petfera
+             shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Azul);
+              pet->cadastrarTratador(tratador);
         }else{
             cout << "Opção Inválida, tente outra" << endl;
             cadastroTratador(nome, cpf, dataNascimento);
@@ -131,7 +131,8 @@ void Interface::opcoes(string escolha){
         string codigoCrmv="";
         cout << "Informe o código Crmv do veterinário\n" << endl;
         if(validaCrmv(codigoCrmv)){
-            Veterinario* veterinario = new Veterinario(nome, cpf, dataNascimento,codigoCrmv);
+            shared_ptr<Veterinario> veterinario = make_shared<Veterinario>(nome, cpf, dataNascimento,codigoCrmv);
+            pet->cadastrarVeterinario(veterinario);
         }else{
             cout << "Código inválido, tente outro!" << endl;
             cadastroVeterinario(nome, cpf, dataNascimento);
@@ -143,7 +144,7 @@ void Interface::opcoes(string escolha){
 //Método de alteração dos dados dos funionários
     
     bool Interface::alterarFuncionario(int tipo){
-//O usuário começa escolhando o cpf do usuário que deseja alterar e o dado que será alterado.
+//O usuário começa escolhendo o cpf do usuário que deseja alterar e o dado que será alterado.
          string escolha = "";
          string cpf = "";
          cout << "Informe cpf do funcionário para as alterações:" << endl;
@@ -153,7 +154,7 @@ void Interface::opcoes(string escolha){
          if(tipo == 1){
               cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Nivel de Segurança\n" << endl;
          }else{
-              cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Código CRMV\n" << endl; 
+              cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Código CRMV\n" << endl;}
          while (valida==false){
             cin >> escolha;
             if (escolha=="1" || escolha=="2" || escolha=="3" || escolha=="4"){
@@ -162,46 +163,69 @@ void Interface::opcoes(string escolha){
                  cout << "Opção inválida, tente novamente" << endl;
             }
          } 
-}
-//Aqui será ferita a alteração baseada na escolha do usuário
-        Funcionario *pessoa; //=================================================================================
-        if(tipo==1){
-            Tratador pessoa1 = *pet->getTratador(cpf);
-            pessoa = &pessoa1;
-        }else{
-            Veterinario pessoa1 = *pet->getVeterinario(cpf);
-            pessoa = &pessoa1;
-        }//=====================================================================================================
-        
-        switch(stoi(escolha)){
-            case 1 :
-                {
+
+//Aqui será feita a alteração baseada na escolha do usuário
+         if (escolha=="1"){
                 string newNome = "";
                 cout << "Informe o novo nome:" << endl;
                 cin >> newNome;
-                pessoa->alterarDados(pessoa->getCpf(),newNome,pessoa->getDataNascimento());
-                break;
+                if(tipo==1){
+                    if (pet->getTratador(cpf)!=NULL){
+                        pet->getTratador(cpf)->setNome(newNome);
+                        cout << "Nome alterado!" << endl;
+                    }else{
+                        cout << "Tratador não encontrado." << endl;
+                    }
+                }else{
+                    if (pet->getVeterinario(cpf)!=NULL){
+                        pet->getVeterinario(cpf)->setNome(newNome);
+                        cout << "Nome alterado!" << endl;
+                    }else{
+                        cout << "Veterinario não encontrado." << endl;
+                    }
                 }
-            case 2 :
-                {
+         }else if (escolha=="2"){
                 string newCpf = "";
                 cout << "Informe o novo cpf:" << endl;
                 cin >> newCpf;
-                //altera
-                break;
+                if(tipo==1){
+                    if (pet->getTratador(cpf)!=NULL){
+                        pet->getTratador(cpf)->setCpf(newCpf);
+                        cout << "CPF alterado!" << endl;
+                    }else{
+                        cout << "Tratador não encontrado." << endl;
+                    }
+                }else{
+                    if (pet->getVeterinario(cpf)!=NULL){
+                        pet->getVeterinario(cpf)->setCpf(newCpf);
+                        cout << "CPF alterado!" << endl;
+                    }else{
+                        cout << "Veterinario não encontrado." << endl;
+                    }
                 }
-            case 3 :
-                {
+        }else if (escolha=="3"){
                 string newData = "";
-                cout << "Informe o novo cpf:" << endl;
+                cout << "Informe o nova Data de Nascimeto:" << endl;
                 cin >> newData;
-                //altera
-                break;
+                if(tipo==1){
+                    if (pet->getTratador(cpf)!=NULL){
+                        pet->getTratador(cpf)->setDataNascimento(newData);
+                        cout << "Data alterada!" << endl;
+                    }else{
+                        cout << "Tratador não encontrado." << endl;
+                    }
+                }else{
+                    if (pet->getVeterinario(cpf)!=NULL){
+                        pet->getVeterinario(cpf)->setDataNascimento(newData);
+                        cout << "Data alterada!" << endl;
+                    }else{
+                        cout << "Veterinario não encontrado." << endl;
+                    }
                 }
-            case 4 :
-                {
+        }else if (escolha=="4"){
                 if(tipo==1){
                     string newNivel="";
+                    NivelSeguranca novoNivel;
                     cout << "Informe o nível de segurança.\n" << endl;
                     cout << "1-Verde | 2-Vermelho | 3-Azul";
                     valida=false;
@@ -213,7 +237,19 @@ void Interface::opcoes(string escolha){
                         cout << "Opção inválida, tente outra." << endl;
                         }
                     }
-                    //pessoa1->setNivelSeguranca(Verde);===============================================================
+                    if (pet->getTratador(cpf)!=NULL){
+                        if(newNivel=="1"){
+                            novoNivel = Verde;
+                        }else if (newNivel=="2"){
+                            novoNivel = Vermelho;
+                        }else{
+                            novoNivel = Azul;
+                        }
+                        pet->getTratador(cpf)->setNivelSeguranca(novoNivel);
+                        cout << "Nivel alterada!" << endl;
+                    }else{
+                        cout << "Tratador não encontrado." << endl;
+                    }
                 }else{
                     string newCodigo="";
                     cout << "Informe o novo código do veterinário\n" << endl;
@@ -226,13 +262,16 @@ void Interface::opcoes(string escolha){
                         }
                         valida = validaCrmv(newCodigo);
                     }
-                    //alterar;===============================================================
+                    if (pet->getVeterinario(cpf)!=NULL){
+                        pet->getVeterinario(cpf)->setCodigoCrmv(newCodigo);
+                        cout << "Código alterado!" << endl;
+                    }else{
+                        cout << "Veterinario não encontrado." << endl;
+                    }
                     
-                }
-                break;
-                }
+                } 
                 
-        }
+            }
     
        return true;    
 }

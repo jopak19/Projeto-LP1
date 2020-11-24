@@ -1,14 +1,10 @@
 #include "exotico.hpp"
 
-Exotico::Exotico(int marcacaoPermanente, string territorioDeOrigem):
-                marcacaoPermanente(marcacaoPermanente), territorioDeOrigem(territorioDeOrigem){};
 
-int Exotico::getMarcacaoPermanente() const{
-    return this->marcacaoPermanente;
-};
-void Exotico::setMarcacaoPermanente(int marcacao){
-    this->marcacaoPermanente = marcacao;
-}
+Exotico::Exotico(int marcacaoPermanente, bool perigoso, bool emExtincao, string territorioDeOrigem):
+                Silvestre(marcacaoPermanente, perigoso, emExtincao),
+                territorioDeOrigem(territorioDeOrigem){};
+
 string Exotico::getTerritorioDeOrigem() const{
     return this->territorioDeOrigem;
 };
