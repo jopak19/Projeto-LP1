@@ -163,69 +163,81 @@ void Interface::opcoes(string escolha){
             }
          } 
 }
-
 //Aqui será ferita a alteração baseada na escolha do usuário
-        if (escolha=="1"){
-            string newNome = "";
-            cout << "Informe o novo nome:" << endl;
-            cin >> newNome;
-            //buscarFunionario(cpf,tipo);
-            //altera
-        }else if(escolha=="2"){
-            string newCpf = "";
-            cout << "Informe o novo cpf:" << endl;
-            cin >> newCpf;
-            //buscarFunionario(cpf,tipo);
-            //altera
-        }else if(escolha=="3"){
-            string newData = "";
-            cout << "Informe o novo cpf:" << endl;
-            cin >> newData;
-            //buscarFunionario(cpf,tipo);
-            //altera
-        }else if(escolha=="4" && tipo==1){
-            string newNivel="";
-            cout << "Informe o nível de segurança.\n" << endl;
-            cout << "1-Verde | 2-Vermelho | 3-Azul";
-            valida=false;
-            while (valida==false){
-                cin >> newNivel;
-                if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
-                    valida = true;
+        Funcionario *pessoa; //=================================================================================
+        if(tipo==1){
+            Tratador pessoa1 = *pet->getTratador(cpf);
+            pessoa = &pessoa1;
+        }else{
+            Veterinario pessoa1 = *pet->getVeterinario(cpf);
+            pessoa = &pessoa1;
+        }//=====================================================================================================
+        
+        switch(stoi(escolha)){
+            case 1 :
+                {
+                string newNome = "";
+                cout << "Informe o novo nome:" << endl;
+                cin >> newNome;
+                pessoa->alterarDados(pessoa->getCpf(),newNome,pessoa->getDataNascimento());
+                break;
+                }
+            case 2 :
+                {
+                string newCpf = "";
+                cout << "Informe o novo cpf:" << endl;
+                cin >> newCpf;
+                //altera
+                break;
+                }
+            case 3 :
+                {
+                string newData = "";
+                cout << "Informe o novo cpf:" << endl;
+                cin >> newData;
+                //altera
+                break;
+                }
+            case 4 :
+                {
+                if(tipo==1){
+                    string newNivel="";
+                    cout << "Informe o nível de segurança.\n" << endl;
+                    cout << "1-Verde | 2-Vermelho | 3-Azul";
+                    valida=false;
+                    while (valida==false){
+                        cin >> newNivel;
+                        if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
+                        valida = true;
+                        }else{
+                        cout << "Opção inválida, tente outra." << endl;
+                        }
+                    }
+                    //pessoa1->setNivelSeguranca(Verde);===============================================================
                 }else{
-                    cout << "Opção inválida, tente outra." << endl;
+                    string newCodigo="";
+                    cout << "Informe o novo código do veterinário\n" << endl;
+                    cin >> newCodigo;
+                    valida = false;
+                    while (valida==false){
+                        cin >> newCodigo;
+                        if(not validaCrmv(newCodigo)){
+                            cout <<  "Código Inválido, tente outro." << endl;
+                        }
+                        valida = validaCrmv(newCodigo);
+                    }
+                    //alterar;===============================================================
+                    
                 }
-            }
-            //buscarFunionario(cpf);
-            //altera
-        }else if(escolha=="4" && tipo==2){
-            string newCodigo="";
-            cout << "Informe o novo código do veterinário\n" << endl;
-            cin >> newCodigo;
-            valida = false;
-            while (valida==false){
-                cin >> newCodigo;
-                if(not validaCrmv(newCodigo)){
-                     cout <<  "Código Inválido, tente outro." << endl;
+                break;
                 }
-                valida = validaCrmv(newCodigo);
-            }
-            //buscarFunionario(cpf);
-            //altera
+                
         }
     
        return true;    
 }
 
 
-//Buscas Específicas
-Funcionario Interface::buscarFuncionario(string cpf, int tipo){
-    if(tipo==1){
-       // return pet->getTratador(cpf);
-    }else{
-       // return pet->getVeterinario(cpf);
-    }
-}
 
 
 //Validações
