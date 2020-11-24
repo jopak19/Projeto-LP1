@@ -53,6 +53,16 @@ int main(int argc, char const *argv[])
 	petfera->listarTratadores();
 	petfera->listarVeterinarios();
 
+	cout << "-------------------" << endl;
+	petfera->removerTratador("5335345");
+	petfera->removerVeterinario("86786");
+
+	cout << "Tratadores e Veterinários após remoção" << endl;
+
+	petfera->listarTratadores();
+	petfera->listarVeterinarios();
+
+
 	delete petfera;
 
 	return 0;

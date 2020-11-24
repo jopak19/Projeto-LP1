@@ -16,24 +16,37 @@ string Funcionario::getCpf() const {
 	return this->cpf;
 }
 
+
+void Funcionario::adicionarAnimalTratado(shared_ptr<Animal> animal){
+	this->animaisTratados.push_back(animal);
+}
+
+bool Funcionario::removerAnimalTratado(string codigoAnimal){
+
+	for(int i = 0; i < (int) this->animaisTratados.size(); i++){
+
+		Animal animal = *this->animaisTratados.at(i);
+		string codigo = animal.getCodigo();
+	
+		if(codigo.compare(codigoAnimal) == 0){
+			this->animaisTratados.erase(this->animaisTratados.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
+int Funcionario::getQuantidadeAnimaisTratados() const {
+	return this->quantidadeAnimaisTratados;
+}
+
+vector<shared_ptr<Animal>> Funcionario::getAnimaisTratados() const {
+	return this->animaisTratados;
+}
+
 void Funcionario::alterarDados(string cpf, string nome, string dataNascimento) {
 
 	this->cpf = cpf;
 	this->nome = nome;
 	this->dataNascimento = nome;
-
-	/*Teria como fazer algo similar em C++ para 
-	não precisar necessáriamente alterar todos os valores?*/
-
-	/*
-	if(cpf != NULL)
-		this->cpf = cpf;
-
-	if(nome != NULL)
-		this->nome = nome;
-
-	if(dataNascimento != NULL)
-		this->dataNascimento = nome;
-
-	*/
 }

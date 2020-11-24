@@ -79,17 +79,58 @@ bool PetFera::cadastrarVeterinario(shared_ptr<Veterinario> veterinario){
     return true;
 }
 
-bool PetFera::realizarVenda(){
+bool PetFera::realizarVenda(string codigoAnimal){
+
+	shared_ptr<Animal> animal = this->getAnimal(codigoAnimal);
+
+	if(animal == nullptr){
+		return false;
+	}
+
+	shared_ptr<Veterinario> vet = animal->getVeterinario();
+	shared_ptr<Tratador> tra = animal->getTratador();
+
+	vet->removerAnimalTratado(animal);
+	tra->removerAnimalTratado(animal);
+	this->removerAnimal(codigoAnimal);
+
+	return true;
+}
+
+bool PetFera::removerTratador(string cpfTratador){
+
+	for(int i = 0; i < (int) this->tratadores.size(); i++){
+
+		Tratador tra = *this->tratadores.at(i);
+		string cpf = tra.getCpf();
+	
+		if(cpfTratador.compare(cpf) == 0){
+			this->tratadores.erase(this->tratadores.begin() + i);
+			return true;
+		}
+	}
+
 	return false;
-
 }
 
-bool PetFera::removerTratador(){
-	return true;
+bool PetFera::removerVeterinario(string cpfVeterinario){
+
+	for(int i = 0; i < (int) this->veterinarios.size(); i++){
+
+		Veterinario vet = *this->veterinarios.at(i);
+		string cpf = vet.getCpf();
+	
+		if(cpfVeterinario.compare(cpf) == 0){
+			this->veterinarios.erase(this->veterinarios.begin() + i);
+			return true;
+		}
+	}
+	return false;
 }
 
-bool PetFera::removerVeterinario(){
-	return true;
+bool PetFera::removerAnimal(string codigoAnimal){
+
+	return true;	
 }
 
 void PetFera::editarAnimal(shared_ptr<Animal> animal){

@@ -26,9 +26,10 @@ class PetFera {
         bool cadastrarAnimal(shared_ptr<Animal> animal);
         bool cadastrarTratador(shared_ptr<Tratador> tratador);
         bool cadastrarVeterinario(shared_ptr<Veterinario> veterinario);
-        bool realizarVenda();
-        bool removerTratador();
-        bool removerVeterinario();
+        bool realizarVenda(string codigoAnimal);
+        bool removerTratador(string cpfTratador);
+        bool removerVeterinario(string cpfVeterinario);
+        bool removerAnimal(string codigoAnimal);
         void editarAnimal(shared_ptr<Animal> animal);
         void editarTratador(shared_ptr<Tratador> tratador);
         void editarVeterinario(shared_ptr<Veterinario> veterinario);

@@ -38,8 +38,8 @@ class Animal {
 			string altura, 
 			short idade, 
 			string especie,
-			shared_ptr<Veterinario>,
-			shared_ptr<Tratador>
+			shared_ptr<Veterinario> veterinario,
+			shared_ptr<Tratador> tratador
 		);
 
 		string getCodigo() const;
@@ -47,6 +47,8 @@ class Animal {
 		string getAltura() const;
 		short getIdade() const;
 		string getEspecie() const;
+		shared_ptr<Veterinario> getVeterinario() const;
+		shared_ptr<Tratador> getTratador() const;
 
 		void setCodigo(string codigo);
 		void setPeso(string peso);

@@ -28,6 +28,14 @@ string Animal::getEspecie() const {
 	return this->especie;
 }
 
+shared_ptr<Veterinario> Animal::getVeterinario() const {
+	return this->veterinario;
+}
+
+shared_ptr<Tratador> Animal::getTratador() const {
+	return this->tratador;
+}
+
 void Animal::setCodigo(string codigo){
 	this->codigo = codigo;
 }
