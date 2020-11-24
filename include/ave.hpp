@@ -15,13 +15,13 @@ private:
 
 public:
 
-	Ave (string codigo, 
+	Ave(string codigo, 
 		string peso, 
 		string altura, 
 		short idade, 
 		string especie,
-		shared_ptr<Veterinario>,
-		shared_ptr<Tratador>,
+		shared_ptr<Veterinario> veterinario,
+		shared_ptr<Tratador> tratador,
         bool aquatica,
         bool podeVoar);
 
