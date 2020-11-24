@@ -24,15 +24,13 @@ class Reptil : public Animal{
                     string altura, 
                     short idade, 
                     string especie,
-                    shared_ptr<Veterinario>,
-                    shared_ptr<Tratador>,
                     string periodoDeMudadepele,
-                    int temperaturaDoAmbiente);
+                    TipoDePele tipoDePele);
 
         string getPeriodoDeMudadepele() const;
         void setPeriodoDeMudadepele(string periodo);
-        int getTemperaturaDoAmbiente() const;
-        void setTemperaturaDoAmbiente(int temperatura);
+        TipoDePele getTipoDepele() const;
+        void setTipoDePele(TipoDePele tipo);
     
         friend ostream& operator<< (ostream &o, Reptil animal);	
 };

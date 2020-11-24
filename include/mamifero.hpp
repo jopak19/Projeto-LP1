@@ -25,8 +25,6 @@ public:
                 string altura, 
                 short idade, 
                 string especie,
-                shared_ptr<Veterinario>,
-                shared_ptr<Tratador>,
                 Gestacao gestacao
                 );
 

@@ -37,13 +37,17 @@ ostream& operator<< (ostream &o, Anfibio animal){
     << "Peso" << setfill(' ') << setw(5) 
     << "altura" << setfill(' ') << setw(5)
     << "idade" << setfill(' ') << setw(5)
-    << "especie" << setfill(' ') << setw(5)  
+    << "especie" << setfill(' ') << setw(5) 
+    << "Muda de pele" << setfill(' ') << setw(5)
+    << "Temperatura do ambiente" << setfill(' ') << setw(5)  
     << endl
     << animal.getCodigo() << setfill(' ') << setw(5) 
     << animal.getPeso() << setfill(' ') << setw(5) 
     << animal.getAltura() << setfill(' ') << setw(5) 
     << animal.getIdade() << setfill(' ') << setw(5)
-    << animal.getEspecie() << setfill(' ') << setw(5) 
+    << animal.getEspecie() << setfill(' ') << setw(5)
+    << animal.getPeriodoDeMudadepele() << setfill(' ') << setw(5)
+    << animal.getTemperaturaDeMudaDePele() << setfill(' ') << setw(5) 
     << endl;
 	return o;
 };
