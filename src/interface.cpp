@@ -42,23 +42,23 @@ void Interface::opcoes(string escolha){
     }else{
         if(escolha=="1"){
             if(opcao=="1"){
-            cadastroFuncionario(1);
+                cadastroFuncionario(1);
             }else if(opcao=="2"){
-            alterarFuncionario(1);
+                alterarFuncionario(1);
             }else if(opcao=="3"){
-            //apagarTratador();
+                apagarFuncionario(1);
             }else if(opcao=="4"){
-            //consultarTratador();
+                consultarFuncionario(1);
             }
         }else if(escolha=="2"){
             if(opcao=="1"){
-            cadastroFuncionario(2);
+                cadastroFuncionario(2);
             }else if(opcao=="2"){
-            alterarFuncionario(2);
+                alterarFuncionario(2);
             }else if(opcao=="3"){
-            //apagarVeterinario();
+                apagarFuncionario(2);
             }else if(opcao=="4"){
-            //consultarVeterinario();
+                consultarFuncionario(2);
             }
         }else if(escolha=="3"){
             if(opcao=="1"){
@@ -127,6 +127,7 @@ void Interface::opcoes(string escolha){
     
         return true;
 }
+
     bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimento){
         string codigoCrmv="";
         cout << "Informe o código Crmv do veterinário\n" << endl;
@@ -276,8 +277,63 @@ void Interface::opcoes(string escolha){
        return true;    
 }
 
+bool Interface::apagarFuncionario(int tipo){
+    string cpf="";
+    if(tipo==1){
+        cout << "Informe CPF do Tratador que deseja remover." << endl;
+        cin >> cpf;
+        if(pet->removerTratador(cpf)){
+             cout << "Tratador removido." << endl; 
+        }else{
+            cout << "Tratador não encontrado." << endl; 
+        }  
+    }else{
+        cout << "Informe CPF do Veterinario que deseja remover." << endl;
+        cin >> cpf;
+        if(pet->removerVeterinario(cpf)){
+             cout << "Veterinário removido." << endl; 
+        }else{
+            cout << "Veterinário não encontrado." << endl; 
+        } 
+    }
+    return true;
+}
 
 
+//Consulta de Funcionario
+bool Interface::consultarFuncionario(int tipo){ 
+    string escolha="";
+    cout << "Escolha o tipo de busca: 1- Por CPF | 2- Listar Todos" << endl;
+    cin >> escolha;
+    if (escolha == "1"){
+        string cpf="";
+        cout << "Informe CPF do funcionário que deseja buscar." << endl;
+        cin >> cpf;
+        if(tipo==1){
+            if(pet->getTratador(cpf)){
+                cout << *pet->getTratador(cpf) << endl; 
+            }else{
+                cout << "Tratador não encontrado." << endl;
+            }
+        }else{
+             if(pet->getVeterinario(cpf)){
+                cout << *pet->getVeterinario(cpf) << endl; 
+            }else{
+                cout << "Tratador não encontrado." << endl;
+            }
+        }
+    }else if(escolha=="2"){
+        if(tipo==1){
+            pet->listarTratadores();
+        }else{
+            pet->listarVeterinarios();
+        }
+    }else{
+        cout << "Opção Inválida, tente outra." << endl;
+        consultarFuncionario(tipo);
+    }
+    return true;
+}
 
 //Validações
     bool Interface::validaCrmv(string codigoCrmv){
