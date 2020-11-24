@@ -17,9 +17,18 @@ MamiferoNativo::MamiferoNativo (string codigo,
                                 Bioma biomaOrigem,
                                 bool perigoso):
                                 Mamifero(codigo, peso, altura,idade, especie, gestacao, perigoso),
-                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){};
+                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+    
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
 
-ostream& operator<< (ostream &o, Mamifero animal){
+    } else {
+        this->nivelSeguranca = Azul;
+    }
+
+};
+
+ostream& operator<< (ostream &o, MamiferoNativo animal){
      /*Como o mamifero será exibido em tela*/
     string gestacao_;
 

@@ -18,7 +18,15 @@ ReptilNativo::ReptilNativo     (string codigo,
                                 Bioma biomaOrigem,
                                 bool perigoso):
                                 Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
-                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){};
+                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
+
+    } else {
+        this->nivelSeguranca = Azul;
+    }
+
+};
                                 
 ostream& operator<< (ostream &o, ReptilNativo animal){
      /*Como o Reptil nativo será exibido em tela*/

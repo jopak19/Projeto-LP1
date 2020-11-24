@@ -18,7 +18,14 @@ ReptilExotico::ReptilExotico (  string codigo,
                                 string territorioDeOrigem,
                                 bool perigoso):
                                 Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
-                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){};
+                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
+
+    } else {
+        this->nivelSeguranca = Azul;
+    }
+};
 
 ostream& operator<< (ostream &o, ReptilExotico animal){
      /*Como o Reptil exotico será exibido em tela*/

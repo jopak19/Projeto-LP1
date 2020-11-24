@@ -22,7 +22,7 @@ public:
 		string especie,
         bool aquatica,
         bool podeVoar,
-        bool perigoso = false);
+        bool perigoso);
 
     bool getAquatica() const;
     void setAquatica(bool aquatica);

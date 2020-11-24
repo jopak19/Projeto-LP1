@@ -26,8 +26,7 @@ public:
                 short idade, 
                 string especie,
                 Gestacao gestacao,
-                bool perigoso
-                );
+                bool perigoso);
 
     Gestacao getGestacao() const;
     void setGestacao(Gestacao gestacao);

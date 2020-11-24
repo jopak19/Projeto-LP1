@@ -13,10 +13,6 @@ class PetFera {
 
     public:
        
-        // PetFera(string nome, int identificador); TODO
-        // ~PetFera(); TODO
-        //string getNome() const;
-        //int getIdentificador() const;
         vector<shared_ptr<Animal>> getAnimais() const;
         vector<shared_ptr<Tratador>> getTratadores() const;
         vector<shared_ptr<Veterinario>> getVeterinarios() const;
@@ -31,14 +27,9 @@ class PetFera {
         bool removerTratador(string cpfTratador);
         bool removerVeterinario(string cpfVeterinario);
         bool removerAnimal(string codigoAnimal);
-        void editarAnimal(shared_ptr<Animal> animal);
-        void editarTratador(shared_ptr<Tratador> tratador);
-        void editarVeterinario(shared_ptr<Veterinario> veterinario);
         void listarAnimais() const;
         void listarTratadores() const;
         void listarVeterinarios() const;
-
-    
 
     private:
 

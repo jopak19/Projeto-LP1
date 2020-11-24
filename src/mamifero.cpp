@@ -6,8 +6,6 @@ using std::setfill;
 using std::setw;
 using std::string;
 
-
-
 Mamifero::Mamifero(string codigo, 
                    string peso, 
                    string altura, 
@@ -18,7 +16,12 @@ Mamifero::Mamifero(string codigo,
                    Animal(codigo, peso, altura, idade, especie, perigoso),
                    gestacao(gestacao){
 
-    this->nivelSeguranca = Azul;
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
+
+    } else {
+        this->nivelSeguranca = Azul;
+    }
 };
 
 Gestacao Mamifero::getGestacao() const{

@@ -147,18 +147,6 @@ bool PetFera::removerAnimal(string codigoAnimal){
 	return true;	
 }
 
-void PetFera::editarAnimal(shared_ptr<Animal> animal){
-
-}
-
-void PetFera::editarTratador(shared_ptr<Tratador> tratador){
-
-}
-
-void PetFera::editarVeterinario(shared_ptr<Veterinario> veterinario){
-
-}
-
 void PetFera::listarAnimais() const{
 
 	for(int i = 0; i < (int) this->animais.size(); i++){

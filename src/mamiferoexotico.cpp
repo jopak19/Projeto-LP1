@@ -17,9 +17,17 @@ MamiferoExotico::MamiferoExotico (string codigo,
                                 string territorioDeOrigem,
                                 bool perigoso):
                                 Mamifero(codigo, peso, altura,idade, especie, gestacao, perigoso),
-                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){};
+                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
 
-ostream& operator<< (ostream &o, Mamifero animal){
+    } else {
+        this->nivelSeguranca = Azul;
+    }
+
+};
+
+ostream& operator<< (ostream &o, MamiferoExotico animal){
      /*Como o mamifero será exibido em tela*/
     string gestacao_;
 
@@ -38,6 +46,7 @@ ostream& operator<< (ostream &o, Mamifero animal){
     << "Gestação" << setfill(' ') << setw(5)  
     //TODO: saida dados exoticos
     << endl
+    << animal.getCodigo() << setfill(' ') << setw(5) 
     << animal.getCodigo() << setfill(' ') << setw(5) 
     << animal.getPeso() << setfill(' ') << setw(5) 
     << animal.getAltura() << setfill(' ') << setw(5) 

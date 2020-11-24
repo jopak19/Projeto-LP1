@@ -18,7 +18,15 @@ AveNativo::AveNativo (string codigo,
                                 Bioma biomaOrigem,
                                 bool perigoso):
                                 Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
-                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){};
+                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
+
+    } else {
+        this->nivelSeguranca = Verde;
+    }
+
+};
                                 
 ostream& operator<< (ostream &o, AveNativo animal){
      /*Como o Ave nativo será exibido em tela*/

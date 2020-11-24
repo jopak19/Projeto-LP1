@@ -18,8 +18,12 @@ Reptil::Reptil(string codigo,
                 Animal(codigo, peso, altura, idade, especie, perigoso),
                 periodoDeMudaDePele(periodoDeMudadepele), tipoDePele(tipoDePele){
 
-    this->nivelSeguranca = Azul;
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
 
+    } else {
+        this->nivelSeguranca = Azul;
+    }
 };
 
 //getters e setters

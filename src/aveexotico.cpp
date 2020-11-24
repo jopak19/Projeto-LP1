@@ -18,7 +18,15 @@ AveExotico::AveExotico (string codigo,
                                 string territorioDeOrigem,
                                 bool perigoso):
                                 Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
-                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){};
+                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    if(perigoso){
+        this->nivelSeguranca = Vermelho;
+
+    } else {
+        this->nivelSeguranca = Verde;
+    }
+
+};
 
 ostream& operator<< (ostream &o, AveExotico animal){
      /*Como o Ave exotico será exibido em tela*/
