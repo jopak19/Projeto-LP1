@@ -3,7 +3,7 @@
 #include "exotico.hpp"
 
 class AnfibioExotico: public Anfibio, public Exotico{
-    private: 
+    public: 
         AnfibioExotico (string codigo, 
                         string peso, 
                         string altura, 
