@@ -34,7 +34,7 @@ void Interface::opcoes(string escolha){
             if(opcao=="1"){
             cadastroFuncionario(1);
             }else if(opcao=="2"){
-            //alterarTratador();
+            alterarFuncionario(1);
             }else if(opcao=="3"){
             //apagarTratador();
             }else if(opcao=="4"){
@@ -44,7 +44,7 @@ void Interface::opcoes(string escolha){
             if(opcao=="1"){
             cadastroFuncionario(2);
             }else if(opcao=="2"){
-            //alterarVeterinario();
+            alterarFuncionario(2);
             }else if(opcao=="3"){
             //apagarVeterinario();
             }else if(opcao=="4"){
@@ -99,7 +99,7 @@ void Interface::opcoes(string escolha){
 {
         string nivel="";
         cout << "Informe o nível de segurança.\n" << endl;
-        cout << "1-Verde\n2-Vermelho\n3-Azul";
+        cout << "1-Verde | 2-Vermelho | 3-Azul";
         cin >> nivel;
         if(nivel == "1"){
              Tratador* tratador = new Tratador(nome, cpf, dataNascimento,Verde);
@@ -127,6 +127,94 @@ void Interface::opcoes(string escolha){
             cadastroVeterinario(nome, cpf, dataNascimento);
         }
         return true;
+}
+
+
+//Método de alteração dos dados dos funionários
+    
+    bool Interface::alterarFuncionario(int tipo){
+//O usuário começa escolhando o cpf do usuário que deseja alterar e o dado que será alterado.
+         string escolha = "";
+         string cpf = "";
+         cout << "Informe cpf do funcionário para as alterações:" << endl;
+         cin >> cpf;
+         bool valida=false;
+         cout << "Informe o que deseja alterar:" << endl;
+         if(tipo == 1){
+              cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Nivel de Segurança\n" << endl;
+         }else{
+              cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Código CRMV\n" << endl; 
+         while (valida==false){
+            cin >> escolha;
+            if (escolha=="1" || escolha=="2" || escolha=="3" || escolha=="4"){
+                valida = true;
+            }else{
+                 cout << "Opção inválida, tente novamente" << endl;
+            }
+         } 
+}
+
+//Aqui será ferita a alteração baseada na escolha do usuário
+        if (escolha=="1"){
+            string newNome = "";
+            cout << "Informe o novo nome:" << endl;
+            cin >> newNome;
+            //buscarFunionario(cpf,tipo);
+            //altera
+        }else if(escolha=="2"){
+            string newCpf = "";
+            cout << "Informe o novo cpf:" << endl;
+            cin >> newCpf;
+            //buscarFunionario(cpf,tipo);
+            //altera
+        }else if(escolha=="3"){
+            string newData = "";
+            cout << "Informe o novo cpf:" << endl;
+            cin >> newData;
+            //buscarFunionario(cpf,tipo);
+            //altera
+        }else if(escolha=="4" && tipo==1){
+            string newNivel="";
+            cout << "Informe o nível de segurança.\n" << endl;
+            cout << "1-Verde | 2-Vermelho | 3-Azul";
+            valida=false;
+            while (valida==false){
+                cin >> newNivel;
+                if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
+                    valida = true;
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                }
+            }
+            //buscarFunionario(cpf);
+            //altera
+        }else if(escolha=="4" && tipo==2){
+            string newCodigo="";
+            cout << "Informe o novo código do veterinário\n" << endl;
+            cin >> newCodigo;
+            valida = false;
+            while (valida==false){
+                cin >> newCodigo;
+                if(not validaCrmv(newCodigo)){
+                     cout <<  "Código Inválido, tente outro." << endl;
+                }
+                valida = validaCrmv(newCodigo);
+            }
+            //buscarFunionario(cpf);
+            //altera
+        }
+    
+       return true;    
+}
+
+
+//Buscas Específicas
+Funcionario Interface::buscarFuncionario(string cpf, int tipo){
+    if(tipo==1){
+       // return pet->getTratador(cpf);
+    }else{
+       // return pet->getVeterinario(cpf);
+    }
 }
 
 

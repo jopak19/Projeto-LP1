@@ -15,6 +15,9 @@ public:
     bool cadastroTratador(string cpf, string nome, string dataNascimento);
     bool cadastroVeterinario(string cpf, string nome, string dataNascimento);
 
+    bool alterarFuncionario(int tipo);
+    Funcionario buscarFuncionario(string cpf, int tipo);
+    
     //Validações
     bool validaCrmv(string codigoCrmv);
 };
