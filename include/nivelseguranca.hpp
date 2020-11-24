@@ -2,6 +2,6 @@
 
 enum NivelSeguranca {
     Verde,
-    Vermelho,
-    Azul
+    Azul,
+    Vermelho
 };

@@ -264,7 +264,7 @@ void Interface::opcoes(string escolha){
                     }
                     if (pet->getVeterinario(cpf)!=NULL){
                         pet->getVeterinario(cpf)->setCodigoCrmv(newCodigo);
-                        cout << "Código!" << endl;
+                        cout << "Código alterado!" << endl;
                     }else{
                         cout << "Veterinario não encontrado." << endl;
                     }

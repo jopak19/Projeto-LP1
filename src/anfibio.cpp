@@ -12,12 +12,13 @@ Anfibio::Anfibio(string codigo,
                 string altura, 
                 short idade, 
                 string especie,
-                shared_ptr<Veterinario> veterinario,
-                shared_ptr<Tratador> tratador,
                 string periodoDeMudadepele,
                 int temperaturaDoAmbiente):
-                Animal(codigo, peso, altura, idade, especie, veterinario, tratador),
-                periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){};
+                Animal(codigo, peso, altura, idade, especie),
+                periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){
+
+    this->nivelSeguranca = Verde;
+};
 
 //getters e setters
 string Anfibio::getPeriodoDeMudadepele() const{
@@ -39,13 +40,17 @@ ostream& operator<< (ostream &o, Anfibio animal){
     << "Peso" << setfill(' ') << setw(5) 
     << "altura" << setfill(' ') << setw(5)
     << "idade" << setfill(' ') << setw(5)
-    << "especie" << setfill(' ') << setw(5)  
+    << "especie" << setfill(' ') << setw(5) 
+    << "Muda de pele" << setfill(' ') << setw(5)
+    << "Temperatura do ambiente" << setfill(' ') << setw(5)  
     << endl
     << animal.getCodigo() << setfill(' ') << setw(5) 
     << animal.getPeso() << setfill(' ') << setw(5) 
     << animal.getAltura() << setfill(' ') << setw(5) 
     << animal.getIdade() << setfill(' ') << setw(5)
-    << animal.getEspecie() << setfill(' ') << setw(5) 
+    << animal.getEspecie() << setfill(' ') << setw(5)
+    << animal.getPeriodoDeMudadepele() << setfill(' ') << setw(5)
+    << animal.getTemperaturaDeMudaDePele() << setfill(' ') << setw(5) 
     << endl;
 	return o;
 };

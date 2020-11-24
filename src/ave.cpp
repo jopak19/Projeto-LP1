@@ -11,12 +11,12 @@ Ave::Ave(string codigo,
 		string altura, 
 		short idade, 
 		string especie,
-		shared_ptr<Veterinario> veterinario,
-		shared_ptr<Tratador> tratador,
         bool aquatica,
-        bool podeVoar):
-        Animal(codigo, peso, altura, idade, especie, veterinario, tratador),
-        aquatica(aquatica), podeVoar(podeVoar){};
+        bool podeVoar): Animal(codigo, peso, altura, idade, especie),
+        aquatica(aquatica), podeVoar(podeVoar){
+
+        this->nivelSeguranca = Azul;
+};
 
 bool Ave::getAquatica() const{
     return this->aquatica;

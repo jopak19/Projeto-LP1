@@ -20,8 +20,6 @@ public:
 		string altura, 
 		short idade, 
 		string especie,
-		shared_ptr<Veterinario> veterinario,
-		shared_ptr<Tratador> tratador,
         bool aquatica,
         bool podeVoar);
 
