@@ -36,6 +36,8 @@ class PetFera {
         void listarTratadores() const;
         void listarVeterinarios() const;
 
+    
+
     private:
 
         string nome;
