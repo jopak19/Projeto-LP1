@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     //teste       
 
 	// Apenas testes
-	/*PetFera *petfera = new PetFera();
+	PetFera *petfera = new PetFera();
     Interface *inter = new Interface();
     inter->setPet(petfera);
     shared_ptr<Tratador> tratador = make_shared<Tratador>(
@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
 
     shared_ptr<Veterinario> vet1 = make_shared<Veterinario>(
 		"456", "Veterinario1", "25/04/1987", "337247");
-    petfera->cadastrarVeterinario(vet1);*/
+    petfera->cadastrarVeterinario(vet1);
     inter->menu();
 
 	

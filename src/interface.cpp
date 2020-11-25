@@ -1052,7 +1052,6 @@ bool Interface::consultarAnimal(){
                 cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
             }else{
                 for (int i = 0; i < tamanho; i++){
-                    cout << "entrou" << endl;
                     cout << *((pet->getTratador(cpf))->getAnimaisTratados())[i] << endl;
                 }
             }  
@@ -1084,6 +1083,22 @@ bool Interface::consultarAnimal(){
 
         }
         case 6:{
+
+             string especie;
+             cout << "Informe a espécie que deseja buscar:" << endl;
+             cin >> especie;
+
+             int tamanho = pet->getAnimais().size();
+
+             cout << "------------------Animais Encontrados-----------------" << endl;
+             for (int i = 0; i < tamanho; i++){
+                
+                if (pet->getAnimais()[i]->getEspecie() == especie){
+                    cout << *pet->getAnimais()[i] << endl;
+                }
+
+             }
+
              break;
         }
     }
