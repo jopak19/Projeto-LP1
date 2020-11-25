@@ -22,7 +22,12 @@ int main(int argc, char const *argv[])
     Interface *inter = new Interface();
     inter->setPet(petfera);
     shared_ptr<Tratador> tratador = make_shared<Tratador>(
-		"5335345", "Fulano1", "12/03/2001", Vermelho);
+		"123", "Fulano1", "12/03/2001", Vermelho);
+    petfera->cadastrarTratador(tratador);
+
+    shared_ptr<Veterinario> vet1 = make_shared<Veterinario>(
+		"456", "Veterinario1", "25/04/1987", "337247");
+    petfera->cadastrarVeterinario(vet1);
     inter->menu();
 
 	

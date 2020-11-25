@@ -962,7 +962,7 @@ bool Interface::apagarAnimal(){
 bool Interface::consultarAnimal(){
     int escolha;
     cout << "Informe o tipo de consulta que deseja realizar: " << endl;
-    cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por tipo"  << endl;
+    cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por Espécie"  << endl;
 
     while (true){
 
@@ -981,18 +981,109 @@ bool Interface::consultarAnimal(){
     switch (escolha){
 
         case 1:{
-             break;
+
+            string cpf = "";
+            string sair = "";
+            cout << "Informe o CPF do veterinário:" << endl;
+  
+            while (true){
+
+                cin >> cpf;
+                if (pet->getVeterinario(cpf)){
+
+                    break;
+
+                }else{
+                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+ 
+                    if (sair == "1"){
+                        return false;
+                    }
+
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
+                }
+            }
+
+            int tamanho = pet->getVeterinario(cpf)->getAnimaisTratados().size();
+            if (tamanho == 0){
+                cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+            }else{
+                for (int i = 0; i < tamanho; i++){
+                    cout << "entrou" << endl;
+                    cout << *((pet->getVeterinario(cpf))->getAnimaisTratados())[i] << endl;
+                }
+            }  
+
+            break;
+
         }
         case 2:{
+
+            string cpf = "";
+            string sair = "";
+            cout << "Informe o CPF do tratador:" << endl;
+  
+            while (true){
+
+                cin >> cpf;
+                if (pet->getTratador(cpf)){
+
+                    break;
+
+                }else{
+                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+ 
+                    if (sair == "1"){
+                        return false;
+                    }
+
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
+                }
+            }
+
+            int tamanho = pet->getTratador(cpf)->getAnimaisTratados().size();
+            if (tamanho == 0){
+                cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+            }else{
+                for (int i = 0; i < tamanho; i++){
+                    cout << "entrou" << endl;
+                    cout << *((pet->getTratador(cpf))->getAnimaisTratados())[i] << endl;
+                }
+            }  
+
              break;
         }
         case 3:{
              break;
         }
         case 4:{
+
+             pet->listarAnimais();
              break;
+
         }
         case 5:{
+
+             string codigo;
+             cout << "Informe o código do animal:" << endl;
+             codigo = animalExiste();
+
+             if (codigo==""){
+                return false;
+             }else{
+                cout << *pet->getAnimal(codigo) << endl;
+             } 
+
+             break;
+
+        }
+        case 6:{
              break;
         }
     }
