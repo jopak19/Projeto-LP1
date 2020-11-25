@@ -161,6 +161,7 @@ bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimen
 
     string codigoCrmv="";
     cout << "Informe o código Crmv do veterinário\n" << endl;
+    cin >> codigoCrmv;
     if(validaCrmv(codigoCrmv)){
         shared_ptr<Veterinario> veterinario = make_shared<Veterinario>(nome, cpf, dataNascimento,codigoCrmv);
         pet->cadastrarVeterinario(veterinario);
@@ -531,7 +532,8 @@ bool Interface::cadastroAnimal(){
             if (sair == "1"){
                 return false;
             }
-
+            cin.clear();
+            cin.ignore(1000,'\n');
             cout << "CPF: ";
         }
     }
@@ -550,16 +552,32 @@ bool Interface::cadastroAnimal(){
                 break;
             }else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
                 break;
+            }else{
+                cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                cin >> sair;
+            
+                if (sair == "1"){
+                    return false;
+            
+                }
+
+                cin.clear();
+                cin.ignore(1000,'\n');
+
+                cout << "CPF: ";
+
             }
 
         }else{
-            cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+            cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
             cin >> sair;
             
             if (sair == "1"){
                  return false;
-
+            
             }
+            cin.clear();
+            cin.ignore(1000,'\n');
 
             cout << "CPF: ";
 
@@ -864,10 +882,10 @@ string Interface::solicitaTerritorio(){
 
 Bioma Interface::solicitaBioma(){
     string escolha="";
-    cout << "1-AMAZONIA | 2-CAATINGA | 3-PAMPA | 4-CERRADO | 5-PANTANAL | 6-MATAATLANTICA" << endl;
+    cout << "Informe o bioma de origem do animal: 1-AMAZONIA | 2-CAATINGA | 3-PAMPA | 4-CERRADO | 5-PANTANAL | 6-MATAATLANTICA" << endl;
     
     while (true){
-
+        cin >> escolha;
         if (escolha == "1"){
 
             return AMAZONIA;
