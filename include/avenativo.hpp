@@ -3,7 +3,7 @@
 #include "nativo.hpp"
 
 class AveNativo: public Ave, public Nativo{
-    private: 
+    public: 
         AveNativo (     string codigo, 
                         string peso, 
                         string altura, 

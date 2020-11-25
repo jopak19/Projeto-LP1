@@ -24,8 +24,6 @@ int main(int argc, char const *argv[])
     shared_ptr<Tratador> tratador = make_shared<Tratador>(
 		"5335345", "Fulano1", "12/03/2001", Vermelho);
     inter->menu();
-    inter->menu();
-
 
 	
 /*

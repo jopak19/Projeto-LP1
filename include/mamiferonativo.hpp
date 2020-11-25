@@ -3,7 +3,7 @@
 #include "nativo.hpp"
 
 class MamiferoNativo: public Mamifero, public Nativo{
-    private: 
+    public: 
         MamiferoNativo (string codigo, 
                         string peso, 
                         string altura, 
