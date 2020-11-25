@@ -29,6 +29,9 @@ class PetFera {
         bool removerTratador(string cpfTratador);
         bool removerVeterinario(string cpfVeterinario);
         bool removerAnimal(string codigoAnimal);
+        bool existeAnimal(string codigoAnimal) const;
+        bool existeTratador(string cpfTratador) const;
+        bool existeVeterinario(string cpfVeterinario) const;
         void listarAnimais() const;
         void listarTratadores() const;
         void listarVeterinarios() const;

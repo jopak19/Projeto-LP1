@@ -23,7 +23,7 @@ shared_ptr<Animal> PetFera::getAnimal(string codigo) const{
 			return an;
 		}
 	}
-	return nullptr;
+	return shared_ptr<Animal>(nullptr);
 }
 
 shared_ptr<Veterinario> PetFera::getVeterinario(string cpf) const {
@@ -37,7 +37,7 @@ shared_ptr<Veterinario> PetFera::getVeterinario(string cpf) const {
 			return vet;
 		}
 	}
-	return nullptr;
+	return shared_ptr<Veterinario>(nullptr);
 }
 
 shared_ptr<Tratador> PetFera::getTratador(string cpf) const {
@@ -51,11 +51,23 @@ shared_ptr<Tratador> PetFera::getTratador(string cpf) const {
 			return tra;
 		}
 	}
-	return nullptr;
+	return shared_ptr<Tratador>(nullptr);
 }
 
 bool PetFera::cadastrarAnimal(shared_ptr<Animal> animal, string cpfTratador, string cpfVeterinario){
    	
+   	/*
+	Não cadastra animal repetido e não cadastra caso o 
+	Tratador ou Veterinário não existam
+   	*/
+   	
+	if(this->existeAnimal(animal->getCodigo()) 
+		|| !this->existeTratador(cpfTratador)
+	 	|| !this->existeVeterinario(cpfVeterinario) ){
+
+		return false;
+	}
+
    	shared_ptr<Tratador> trat = this->getTratador(cpfTratador);
    	NivelSeguranca segAnimal = animal->getNivelSeguranca(); 
    	NivelSeguranca segTratador = trat->getNivelSeguranca();
@@ -65,32 +77,42 @@ bool PetFera::cadastrarAnimal(shared_ptr<Animal> animal, string cpfTratador, str
    	}
 	
 	animal->setTratador(trat);
-
 	shared_ptr<Veterinario> vet = this->getVeterinario(cpfVeterinario);
 	animal->setVeterinario(vet);
+	trat->adicionarAnimalTratado(animal);
+	vet->adicionarAnimalTratado(animal);
    	this->animais.push_back(animal);
 
    	return true;
 }
 
 bool PetFera::cadastrarTratador(shared_ptr<Tratador> tratador){
+
+	if(this->existeTratador(tratador->getCpf())){
+		return false;
+	}
+
     this->tratadores.push_back(tratador);
     return true;
 }
 
 bool PetFera::cadastrarVeterinario(shared_ptr<Veterinario> veterinario){
+
+	if(this->existeVeterinario(veterinario->getCpf())){
+		return false;
+	}
+
     this->veterinarios.push_back(veterinario);
     return true;
 }
 
 bool PetFera::realizarVenda(string codigoAnimal){
 
-	shared_ptr<Animal> animal = this->getAnimal(codigoAnimal);
-
-	if(animal == nullptr){
+	if(!this->existeAnimal(codigoAnimal)){
 		return false;
 	}
 
+	shared_ptr<Animal> animal = this->getAnimal(codigoAnimal);
 	shared_ptr<Veterinario> vet = animal->getVeterinario();
 	shared_ptr<Tratador> tra = animal->getTratador();
 
@@ -141,6 +163,45 @@ bool PetFera::removerAnimal(string codigoAnimal){
 	
 		if(codigo.compare(codigoAnimal) == 0){
 			this->animais.erase(this->animais.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PetFera::existeAnimal(string codigoAnimal) const {
+
+	for(int i = 0; i < (int) this->animais.size(); i++){
+		shared_ptr<Animal> animal = this->animais.at(i);
+		string codigo = animal->getCodigo();
+	
+		if(codigo.compare(codigoAnimal) == 0){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PetFera::existeTratador(string cpfTratador) const {
+
+	for(int i = 0; i < (int) this->tratadores.size(); i++){
+		shared_ptr<Tratador> tra = this->tratadores.at(i);
+		string cpf = tra->getCpf();
+	
+		if(cpfTratador.compare(cpf) == 0){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool PetFera::existeVeterinario(string cpfVeterinario) const {
+
+	for(int i = 0; i < (int) this->veterinarios.size(); i++){
+		shared_ptr<Veterinario> vet = this->veterinarios.at(i);
+		string cpf = vet->getCpf();
+	
+		if(cpfVeterinario.compare(cpf) == 0){
 			return true;
 		}
 	}
