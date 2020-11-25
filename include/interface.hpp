@@ -48,4 +48,6 @@ public:
     //Validações
     bool validaCrmv(string codigoCrmv);
     string animalExiste();
+    bool validaData(string data);
+    bool validaCPF(string cpf);
 };

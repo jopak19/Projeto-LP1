@@ -112,12 +112,30 @@ bool Interface::cadastroFuncionario(int tipo){
     cin >> nome;
     //validaNome();
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
-    cin >> cpf;
-    //validaCPF();
-    cout << "Data de Nascimento XX/XX/XX:" << endl;
-    cin >> dataNascimento;
-    //validaData();
-        
+    
+    while (true){
+
+        cin >> cpf;
+        if(validaCPF(cpf)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
+
+    cout << "Data de Nascimento XX/XX/XXXX:" << endl;
+
+    while (true){
+
+        cin >> dataNascimento;
+        if(validaData(dataNascimento)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
     if (tipo == 1){
         cadastroTratador(nome, cpf, dataNascimento);
 
@@ -253,7 +271,17 @@ bool Interface::alterarFuncionario(int tipo){
 
         string newData = "";
         cout << "Informe o nova Data de Nascimeto:" << endl;
-        cin >> newData;
+
+        while (true){
+
+            cin >> newData;
+            if(validaData(newData)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=NULL){
@@ -1140,5 +1168,62 @@ bool Interface::validaCrmv(string codigoCrmv){
     return true;
 }
 
+bool Interface::validaData(string data){
+    //xx/xx/xxxx
+    if(data.size() == 10){
+        for (int i = 0; i < 10; i++){
+            if(i == 2 ||i == 5){
+
+                if(data[i]!='/'){
+                    return false;
+                } 
+
+            }else if(!isdigit(data[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
+
+
+
+bool Interface::validaCPF(string cpf){
+    //xxx.xxx.xxx-xx
+    if(cpf.size() == 14){
+        for (int i = 0; i < 14; i++){
+            if(i == 3 ||i == 7){
+
+                if(cpf[i]!='.'){
+                    return false;
+                } 
+
+            }else if(i == 11){
+
+                if(cpf[i]!='-'){
+                    return false;
+                } 
+
+            }else if(!isdigit(cpf[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
 
 
