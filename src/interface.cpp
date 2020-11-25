@@ -8,30 +8,32 @@ void Interface::setPet(PetFera* p){
 // Os métodos menu e opções servem para definir qual funcionalidade será utilizada pelo usuário.
 
 void Interface::menu() {
+    while(true){
+        string escolha="";
+        cout << "Escolha uma das opções abaixo para acessar:\n";
+        cout << " 1-Gerenciar Tratador \n 2-Gerenciar Veterinário \n 3-Gerenciar Animal \n 4-Realizar Venda \n 5-Sair" << endl;
+        cin >> escolha;
 
-    string escolha="";
-    cout << "Escolha uma das opções abaixo para acessar:\n";
-    cout << " 1-Gerenciar Tratador \n 2-Gerenciar Veterinário \n 3-Gerenciar Animal \n 4-Realizar Venda" << endl;
-    cin >> escolha;
+        if (escolha=="1" || escolha=="2" || escolha=="3"){
+            opcoes(escolha);
 
-    if (escolha=="1" || escolha=="2" || escolha=="3"){
-        opcoes(escolha);
+        } else if(escolha=="4"){
 
-    } else if(escolha=="4"){
-
-    /*
-    Nessa função realizar venda, é preciso passar o código do animal
-    Então provavelmente vai ter que ter alguma coisa pro usuário
-    Listar o animal e seus códigos para ele saber qual animal ele 
-    está realizando a venda
-    */
+        /*
+        Nessa função realizar venda, é preciso passar o código do animal
+        Então provavelmente vai ter que ter alguma coisa pro usuário
+        Listar o animal e seus códigos para ele saber qual animal ele 
+        está realizando a venda
+        */
 
 
-        //pet->realizarVenda();
+            //pet->realizarVenda();
 
-    } else {
-        cout << "Opção Inválida! Tente outra opção!\n"<< endl;
-        menu();
+        } else if(escolha=="5"){
+            break;
+        }else {
+            cout << "Opção Inválida! Tente outra opção!\n"<< endl;
+        }
     }
 }
 
