@@ -114,15 +114,29 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
     cin >> cpf;
     //validaCPF();
-    cout << "Data de Nascimento XX/XX/XX:" << endl;
+    cout << "Data de Nascimento XX/XX/XXXX:" << endl;
     cin >> dataNascimento;
     //validaData();
         
+    bool cadastrado = false;
+
     if (tipo == 1){
-        cadastroTratador(nome, cpf, dataNascimento);
+
+        cadastrado = cadastroTratador(nome, cpf, dataNascimento);
+        if(!cadastrado){
+            cout << " " << endl;
+            cout << "Cadastro não realizado. Já existe Tratador com esse CPF!" << endl;
+            return false;
+        }
 
     } else {
-        cadastroVeterinario(nome, cpf, dataNascimento);
+        cadastrado = cadastroVeterinario(nome, cpf, dataNascimento);
+
+        if(!cadastrado){
+            cout << " " << endl;
+            cout << "Cadastro não realizado. Já existe Veterinario com esse CPF!" << endl;
+            return false;
+        }
     }
 
     return true;
@@ -132,43 +146,47 @@ bool Interface::cadastroTratador(string cpf, string nome, string dataNascimento)
 
     string nivel="";
     cout << "Informe o nível de segurança.\n" << endl;
-    cout << "1-Verde | 2-Vermelho | 3-Azul";
+    cout << "1-Verde | 2-Vermelho | 3-Azul\n";
     cin >> nivel;
+    bool cadastrado = false;
 
     if(nivel == "1"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Verde);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
 
     } else if(nivel == "2"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Vermelho);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
  
     } else if(nivel == "3"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Azul);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
 
     } else {
         cout << "Opção Inválida, tente outra" << endl;
-        cadastroTratador(nome, cpf, dataNascimento);
+        cadastrado = cadastroTratador(nome, cpf, dataNascimento);
     }
     
-    return true;
+    return cadastrado;
 }
 
 bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimento){
 
     string codigoCrmv="";
-    cout << "Informe o código Crmv do veterinário\n" << endl;
+    cout << "Informe o código Crmv do veterinário" << endl;
     cin >> codigoCrmv;
+
+    bool cadastrado = false;
+
     if(validaCrmv(codigoCrmv)){
         shared_ptr<Veterinario> veterinario = make_shared<Veterinario>(nome, cpf, dataNascimento,codigoCrmv);
-        pet->cadastrarVeterinario(veterinario);
+        cadastrado = pet->cadastrarVeterinario(veterinario);
 
     } else {
         cout << "Código inválido, tente outro!" << endl;
-        cadastroVeterinario(nome, cpf, dataNascimento);
+        cadastrado = cadastroVeterinario(nome, cpf, dataNascimento);
     }
-    return true;
+    return cadastrado;
 }
 
 
