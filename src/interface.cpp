@@ -114,15 +114,29 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
     cin >> cpf;
     //validaCPF();
-    cout << "Data de Nascimento XX/XX/XX:" << endl;
+    cout << "Data de Nascimento XX/XX/XXXX:" << endl;
     cin >> dataNascimento;
     //validaData();
         
+    bool cadastrado = false;
+
     if (tipo == 1){
-        cadastroTratador(nome, cpf, dataNascimento);
+
+        cadastrado = cadastroTratador(nome, cpf, dataNascimento);
+        if(!cadastrado){
+            cout << " " << endl;
+            cout << "Cadastro não realizado. Já existe Tratador com esse CPF!" << endl;
+            return false;
+        }
 
     } else {
-        cadastroVeterinario(nome, cpf, dataNascimento);
+        cadastrado = cadastroVeterinario(nome, cpf, dataNascimento);
+
+        if(!cadastrado){
+            cout << " " << endl;
+            cout << "Cadastro não realizado. Já existe Veterinario com esse CPF!" << endl;
+            return false;
+        }
     }
 
     return true;
@@ -132,43 +146,47 @@ bool Interface::cadastroTratador(string cpf, string nome, string dataNascimento)
 
     string nivel="";
     cout << "Informe o nível de segurança.\n" << endl;
-    cout << "1-Verde | 2-Vermelho | 3-Azul";
+    cout << "1-Verde | 2-Vermelho | 3-Azul\n";
     cin >> nivel;
+    bool cadastrado = false;
 
     if(nivel == "1"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Verde);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
 
     } else if(nivel == "2"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Vermelho);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
  
     } else if(nivel == "3"){
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Azul);
-        pet->cadastrarTratador(tratador);
+        cadastrado = pet->cadastrarTratador(tratador);
 
     } else {
         cout << "Opção Inválida, tente outra" << endl;
-        cadastroTratador(nome, cpf, dataNascimento);
+        cadastrado = cadastroTratador(nome, cpf, dataNascimento);
     }
     
-    return true;
+    return cadastrado;
 }
 
 bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimento){
 
     string codigoCrmv="";
-    cout << "Informe o código Crmv do veterinário\n" << endl;
+    cout << "Informe o código Crmv do veterinário" << endl;
     cin >> codigoCrmv;
+
+    bool cadastrado = false;
+
     if(validaCrmv(codigoCrmv)){
         shared_ptr<Veterinario> veterinario = make_shared<Veterinario>(nome, cpf, dataNascimento,codigoCrmv);
-        pet->cadastrarVeterinario(veterinario);
+        cadastrado = pet->cadastrarVeterinario(veterinario);
 
     } else {
         cout << "Código inválido, tente outro!" << endl;
-        cadastroVeterinario(nome, cpf, dataNascimento);
+        cadastrado = cadastroVeterinario(nome, cpf, dataNascimento);
     }
-    return true;
+    return cadastrado;
 }
 
 
@@ -962,7 +980,7 @@ bool Interface::apagarAnimal(){
 bool Interface::consultarAnimal(){
     int escolha;
     cout << "Informe o tipo de consulta que deseja realizar: " << endl;
-    cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por tipo"  << endl;
+    cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por Espécie"  << endl;
 
     while (true){
 
@@ -981,18 +999,124 @@ bool Interface::consultarAnimal(){
     switch (escolha){
 
         case 1:{
-             break;
+
+            string cpf = "";
+            string sair = "";
+            cout << "Informe o CPF do veterinário:" << endl;
+  
+            while (true){
+
+                cin >> cpf;
+                if (pet->getVeterinario(cpf)){
+
+                    break;
+
+                }else{
+                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+ 
+                    if (sair == "1"){
+                        return false;
+                    }
+
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
+                }
+            }
+
+            int tamanho = pet->getVeterinario(cpf)->getAnimaisTratados().size();
+            if (tamanho == 0){
+                cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+            }else{
+                for (int i = 0; i < tamanho; i++){
+                    cout << "entrou" << endl;
+                    cout << *((pet->getVeterinario(cpf))->getAnimaisTratados())[i] << endl;
+                }
+            }  
+
+            break;
+
         }
         case 2:{
+
+            string cpf = "";
+            string sair = "";
+            cout << "Informe o CPF do tratador:" << endl;
+  
+            while (true){
+
+                cin >> cpf;
+                if (pet->getTratador(cpf)){
+
+                    break;
+
+                }else{
+                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+ 
+                    if (sair == "1"){
+                        return false;
+                    }
+
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
+                }
+            }
+
+            int tamanho = pet->getTratador(cpf)->getAnimaisTratados().size();
+            if (tamanho == 0){
+                cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+            }else{
+                for (int i = 0; i < tamanho; i++){
+                    cout << *((pet->getTratador(cpf))->getAnimaisTratados())[i] << endl;
+                }
+            }  
+
              break;
         }
         case 3:{
              break;
         }
         case 4:{
+
+             pet->listarAnimais();
              break;
+
         }
         case 5:{
+
+             string codigo;
+             cout << "Informe o código do animal:" << endl;
+             codigo = animalExiste();
+
+             if (codigo==""){
+                return false;
+             }else{
+                cout << *pet->getAnimal(codigo) << endl;
+             } 
+
+             break;
+
+        }
+        case 6:{
+
+             string especie;
+             cout << "Informe a espécie que deseja buscar:" << endl;
+             cin >> especie;
+
+             int tamanho = pet->getAnimais().size();
+
+             cout << "------------------Animais Encontrados-----------------" << endl;
+             for (int i = 0; i < tamanho; i++){
+                
+                if (pet->getAnimais()[i]->getEspecie() == especie){
+                    cout << *pet->getAnimais()[i] << endl;
+                }
+
+             }
+
              break;
         }
     }

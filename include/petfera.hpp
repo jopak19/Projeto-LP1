@@ -18,7 +18,7 @@ class PetFera {
         vector<shared_ptr<Animal>> getAnimais() const;
         vector<shared_ptr<Tratador>> getTratadores() const;
         vector<shared_ptr<Veterinario>> getVeterinarios() const;
-        shared_ptr<Animal> getAnimal(string codigo) const;
+        shared_ptr<Animal> getAnimal(string codigo) const; 
         shared_ptr<Veterinario> getVeterinario(string cpf) const;
         shared_ptr<Tratador> getTratador(string cpf) const;
         bool cadastrarAnimal(shared_ptr<Animal> animal, 
@@ -29,6 +29,9 @@ class PetFera {
         bool removerTratador(string cpfTratador);
         bool removerVeterinario(string cpfVeterinario);
         bool removerAnimal(string codigoAnimal);
+        bool existeAnimal(string codigoAnimal) const;
+        bool existeTratador(string cpfTratador) const;
+        bool existeVeterinario(string cpfVeterinario) const;
         void listarAnimais() const;
         void listarTratadores() const;
         void listarVeterinarios() const;
