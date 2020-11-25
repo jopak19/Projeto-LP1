@@ -39,9 +39,10 @@ public:
     string solicitaTerritorio();
 
     //nativo
-    Bioma solicitaBioma();    
+    Bioma solicitaBioma();  
+
+    bool venderAnimal();
     
     //Validações
     bool validaCrmv(string codigoCrmv);
-    //int validaCinInt(bool teste, int variavel);
 };
