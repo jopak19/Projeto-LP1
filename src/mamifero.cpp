@@ -30,6 +30,19 @@ Gestacao Mamifero::getGestacao() const{
 void Mamifero::setGestacao(Gestacao gestacao){
     this->gestacao = gestacao;
 };
+
+string Mamifero::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string gestacao;
+    if(this->getGestacao() == PLACENTARIO) gestacao = "placentário";
+    if(this->getGestacao() == MONOTREMADO) gestacao = "monotremado";
+    if(this->getGestacao() == MARSUPIAL) gestacao = "marsupial";
+
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Gestação: " + gestacao;
+	return dados;
+};
    
 ostream& operator<< (ostream &o, Mamifero animal){
      /*Como o mamifero será exibido em tela*/

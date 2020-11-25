@@ -27,6 +27,21 @@ ReptilExotico::ReptilExotico (  string codigo,
     }
 };
 
+string ReptilExotico::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string extincao = this->getEmExtincao() ? "Sim" : "Não";
+    string tipoPele;
+    if(this->getTipoDepele() == CARAPACA) tipoPele = "Carapaça";
+    if(this->getTipoDepele() == ESCAMAS) tipoPele = "Escamas";
+    if(this->getTipoDepele() == PLACADERMICA) tipoPele = "Placa dérmica";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele +
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();
+;
+	return dados;
+};
+
 ostream& operator<< (ostream &o, ReptilExotico animal){
      /*Como o Reptil exotico será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 

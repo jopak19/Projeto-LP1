@@ -39,7 +39,19 @@ TipoDePele Reptil::getTipoDepele() const{
 void Reptil::setTipoDePele(TipoDePele tipo){
     this->tipoDePele = tipo;
 };
-   
+
+string Reptil::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string tipoPele;
+    if(this->getTipoDepele() == CARAPACA) tipoPele = "Carapaça";
+    if(this->getTipoDepele() == ESCAMAS) tipoPele = "Escamas";
+    if(this->getTipoDepele() == PLACADERMICA) tipoPele = "Placa dérmica";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele;
+	return dados;
+};
+
 ostream& operator<< (ostream &o, Reptil animal){
      /*Como o Reptil será exibido em tela*/
     string tipoPele;

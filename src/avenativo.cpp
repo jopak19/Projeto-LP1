@@ -27,7 +27,25 @@ AveNativo::AveNativo (string codigo,
     }
 
 };
-                                
+string AveNativo::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string extincao = this->getEmExtincao() ? "Sim" : "Não";
+    string aqua = this->aquatica ? "aquatica" : "não Aquatica";
+    string voa = this->podeVoar ? "voa" : "Não voa";
+    string bioma;
+    if(this->getBiomaOrigem() == AMAZONIA) bioma = "Amazonia";
+    if(this->getBiomaOrigem() == CERRADO) bioma = "Cerrado";
+    if(this->getBiomaOrigem() == PAMPA) bioma = "Pampa";
+    if(this->getBiomaOrigem() == CAATINGA) bioma = "Caatinga";
+    if(this->getBiomaOrigem() == PANTANAL) bioma = "Pantanal";
+    if(this->getBiomaOrigem() == MATAATLANTICA) bioma = "Mata Atlântica";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Aquatica: " + aqua + " Pode var: " + voa + 
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
+	return dados;
+};
+
 ostream& operator<< (ostream &o, AveNativo animal){
      /*Como o Ave nativo será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 

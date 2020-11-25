@@ -25,8 +25,8 @@ public:
 
     string getPeriodoDeMudadepele() const;
     void setPeriodoDeMudadepele(string periodo);
-    int getTemperaturaDeMudaDePele() const;
-    void setTemperaturaDeMudaDePele(int temperatura);
-   
+    int getTemperaturaDoAmbiente() const;
+    void setTemperaturaDoAmbiente(int temperatura);
+    virtual string imprimir();
 	friend ostream& operator<< (ostream &o, Anfibio animal);	
 };

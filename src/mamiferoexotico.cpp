@@ -26,6 +26,20 @@ MamiferoExotico::MamiferoExotico (string codigo,
     }
 
 };
+string MamiferoExotico::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string extincao = this->getEmExtincao() ? "Sim" : "Não";
+    string gestacao;
+    if(this->getGestacao() == PLACENTARIO) gestacao = "placentário";
+    if(this->getGestacao() == MONOTREMADO) gestacao = "monotremado";
+    if(this->getGestacao() == MARSUPIAL) gestacao = "marsupial";
+
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Gestação: " + gestacao + 
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();
+	return dados;
+};
 
 ostream& operator<< (ostream &o, MamiferoExotico animal){
      /*Como o mamifero será exibido em tela*/

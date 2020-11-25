@@ -55,7 +55,7 @@ shared_ptr<Tratador> PetFera::getTratador(string cpf) const {
 }
 
 bool PetFera::cadastrarAnimal(shared_ptr<Animal> animal, string cpfTratador, string cpfVeterinario){
-   	
+				
    	shared_ptr<Tratador> trat = this->getTratador(cpfTratador);
    	NivelSeguranca segAnimal = animal->getNivelSeguranca(); 
    	NivelSeguranca segTratador = trat->getNivelSeguranca();

@@ -33,13 +33,19 @@ string Anfibio::getPeriodoDeMudadepele() const{
 void Anfibio::setPeriodoDeMudadepele(string periodo){
     this->periodoDeMudaDePele = periodo;
 };
-int Anfibio::getTemperaturaDeMudaDePele() const{
+int Anfibio::getTemperaturaDoAmbiente() const{
     return this->temperaturaDoAmbiente;
 };
-void Anfibio::setTemperaturaDeMudaDePele(int temperatura){
+void Anfibio::setTemperaturaDoAmbiente(int temperatura){
     this->temperaturaDoAmbiente = temperatura;
 };
-   
+string Anfibio::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente());
+	return dados;
+};
 ostream& operator<< (ostream &o, Anfibio animal){
      /*Como o anfibio será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 
@@ -56,7 +62,7 @@ ostream& operator<< (ostream &o, Anfibio animal){
     << animal.getIdade() << setfill(' ') << setw(5)
     << animal.getEspecie() << setfill(' ') << setw(5)
     << animal.getPeriodoDeMudadepele() << setfill(' ') << setw(5)
-    << animal.getTemperaturaDeMudaDePele() << setfill(' ') << setw(5) 
+    << animal.getTemperaturaDoAmbiente() << setfill(' ') << setw(5) 
     << endl;
 	return o;
 };

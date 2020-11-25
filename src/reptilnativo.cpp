@@ -27,7 +27,29 @@ ReptilNativo::ReptilNativo(string codigo,
     }
 
 };
-                                
+
+string ReptilNativo::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string extincao = this->getEmExtincao() ? "Sim" : "Não";
+    string tipoPele;
+    string bioma;
+    if(this->getBiomaOrigem() == AMAZONIA) bioma = "Amazonia";
+    if(this->getBiomaOrigem() == CERRADO) bioma = "Cerrado";
+    if(this->getBiomaOrigem() == PAMPA) bioma = "Pampa";
+    if(this->getBiomaOrigem() == CAATINGA) bioma = "Caatinga";
+    if(this->getBiomaOrigem() == PANTANAL) bioma = "Pantanal";
+
+    if(this->getTipoDepele() == CARAPACA) tipoPele = "Carapaça";
+    if(this->getTipoDepele() == ESCAMAS) tipoPele = "Escamas";
+    if(this->getTipoDepele() == PLACADERMICA) tipoPele = "Placa dérmica";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele +
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
+;
+	return dados;
+};
+
 ostream& operator<< (ostream &o, ReptilNativo animal){
      /*Como o Reptil nativo será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 
