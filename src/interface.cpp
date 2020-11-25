@@ -432,8 +432,8 @@ bool Interface::cadastroAnimal(){
     short classe=0;
     short manejo=0;   
  
-    shared_ptr<Tratador> tratador;
-    shared_ptr<Veterinario> veterinario;
+    string cpftratador;
+    string cpfveterinario;
     string cpf="";
 
     string sair="";
@@ -508,13 +508,18 @@ bool Interface::cadastroAnimal(){
         }
 
     }
-    //Associar tratador e veterinário
+
+    /*Aqui serão válidados o tratador e o veterinário do animal, 
+        de forma que será possível prosseguir a operação apenas 
+        se ambos estiverem cadastrados e o tratador tiver o 
+        nível de segurança correto */
+
     cout << "Informe o CPF do veterinário desse animal:" << endl;
   
     while (true){
 
-        cin >> cpf;
-        if (pet->getVeterinario(cpf)){
+        cin >> cpfveterinario;
+        if (pet->getVeterinario(cpfveterinario)){
             break;
 
         }else{
@@ -529,21 +534,19 @@ bool Interface::cadastroAnimal(){
         }
     }
     
-    veterinario = pet->getVeterinario(cpf);
 
     cout << "Informe o CPF do tratador desse animal:" << endl;
-    cin >> cpf; 
    
     while (true){
 
-        cin >> cpf;
-        if (pet->getTratador(cpf)){
+        cin >> cpftratador ;
+        if (pet->getTratador(cpftratador)){
             
-            if (pet->getTratador(cpf)->getNivelSeguranca() == Vermelho){
+            if (pet->getTratador(cpftratador)->getNivelSeguranca() == Vermelho){
                 break;
-            }else if (pet->getTratador(cpf)->getNivelSeguranca() == Azul && perigoso == false && (classe == 2 || classe == 3 || classe == 4)){
+            }else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Azul && perigoso == false && (classe == 2 || classe == 3 || classe == 4)){
                 break;
-            }else if (pet->getTratador(cpf)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
+            }else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
                 break;
             }
 
@@ -561,16 +564,15 @@ bool Interface::cadastroAnimal(){
         }
     }
 
-    
-    tratador = pet->getTratador(cpf);
 
-    cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, veterinario, tratador); //Acrescentar Tratador e Veterinário
+    cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, cpfveterinario, cpftratador); //Acrescentar Tratador e Veterinário
 
     return true;
+
 }
 
 //Esse método prossegue o cadastro do animal baseado na classificação escolhida
-bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, shared_ptr<Veterinario> veterinario, shared_ptr<Tratador> tratador){
+bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, string cpfveterinario, string cpftratador){
     
     bool valida=false;
 
@@ -598,29 +600,201 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 }
 
             }
+        
+            //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
 
-            if (manejo == 1){
-                //Cadastrar
+            if (manejo == 1){ //Domético
 
-            }else if (manejo ==2) {
-                //Aqui vou passar todos os dados para o método de NATIVO
+                shared_ptr<Anfibio> anfibio = make_shared<Anfibio>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, temperaturaDoAmbiente, perigoso);
+                pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
+                cout << "Anfíbio doméstico cadastrado!" << endl;
 
-            }else{
-                //Aqui vou passar todos os dados para o método de EXÓTICO
+            }else if (manejo ==2) { //Nativo
+
+                shared_ptr<AnfibioNativo> anfibio = make_shared<AnfibioNativo>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, temperaturaDoAmbiente, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
+                 pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
+                 cout << "Anfíbio Silvestre Nativo cadastrado!" << endl;
+
+            }else{ //Exótico
+
+                shared_ptr<AnfibioExotico> anfibio = make_shared<AnfibioExotico>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, temperaturaDoAmbiente, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
+                pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
+                cout << "Anfíbio Silvestre Exótico cadastrado!" << endl;
             }
+
 
             break;
         }
         case 2:{ //Réptil
+        
+            string periodoDeMudaDePele="";
+            string tipo;
+            TipoDePele tipoDePele;
 
+            cout << "Informe o período de muda de pele do animal" << endl;
+            cin >> periodoDeMudaDePele;
+            cout << "Informe o tipo de pele do animal: 1- ESCAMAS | 2-CARAPACA | 3-PLACADERMICA" << endl;
+
+            while (true){
+                
+                cin >> tipo;
+                if (tipo == "1"){
+                    tipoDePele = ESCAMAS;
+                    break;
+
+                }else if (tipo== "2"){
+                    tipoDePele = CARAPACA;
+                    break;
+
+                }else if (tipo == "3"){
+                    tipoDePele = PLACADERMICA;
+                    break;
+
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n'); 
+
+                }
+
+            }
+        
+
+             //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
+
+            if (manejo == 1){ //Domético
+
+                shared_ptr<Reptil> reptil = make_shared<Reptil>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, perigoso);
+                pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
+                cout << "Réptil doméstico cadastrado!" << endl;
+
+            }else if (manejo ==2) { //Nativo
+
+                shared_ptr<ReptilNativo> reptil = make_shared<ReptilNativo>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
+                pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
+                cout << "Réptil Silvestre Nativo cadastrado!" << endl;
+
+            }else{ //Exótico
+
+                shared_ptr<ReptilExotico> reptil = make_shared<ReptilExotico>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
+                pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
+                cout << "Rétpil Silvestre Exótico cadastrado!" << endl;
+            }
 
             break;
         }
         case 3:{ //Ave
 
+            bool aquatica;
+            bool podeVoar;
+
+            cout << "A ave é aquática? 0-NÃO | 1-SIM" << endl;
+            
+            while (true){
+
+                if (cin >> aquatica){
+                    break;
+
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n'); 
+
+                }
+
+            }
+
+            cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
+
+            while (true){
+
+                if (cin >> podeVoar){
+                    break;
+
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n'); 
+
+                }
+
+            }
+
+
+             //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
+
+            if (manejo == 1){ //Domético
+
+                shared_ptr<Ave> ave = make_shared<Ave>(codigo, peso, altura, idade, especie, aquatica, podeVoar, perigoso);
+                pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
+                cout << "Réptil doméstico cadastrado!" << endl;
+
+            }else if (manejo ==2) { //Nativo
+
+                shared_ptr<AveNativo> ave = make_shared<AveNativo>(codigo, peso, altura, idade, especie, aquatica, podeVoar, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
+                pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
+                cout << "Ave Silvestre Nativo cadastrado!" << endl;
+
+            }else{ //Exótico
+
+                shared_ptr<AveExotico> ave = make_shared<AveExotico>(codigo, peso, altura, idade, especie, aquatica, podeVoar, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
+                pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
+                cout << "Ave Silvestre Exótico cadastrado!" << endl;
+            }
+
+
             break;
         }
         case 4:{ //Mamífero
+
+            Gestacao gestacao;
+            string escolha = ""; 
+            cout << "Informe o tipo de gestação do animal: 1-MONOTREMADO | 2-MARSUPIAL | 3-PLACENTARIO" << endl;
+
+            while (true){
+                
+                cin >> escolha;
+                if (escolha == "1"){
+                    gestacao= MONOTREMADO;
+                    break;
+
+                }else if (escolha== "2"){
+                    gestacao = MARSUPIAL;
+                    break;
+
+                }else if (escolha == "3"){
+                    gestacao = PLACENTARIO;
+                    break;
+
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n'); 
+
+                }
+
+            }
+
+            //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
+
+            if (manejo == 1){ //Domético
+
+                shared_ptr<Mamifero> mamifero = make_shared<Mamifero>(codigo, peso, altura, idade, especie, gestacao, perigoso);
+                pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
+                cout << "Mamífero doméstico cadastrado!" << endl;
+
+            }else if (manejo ==2) { //Nativo
+
+                shared_ptr<MamiferoNativo> mamifero = make_shared<MamiferoNativo>(codigo, peso, altura, idade, especie,  gestacao, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
+                pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
+                cout << "Mamífero Silvestre Nativo cadastrado!" << endl;
+
+            }else{ //Exótico
+
+                shared_ptr<MamiferoExotico> mamifero = make_shared<MamiferoExotico>(codigo, peso, altura, idade, especie,  gestacao, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
+                pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
+                cout << "Mamífero Silvestre Exótico cadastrado!" << endl;
+            }
 
             break;
         }
@@ -629,6 +803,103 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
     return true;
 }
+
+//Os métodos a seguir solicitam os demais dados para animais Silvestres nativos e exóticos
+
+int Interface::solicitaMarcacao(){
+
+    int marcacao=0;
+    cout << "Informe o número de marcação permanente do animal de acordo com o orgão responsável:" << endl;    
+
+    while (true){
+
+        if (cin >> marcacao){
+            return marcacao;
+
+        }else{
+            cout << "Opção inválida, tente um inteiro." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+    return 0;
+}
+
+
+bool Interface::solicitaExtincao(){
+
+    bool extincao;
+    cout << "A espécie corre risco de extinção? 0-NÃO | 1-SIM" << endl;
+
+    while (true){
+
+        if (cin >> extincao){
+            return extincao;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+    return false;
+}
+
+
+string Interface::solicitaTerritorio(){
+
+    string territorio="";
+    cout << "Informe o território de origem do animal" << endl;
+    cin >> territorio;
+    return territorio;
+
+}
+
+
+Bioma Interface::solicitaBioma(){
+    string escolha="";
+    cout << "1-AMAZONIA | 2-CAATINGA | 3-PAMPA | 4-CERRADO | 5-PANTANAL | 6-MATAATLANTICA" << endl;
+    
+    while (true){
+
+        if (escolha == "1"){
+
+            return AMAZONIA;
+        
+        }else if(escolha == "2"){
+
+            return CAATINGA;
+
+        }else if(escolha == "3"){
+
+            return PAMPA;
+
+        }else if(escolha == "4"){
+
+            return CERRADO;
+
+        }else if(escolha == "5"){
+
+            return PANTANAL;
+
+        }else if(escolha == "6"){
+
+            return MATAATLANTICA;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+
+} 
 
 //Validações
 bool Interface::validaCrmv(string codigoCrmv){

@@ -1,6 +1,13 @@
 #pragma once
 #include "petfera.hpp"
-
+#include "anfibionativo.hpp"
+#include "anfibioexotico.hpp"
+#include "reptilnativo.hpp"
+#include "reptilexotico.hpp"
+#include "aveexotico.hpp"
+#include "avenativo.hpp"
+#include "mamiferonativo.hpp"
+#include "mamiferoexotico.hpp"
 using namespace std;
 
 class Interface {
@@ -22,9 +29,18 @@ public:
     bool consultarFuncionario(int tipo);
     
     bool cadastroAnimal();
-    bool cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso,  shared_ptr<Veterinario> veterinario, shared_ptr<Tratador> tratador);
-    bool cadastroManejoAnimal(int tipo);
+    bool cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso,   string cpfveterinario, string cpftratador);
+    
+    //silvestre
+    int solicitaMarcacao();
+    bool solicitaExtincao();
 
+    //exotico
+    string solicitaTerritorio();
+
+    //nativo
+    Bioma solicitaBioma();    
+    
     //Validações
     bool validaCrmv(string codigoCrmv);
     //int validaCinInt(bool teste, int variavel);

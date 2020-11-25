@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 		"5335345", "Fulano1", "12/03/2001", Vermelho);
     inter->menu();
     inter->menu();
-
+    inter->menu();
 
 	
 /*
