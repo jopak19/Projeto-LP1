@@ -20,6 +20,16 @@ AnfibioExotico::AnfibioExotico (string codigo,
                                 Anfibio(codigo, peso, altura,idade, especie, periodoDeMudadepele, temperaturaDoAmbiente, perigoso),
                                 Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){};
 
+string AnfibioExotico::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string extincao = this->getEmExtincao() ? "Sim" : "Não";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) +
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();
+	return dados;
+};
+
 ostream& operator<< (ostream &o, AnfibioExotico animal){
      /*Como o anfibio exotico será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 
@@ -37,7 +47,7 @@ ostream& operator<< (ostream &o, AnfibioExotico animal){
     << animal.getIdade() << setfill(' ') << setw(5)
     << animal.getEspecie() << setfill(' ') << setw(5)
     << animal.getPeriodoDeMudadepele() << setfill(' ') << setw(5)
-    << animal.getTemperaturaDeMudaDePele() << setfill(' ') << setw(5) 
+    << animal.getTemperaturaDoAmbiente() << setfill(' ') << setw(5) 
     << endl;
 	return o;
 };

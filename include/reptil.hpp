@@ -32,6 +32,7 @@ class Reptil : public Animal{
         void setPeriodoDeMudadepele(string periodo);
         TipoDePele getTipoDepele() const;
         void setTipoDePele(TipoDePele tipo);
-    
+
+        virtual string imprimir();
         friend ostream& operator<< (ostream &o, Reptil animal);	
 };

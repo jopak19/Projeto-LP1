@@ -16,5 +16,6 @@ class AnfibioExotico: public Anfibio, public Exotico{
                         string territorioDeOrigem,
                         bool perigoso);
     public:
+        string imprimir();
         friend ostream& operator<< (ostream &o, AnfibioExotico animal);	
 };

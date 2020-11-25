@@ -28,7 +28,7 @@ public:
     void setAquatica(bool aquatica);
     bool getPodeVoar() const;
     void setPodeVoar(bool podeVoar);
-   
+    virtual string imprimir();
 	friend ostream& operator<< (ostream &o, Ave animal);	
 };
 
