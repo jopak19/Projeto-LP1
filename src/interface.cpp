@@ -14,7 +14,7 @@ void Interface::menu() {
     cout << " 1-Gerenciar Tratador \n 2-Gerenciar Veterinário \n 3-Gerenciar Animal \n 4-Realizar Venda" << endl;
     cin >> escolha;
 
-   if(escolha=="1" || escolha=="2" || escolha=="3"){
+    if (escolha=="1" || escolha=="2" || escolha=="3"){
         opcoes(escolha);
 
     } else if(escolha=="4"){
@@ -81,7 +81,7 @@ void Interface::opcoes(string escolha){
         }else if(escolha=="3"){
 
             if(opcao=="1"){
-            //cadastroAnimal();
+                cadastroAnimal();
 
             } else if(opcao=="2"){
             //alterarAnimal();
@@ -420,8 +420,238 @@ bool Interface::consultarFuncionario(int tipo){
     return true;
 }
 
+//Os três métodos seguintes cadastram os animais do petFera
+
+bool Interface::cadastroAnimal(){
+    string codigo="";
+    string peso="";
+    string altura="";
+    short idade=0;
+    string especie="";
+    bool perigoso;
+    short classe=0;
+    short manejo=0;   
+ 
+    shared_ptr<Tratador> tratador;
+    shared_ptr<Veterinario> veterinario;
+    string cpf="";
+
+    string sair="";
+
+    cout << "======================CADASTRO ANIMAL======================" << endl;
+    cout << "Informe os dados gerais do animal que deseja cadastrar." << endl;
+    cout << "PESO e ALTURA respectivamente:" << endl;
+    cin >> peso >> altura;
+    cout << "Idade do animal:" << endl;
+        
+    while (true){
+
+        if (!(cin >> idade)){
+            cout << "Idade inválida, tente novamente." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n');
+
+        }else{
+           break;
+
+        }
+
+    }
+
+    cout << "Espécie (ex.: tartaruga, águia, etc.):" << endl;
+    cin >> especie;
+    cout << "O animal é perigoso ou venenoso? 0-NÃO | 1-SIM" << endl;
+
+    while (true){
+
+        if (cin >> perigoso){
+            break;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n');   
+        }
+
+    }
+    
+    codigo = especie + to_string(pet->getAnimais().size());
+    
+    cout << "Informe a classificação do animal: 1-Anfíbio | 2-Réptil | 3-Ave | 4-Mamifero " << endl;
+
+    while (true){
+
+        if (cin >> classe && (classe == 1 || classe == 2 || classe == 3 || classe == 4)){
+            break;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+
+    cout << "Informe o tipo do animal: 1-Doméstico | 2-Silvestre Nativo | 3-Silvestre Exótico" << endl;
+
+    while (true){
+
+        if (cin >> manejo && (manejo == 1 || manejo == 2 || manejo == 3)){
+            break;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+    //Associar tratador e veterinário
+    cout << "Informe o CPF do veterinário desse animal:" << endl;
+  
+    while (true){
+
+        cin >> cpf;
+        if (pet->getVeterinario(cpf)){
+            break;
+
+        }else{
+            cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+            cin >> sair;
+            
+            if (sair == "1"){
+                return false;
+            }
+
+            cout << "CPF: ";
+        }
+    }
+    
+    veterinario = pet->getVeterinario(cpf);
+
+    cout << "Informe o CPF do tratador desse animal:" << endl;
+    cin >> cpf; 
+   
+    while (true){
+
+        cin >> cpf;
+        if (pet->getTratador(cpf)){
+            
+            if (pet->getTratador(cpf)->getNivelSeguranca() == Vermelho){
+                break;
+            }else if (pet->getTratador(cpf)->getNivelSeguranca() == Azul && perigoso == false && (classe == 2 || classe == 3 || classe == 4)){
+                break;
+            }else if (pet->getTratador(cpf)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
+                break;
+            }
+
+        }else{
+            cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+            cin >> sair;
+            
+            if (sair == "1"){
+                 return false;
+
+            }
+
+            cout << "CPF: ";
+
+        }
+    }
+
+    
+    tratador = pet->getTratador(cpf);
+
+    cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, veterinario, tratador); //Acrescentar Tratador e Veterinário
+
+    return true;
+}
+
+//Esse método prossegue o cadastro do animal baseado na classificação escolhida
+bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, shared_ptr<Veterinario> veterinario, shared_ptr<Tratador> tratador){
+    
+    bool valida=false;
+
+    switch (classe){
+    
+        case 1:{ //Anfíbio
+
+            string periodoDeMudaDePele="";
+            int temperaturaDoAmbiente=0;
+
+            cout << "Informe o período de muda de pele do animal" << endl;
+            cin >> periodoDeMudaDePele;
+            cout << "Informe a temperatura média do ambiente para o animal." << endl;
+
+            while (!valida){
+
+                if (cin >> temperaturaDoAmbiente){
+                    valida=true;
+
+                }else{
+                    cout << "Opção inválida, tente outra." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n'); 
+
+                }
+
+            }
+
+            if (manejo == 1){
+                //Cadastrar
+
+            }else if (manejo ==2) {
+                //Aqui vou passar todos os dados para o método de NATIVO
+
+            }else{
+                //Aqui vou passar todos os dados para o método de EXÓTICO
+            }
+
+            break;
+        }
+        case 2:{ //Réptil
+
+
+            break;
+        }
+        case 3:{ //Ave
+
+            break;
+        }
+        case 4:{ //Mamífero
+
+            break;
+        }
+    }
+
+
+    return true;
+}
+
 //Validações
 bool Interface::validaCrmv(string codigoCrmv){
     return true;
 }
+
+/*int Interface::validaCinInt(bool teste, int variavel){
+   
+    while (true){
+
+        if (teste){
+    
+            return variavel;
+
+        }else{
+
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+    return variavel;
+}*/
 
