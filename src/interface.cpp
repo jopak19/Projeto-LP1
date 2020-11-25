@@ -10,7 +10,9 @@ void Interface::setPet(PetFera* p){
 void Interface::menu() {
     while(true){
         string escolha="";
-        cout << "Escolha uma das opções abaixo para acessar:\n";
+        cout << "" << endl;
+        cout << "========================MENU INICIAL==================" << endl;
+        cout << "Escolha uma das opções abaixo para acessar:" << endl;
         cout << " 1-Gerenciar Tratador \n 2-Gerenciar Veterinário \n 3-Gerenciar Animal \n 4-Realizar Venda \n 5-Sair" << endl;
         cin >> escolha;
 
@@ -26,7 +28,7 @@ void Interface::menu() {
         } else if(escolha=="5"){
             break;
         }else {
-            cout << "Opção Inválida! Tente outra opção!\n"<< endl;
+            cout << "Opção Inválida! Tente outra opção!"<< endl;
         }
     }
 }
@@ -34,7 +36,7 @@ void Interface::menu() {
 void Interface::opcoes(string escolha){
 
     string opcao="";
-    cout << "Escolha uma das opções de gerenciamento:\n";
+    cout << "Escolha uma das opções de gerenciamento:" << endl;
     cout << " 1-Cadastrar \n 2-Alterar \n 3-Remover \n 4-Consultar" << endl;
     cin >> opcao;
 
@@ -83,10 +85,12 @@ void Interface::opcoes(string escolha){
             //alterarAnimal();
 
             } else if(opcao=="3"){
-            //apagarAnimal();
+                if(!apagarAnimal()){
+                cout << "Nenhum animal foi removido!"<< endl;
+                }
 
             } else if(opcao=="4"){
-            //consultarAnimal();
+                consultarAnimal();
 
             }
         }
@@ -417,7 +421,9 @@ bool Interface::consultarFuncionario(int tipo){
     return true;
 }
 
-//Os três métodos seguintes cadastram os animais do petFera
+/*Os dois métodos seguintes cadastram os animais
+ do petFera, além disso são usados quatro métodos
+ auxiliares para o caso de animais silvestres*/
 
 bool Interface::cadastroAnimal(){
     string codigo="";
@@ -586,6 +592,7 @@ bool Interface::cadastroAnimal(){
 }
 
 //Esse método prossegue o cadastro do animal baseado na classificação escolhida
+
 bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, string cpfveterinario, string cpftratador){
     
     bool valida=false;
@@ -919,31 +926,12 @@ Bioma Interface::solicitaBioma(){
 //VenderAnimal
 
 bool Interface::venderAnimal(){
-    string sair;
     string codigo="";
     cout << "Informe o código do animal que será vendido:" << endl;
+    codigo = animalExiste();
 
-    while (true){
-
-        cin >> codigo;
-                
-        if(pet->getAnimal(codigo)){
-
-            break;
-
-        }else{
-
-             cout << "Animal não encontrado, digite 1 para sair ou outra tecla para tentar novamente." << endl;
-             cin >> sair;
-            
-             if (sair == "1"){
-                return false;
-             }
-
-             cin.clear();
-             cin.ignore(1000,'\n');
-             cout << "Código: ";
-       }
+    if (codigo == ""){
+        return false;
     }
 
     pet->realizarVenda(codigo);
@@ -952,7 +940,96 @@ bool Interface::venderAnimal(){
 
 }
 
-//Validações
+//ApagarAnimal
+
+bool Interface::apagarAnimal(){
+
+    string codigo="";
+    cout << "Informe o código do animal que deseja apagar:" << endl;
+    codigo = animalExiste();
+
+    if (codigo == ""){
+        return false;
+    }
+    pet->removerAnimal(codigo);
+    cout << "Animal Removido!" << endl;
+    return true;
+}
+
+
+//Consultar Animal
+
+bool Interface::consultarAnimal(){
+    int escolha;
+    cout << "Informe o tipo de consulta que deseja realizar: " << endl;
+    cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por tipo"  << endl;
+
+    while (true){
+
+        if (cin >> escolha && (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4 || escolha == 5 || escolha == 6)){
+            break;
+
+        }else{
+            cout << "Opção inválida, tente outra." << endl;
+            cin.clear();
+            cin.ignore(1000,'\n'); 
+  
+        }
+
+    }
+
+    switch (escolha){
+
+        case 1:{
+             break;
+        }
+        case 2:{
+             break;
+        }
+        case 3:{
+             break;
+        }
+        case 4:{
+             break;
+        }
+        case 5:{
+             break;
+        }
+    }
+    return true;
+}
+
+
+//Seguem alguns métodos auxiliares para validação
+
+
+string Interface::animalExiste(){
+    string sair;
+    string codigo="";
+    while (true){
+
+        cin >> codigo;
+                
+        if(pet->getAnimal(codigo)){
+
+            return codigo;
+
+        }else{
+
+             cout << "Animal não encontrado, digite 1 para sair ou outra tecla para tentar novamente." << endl;
+             cin >> sair;
+            
+             if (sair == "1"){
+                return "";
+             }
+
+             cin.clear();
+             cin.ignore(1000,'\n');
+             cout << "Código: ";
+       }
+    }
+}
+
 bool Interface::validaCrmv(string codigoCrmv){
     return true;
 }

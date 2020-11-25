@@ -42,7 +42,10 @@ public:
     Bioma solicitaBioma();  
 
     bool venderAnimal();
+    bool apagarAnimal();
+    bool consultarAnimal();
     
     //Validações
     bool validaCrmv(string codigoCrmv);
+    string animalExiste();
 };
