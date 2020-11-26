@@ -18,7 +18,7 @@ MamiferoNativo::MamiferoNativo (string codigo,
                                 bool perigoso):
                                 Mamifero(codigo, peso, altura,idade, especie, gestacao, perigoso),
                                 Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
-    
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -27,7 +27,9 @@ MamiferoNativo::MamiferoNativo (string codigo,
     }
 
 };
-
+void MamiferoNativo::setClasse(){
+    this->classe = "mamiferonativo";
+};
 string MamiferoNativo::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";

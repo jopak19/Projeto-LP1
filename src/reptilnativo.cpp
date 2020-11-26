@@ -19,6 +19,7 @@ ReptilNativo::ReptilNativo(string codigo,
                             bool perigoso):
                             Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
                             Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+      setClasse();                        
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -27,7 +28,9 @@ ReptilNativo::ReptilNativo(string codigo,
     }
 
 };
-
+void ReptilNativo::setClasse(){
+    this->classe = "reptilnativo";
+};
 string ReptilNativo::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";

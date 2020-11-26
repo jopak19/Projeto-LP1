@@ -18,6 +18,7 @@ MamiferoExotico::MamiferoExotico (string codigo,
                                 bool perigoso):
                                 Mamifero(codigo, peso, altura,idade, especie, gestacao, perigoso),
                                 Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -25,6 +26,9 @@ MamiferoExotico::MamiferoExotico (string codigo,
         this->nivelSeguranca = Azul;
     }
 
+};
+void MamiferoExotico::setClasse(){
+    this->classe = "mamiferoexotico";
 };
 string MamiferoExotico::imprimir(){
     string dados;

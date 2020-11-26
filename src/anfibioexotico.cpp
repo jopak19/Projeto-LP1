@@ -18,8 +18,13 @@ AnfibioExotico::AnfibioExotico (string codigo,
                                 string territorioDeOrigem,
                                 bool perigoso):
                                 Anfibio(codigo, peso, altura,idade, especie, periodoDeMudadepele, temperaturaDoAmbiente, perigoso),
-                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){};
+                                Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+                                    setClasse();
+                                };
 
+void AnfibioExotico::setClasse(){
+    this->classe = "anfibioexotico";
+};
 string AnfibioExotico::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";

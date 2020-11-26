@@ -28,5 +28,6 @@ public:
     int getTemperaturaDoAmbiente() const;
     void setTemperaturaDoAmbiente(int temperatura);
     virtual string imprimir();
+    virtual void setClasse();
 	friend ostream& operator<< (ostream &o, Anfibio animal);	
 };

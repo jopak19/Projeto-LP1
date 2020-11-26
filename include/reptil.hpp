@@ -34,5 +34,6 @@ class Reptil : public Animal{
         void setTipoDePele(TipoDePele tipo);
 
         virtual string imprimir();
+        virtual void setClasse();
         friend ostream& operator<< (ostream &o, Reptil animal);	
 };

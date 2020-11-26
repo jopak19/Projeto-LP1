@@ -4,7 +4,9 @@ Animal::Animal(string codigo, string peso,
 	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
 	idade(idade), especie(especie), perigoso(perigoso){
 }
-
+string Animal::getClasse() const{
+	return this->classe;
+}
 string Animal::getCodigo() const {
 	return this->codigo;
 }

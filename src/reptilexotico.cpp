@@ -19,6 +19,7 @@ ReptilExotico::ReptilExotico (  string codigo,
                                 bool perigoso):
                                 Reptil(codigo, peso, altura,idade, especie, periodoDeMudadepele, tipoDePele, perigoso),
                                 Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -26,7 +27,9 @@ ReptilExotico::ReptilExotico (  string codigo,
         this->nivelSeguranca = Azul;
     }
 };
-
+void ReptilExotico::setClasse(){
+    this->classe = "reptilexotico";
+};
 string ReptilExotico::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";

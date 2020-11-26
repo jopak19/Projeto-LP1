@@ -19,6 +19,7 @@ AveExotico::AveExotico (string codigo,
                         bool perigoso):
                         Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
                         Exotico(marcacaoPermanente, emExtincao, territorioDeOrigem){
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -26,6 +27,9 @@ AveExotico::AveExotico (string codigo,
         this->nivelSeguranca = Verde;
     }
 
+};
+void AveExotico::setClasse(){
+    this->classe = "aveexotico";
 };
 string AveExotico::imprimir(){
     string dados;

@@ -15,7 +15,7 @@ Mamifero::Mamifero(string codigo,
                    bool perigoso = false):
                    Animal(codigo, peso, altura, idade, especie, perigoso),
                    gestacao(gestacao){
-
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -23,7 +23,9 @@ Mamifero::Mamifero(string codigo,
         this->nivelSeguranca = Azul;
     }
 };
-
+void Mamifero::setClasse(){
+    this->classe = "mamifero";
+};
 Gestacao Mamifero::getGestacao() const{
     return this->gestacao;
 };

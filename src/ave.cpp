@@ -15,7 +15,7 @@ Ave::Ave(string codigo,
         bool podeVoar,
         bool perigoso = false): Animal(codigo, peso, altura, idade, especie, perigoso),
         aquatica(aquatica), podeVoar(podeVoar){
-
+        setClasse();
         if(perigoso){
             this->nivelSeguranca = Vermelho;
 
@@ -23,7 +23,9 @@ Ave::Ave(string codigo,
             this->nivelSeguranca = Verde;
         }
 };
-
+void Ave::setClasse(){
+    this->classe = "ave";
+};
 bool Ave::getAquatica() const{
     return this->aquatica;
 };

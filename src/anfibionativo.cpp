@@ -18,7 +18,13 @@ AnfibioNativo::AnfibioNativo (string codigo,
                                 Bioma biomaOrigem,
                                 bool perigoso):
                                 Anfibio(codigo, peso, altura,idade, especie, periodoDeMudadepele, temperaturaDoAmbiente, perigoso),
-                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){};
+                                Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+                                    setClasse();
+                                };
+
+void AnfibioNativo::setClasse(){
+    this->classe = "anfibionativo";
+};
 
 string AnfibioNativo::imprimir(){
     string dados;
