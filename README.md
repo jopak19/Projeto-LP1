@@ -1,13 +1,18 @@
 ## Projeto de LP1
 
-###### PETFERA ######
+## PETFERA ##
 
-### Membros:
+#### Membros da Equipe:
+
     Débora Tayná
     João Paulo Siqueira
     Rodrigo Gomes da Rocha
 
 #### Descrição:
+
+    Esse projeto é voltado para o gerencialmento de Animais, Tratadores e Veterinários da PetFera (Loja de comercialização de animais silvestres autorizados pelo IBAMA).
+
+#### Descrição da Implementação:
     O projeto implementa as seguintes classes: PetFera, Interface, Funcionario, 
     Tratador, Veterinário, Animal, Ave, Anfibio, Reptil, Mamifero, Silvestre, 
     Nativo, Exotico, além das especificas AveNativo, Ave Exotico etc.
@@ -24,7 +29,27 @@
     A classe interface, por sua vez, usar dos métodos dispostos na classe PetFera
     e implementa a interface com o usuário.
 
-### Orientação para Testes:
+#### Executar o programa:
+    
+    Para executar o programa, é necessário ter g++ instalado.
+
+    Baixando o programa pelo git:
+
+    `git clone https://github.com/jopak19/Projeto-LP1.git`
+
+    Para compilar:
+
+    ```
+    cd Projeto-LP1
+    make
+    
+    ```
+
+    Para executar:
+
+    `./bin/programa`
+
+#### Orientação para Testes:
     Para realizar os testes basta executar o código, escolher uma das opções
     do menu e então fornecer os dados solicitados.
 
@@ -38,7 +63,7 @@
     menos 1 tratador e 1 veterinário no PetFera. Além disso, o tratador precisa
     ter o nível de segurança adequado para tratar o animal, isto é:
     
-        Nivél Vermelho: pode tratar qualquer animal.
+        Nível Vermelho: pode tratar qualquer animal.
         Nível Verde: Trata apenas Aves não perigosas.
         Nível Azul: Trata Aves, réptios e mamíferos não perigosos.
 
@@ -57,5 +82,5 @@
 
     As consultas podem ser realizadas clicando no menu 3-Gerenciar Animal > 4-Consultar 
 
-### Endereço do repositório: 
+#### Endereço do repositório: 
     https://github.com/jopak19/Projeto-LP1
