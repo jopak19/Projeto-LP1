@@ -109,10 +109,17 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "Preencha os dados pessoais do funcionário solicitados a seguir.\n"
     << endl;
     cout << "Nome:" << endl;
-    cin >> nome;
-    //validaNome();
+    while (true){
+
+        cin >> nome;
+        if(validaNome(nome)){
+            break;
+        }else{
+            cout << "Nome inválido, tente novamente." << endl;
+        }
+
+    }
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
-<<<<<<< HEAD
     
     while (true){
 
@@ -137,16 +144,9 @@ bool Interface::cadastroFuncionario(int tipo){
         }
 
     }
-=======
-    cin >> cpf;
-    //validaCPF();
-    cout << "Data de Nascimento XX/XX/XXXX:" << endl;
-    cin >> dataNascimento;
-    //validaData();
         
     bool cadastrado = false;
 
->>>>>>> 3c8b6f5e15b5d9200b29204e87d001f470a38a22
     if (tipo == 1){
 
         cadastrado = cadastroTratador(nome, cpf, dataNascimento);
@@ -248,7 +248,17 @@ bool Interface::alterarFuncionario(int tipo){
     if (escolha=="1"){
         string newNome = "";
         cout << "Informe o novo nome:" << endl;
-        cin >> newNome;
+
+        while (true){
+
+            cin >> newNome;
+            if(validaNome(newNome)){
+                break;
+            }else{
+                cout << "Nome inválido, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=NULL){
@@ -273,7 +283,17 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="2"){
         string newCpf = "";
         cout << "Informe o novo cpf:" << endl;
-        cin >> newCpf;
+
+        while (true){
+
+            cin >> newCpf;
+            if(validaCPF(newCpf)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=NULL){
@@ -1251,6 +1271,27 @@ bool Interface::validaCPF(string cpf){
      return false;
 
     }
+}
+
+
+bool Interface::validaNome(string nome){
+
+    int t = nome.size();
+    if(!(nome=="")){
+        for (int i = 0; i < t ; i++){
+
+            if(isdigit(nome[i])){
+                return false;
+            }
+         }  
+ 
+    }else{
+
+        return false;
+
+    }
+    
+    return true;
 }
 
 
