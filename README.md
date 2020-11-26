@@ -10,7 +10,8 @@
 
 #### Descrição:
 
-    Esse projeto é voltado para o gerencialmento de Animais, Tratadores e Veterinários da PetFera (Loja de comercialização de animais silvestres autorizados pelo IBAMA).
+    Esse projeto é voltado para o gerencialmento de Animais, Tratadores e Veterinários da PetFera 
+    (Loja de comercialização de animais silvestres autorizados pelo IBAMA).
 
 #### Descrição da Implementação:
     O projeto implementa as seguintes classes: PetFera, Interface, Funcionario, 
@@ -35,19 +36,16 @@
 
     Baixando o programa pelo git:
 
-    `git clone https://github.com/jopak19/Projeto-LP1.git`
+    git clone https://github.com/jopak19/Projeto-LP1.git
 
     Para compilar:
-
-    ```
+ 
     cd Projeto-LP1
     make
-    
-    ```
 
     Para executar:
 
-    `./bin/programa`
+    ./bin/programa
 
 #### Orientação para Testes:
     Para realizar os testes basta executar o código, escolher uma das opções
