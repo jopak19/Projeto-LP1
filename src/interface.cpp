@@ -27,7 +27,8 @@ void Interface::menu() {
             
         } else if(escolha=="5"){
             break;
-        }else {
+
+        } else {
             cout << "Opção Inválida! Tente outra opção!"<< endl;
         }
     }
@@ -109,14 +110,41 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "Preencha os dados pessoais do funcionário solicitados a seguir.\n"
     << endl;
     cout << "Nome:" << endl;
-    cin >> nome;
-    //validaNome();
+    while (true){
+        cin.ignore();
+        getline (cin,nome);
+        if(validaNome(nome)){
+            break;
+        }else{
+            cout << "Nome inválido, tente novamente." << endl;
+        }
+
+    }
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
-    cin >> cpf;
-    //validaCPF();
+    
+    while (true){
+
+        getline (cin,cpf);
+        if(validaCPF(cpf)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
+
     cout << "Data de Nascimento XX/XX/XXXX:" << endl;
-    cin >> dataNascimento;
-    //validaData();
+
+    while (true){
+
+        getline (cin,dataNascimento);
+        if(validaData(dataNascimento)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
         
     bool cadastrado = false;
 
@@ -195,7 +223,7 @@ bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimen
 bool Interface::alterarFuncionario(int tipo){
 //O usuário começa escolhendo o cpf do usuário que deseja alterar e o dado que será alterado.
     string escolha = "";
-    string cpf = "";
+    string cpf;
     cout << "Informe cpf do funcionário para as alterações:" << endl;
     cin >> cpf;
     bool valida=false;
@@ -221,10 +249,20 @@ bool Interface::alterarFuncionario(int tipo){
     if (escolha=="1"){
         string newNome = "";
         cout << "Informe o novo nome:" << endl;
-        cin >> newNome;
+
+        while (true){
+
+            cin >> newNome;
+            if(validaNome(newNome)){
+                break;
+            }else{
+                cout << "Nome inválido, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
-            if (pet->getTratador(cpf)!=NULL){
+            if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setNome(newNome);
                 cout << "Nome alterado!" << endl;
 
@@ -234,11 +272,11 @@ bool Interface::alterarFuncionario(int tipo){
 
         } else {
 
-            if (pet->getVeterinario(cpf)!=NULL){
+            if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setNome(newNome);
                 cout << "Nome alterado!" << endl;
 
-            }else{
+            } else{
                 cout << "Veterinario não encontrado." << endl;
             }
         }
@@ -246,19 +284,41 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="2"){
         string newCpf = "";
         cout << "Informe o novo cpf:" << endl;
-        cin >> newCpf;
+
+        while (true){
+
+            cin >> newCpf;
+            if(validaCPF(newCpf)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
-            if (pet->getTratador(cpf)!=NULL){
+
+            if(pet->existeTratador(newCpf)){
+                cout << "CPF Não alterado. Já existe Veterinario com esse CPF!" << endl;
+                return false;
+            }
+
+            if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setCpf(newCpf);
                 cout << "CPF alterado!" << endl;
-            }else{
+
+            } else{
                 cout << "Tratador não encontrado." << endl;
             }
 
         } else {
 
-            if (pet->getVeterinario(cpf)!=NULL){
+            if(pet->existeVeterinario(newCpf)){
+                cout << "CPF Não alterado. Já existe Veterinario com esse CPF!" << endl;
+                return false;
+            }
+
+            if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setCpf(newCpf);
                 cout << "CPF alterado!" << endl;
 
@@ -270,11 +330,26 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="3"){
 
         string newData = "";
-        cout << "Informe o nova Data de Nascimeto:" << endl;
+<<<<<<< HEAD
+        cout << "Informe a nova Data de Nascimento:" << endl;
         cin >> newData;
+=======
+        cout << "Informe o nova Data de Nascimeto:" << endl;
+
+        while (true){
+
+            cin >> newData;
+            if(validaData(newData)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
+>>>>>>> a9de187d1ff9583acef857d15005c10fe81d36a3
 
         if(tipo==1){
-            if (pet->getTratador(cpf)!=NULL){
+            if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setDataNascimento(newData);
                 cout << "Data alterada!" << endl;
 
@@ -284,7 +359,7 @@ bool Interface::alterarFuncionario(int tipo){
 
         } else {
 
-            if (pet->getVeterinario(cpf)!=NULL){
+            if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setDataNascimento(newData);
                 cout << "Data alterada!" << endl;
 
@@ -299,7 +374,7 @@ bool Interface::alterarFuncionario(int tipo){
             string newNivel="";
             NivelSeguranca novoNivel;
             cout << "Informe o nível de segurança.\n" << endl;
-            cout << "1-Verde | 2-Vermelho | 3-Azul";
+            cout << "1-Verde | 2-Vermelho | 3-Azul\n";
             valida=false;
 
             while (valida==false){
@@ -314,7 +389,7 @@ bool Interface::alterarFuncionario(int tipo){
                 }
             }
 
-            if (pet->getTratador(cpf)!=NULL){
+            if (pet->getTratador(cpf)!=nullptr){
 
                 if(newNivel=="1"){
                     novoNivel = Verde;
@@ -350,7 +425,7 @@ bool Interface::alterarFuncionario(int tipo){
                 valida = validaCrmv(newCodigo);
             }
 
-            if (pet->getVeterinario(cpf)!=NULL){
+            if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setCodigoCrmv(newCodigo);
                 cout << "Código alterado!" << endl;
 
@@ -370,7 +445,7 @@ bool Interface::apagarFuncionario(int tipo){
         cin >> cpf;
 
         if(pet->removerTratador(cpf)){
-             cout << "Tratador removido." << endl;
+            cout << "Tratador removido." << endl;
 
         } else{
             cout << "Tratador não encontrado." << endl; 
@@ -381,7 +456,7 @@ bool Interface::apagarFuncionario(int tipo){
         cin >> cpf;
 
         if(pet->removerVeterinario(cpf)){
-             cout << "Veterinário removido." << endl;
+            cout << "Veterinário removido." << endl;
 
         } else {
             cout << "Veterinário não encontrado." << endl; 
@@ -408,6 +483,7 @@ bool Interface::consultarFuncionario(int tipo){
 
             if(pet->getTratador(cpf)){
                 cout << *pet->getTratador(cpf) << endl; 
+
             } else{
                 cout << "Tratador não encontrado." << endl;
             }
@@ -444,6 +520,7 @@ bool Interface::consultarFuncionario(int tipo){
  auxiliares para o caso de animais silvestres*/
 
 bool Interface::cadastroAnimal(){
+
     string codigo="";
     string peso="";
     string altura="";
@@ -472,11 +549,10 @@ bool Interface::cadastroAnimal(){
             cin.clear();
             cin.ignore(1000,'\n');
 
-        }else{
+        } else{
            break;
 
         }
-
     }
 
     cout << "Espécie (ex.: tartaruga, águia, etc.):" << endl;
@@ -488,7 +564,7 @@ bool Interface::cadastroAnimal(){
         if (cin >> perigoso){
             break;
 
-        }else{
+        } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n');   
@@ -505,13 +581,12 @@ bool Interface::cadastroAnimal(){
         if (cin >> classe && (classe == 1 || classe == 2 || classe == 3 || classe == 4)){
             break;
 
-        }else{
+        } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
   
         }
-
     }
 
     cout << "Informe o tipo do animal: 1-Doméstico | 2-Silvestre Nativo | 3-Silvestre Exótico" << endl;
@@ -543,7 +618,7 @@ bool Interface::cadastroAnimal(){
         if (pet->getVeterinario(cpfveterinario)){
             break;
 
-        }else{
+        } else {
             cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
             cin >> sair;
             
@@ -566,11 +641,14 @@ bool Interface::cadastroAnimal(){
             
             if (pet->getTratador(cpftratador)->getNivelSeguranca() == Vermelho){
                 break;
-            }else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Azul && perigoso == false && (classe == 2 || classe == 3 || classe == 4)){
+
+            } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Azul && perigoso == false && (classe == 2 || classe == 3 || classe == 4)){
                 break;
-            }else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
+
+            } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && perigoso == false && classe == 3){
                 break;
-            }else{
+
+            } else{
                 cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                 cin >> sair;
             
@@ -602,7 +680,6 @@ bool Interface::cadastroAnimal(){
         }
     }
 
-
     cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, cpfveterinario, cpftratador); //Acrescentar Tratador e Veterinário
 
     return true;
@@ -617,7 +694,7 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
     switch (classe){
     
-        case 1:{ //Anfíbio
+        case 1: { //Anfíbio
 
             string periodoDeMudaDePele="";
             int temperaturaDoAmbiente=0;
@@ -631,13 +708,12 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 if (cin >> temperaturaDoAmbiente){
                     valida=true;
 
-                }else{
+                } else{
                     cout << "Opção inválida, tente outra." << endl;
                     cin.clear();
                     cin.ignore(1000,'\n'); 
 
                 }
-
             }
         
             //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
@@ -648,19 +724,18 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
                 cout << "Anfíbio doméstico cadastrado: " << codigo << endl;
 
-            }else if (manejo ==2) { //Nativo
+            } else if (manejo ==2) { //Nativo
 
                 shared_ptr<AnfibioNativo> anfibio = make_shared<AnfibioNativo>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, temperaturaDoAmbiente, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
-                 pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
-                 cout << "Anfíbio Silvestre Nativo cadastrado: " << codigo << endl;
+                pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
+                cout << "Anfíbio Silvestre Nativo cadastrado: " << codigo << endl;
 
-            }else{ //Exótico
+            } else { //Exótico
 
                 shared_ptr<AnfibioExotico> anfibio = make_shared<AnfibioExotico>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, temperaturaDoAmbiente, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
                 pet->cadastrarAnimal(anfibio, cpftratador, cpfveterinario);
                 cout << "Anfíbio Silvestre Exótico cadastrado: " << codigo << endl;
             }
-
 
             break;
         }
@@ -701,7 +776,7 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
              //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
 
-            if (manejo == 1){ //Domético
+            if (manejo == 1){ //Doméstico
 
                 shared_ptr<Reptil> reptil = make_shared<Reptil>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, perigoso);
                 pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
@@ -1158,5 +1233,83 @@ bool Interface::validaCrmv(string codigoCrmv){
     return true;
 }
 
+bool Interface::validaData(string data){
+    //xx/xx/xxxx
+    if(data.size() == 10){
+        for (int i = 0; i < 10; i++){
+            if(i == 2 ||i == 5){
+
+                if(data[i]!='/'){
+                    return false;
+                } 
+
+            }else if(!isdigit(data[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
+
+
+
+bool Interface::validaCPF(string cpf){
+    //xxx.xxx.xxx-xx
+    if(cpf.size() == 14){
+        for (int i = 0; i < 14; i++){
+            if(i == 3 ||i == 7){
+
+                if(cpf[i]!='.'){
+                    return false;
+                } 
+
+            }else if(i == 11){
+
+                if(cpf[i]!='-'){
+                    return false;
+                } 
+
+            }else if(!isdigit(cpf[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
+
+
+bool Interface::validaNome(string nome){
+
+    int t = nome.size();
+    if(!(nome=="")){
+        for (int i = 0; i < t ; i++){
+
+            if(isdigit(nome[i])){
+                return false;
+            }
+         }  
+ 
+    }else{
+
+        return false;
+
+    }
+    
+    return true;
+}
 
 
