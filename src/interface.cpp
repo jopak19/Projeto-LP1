@@ -213,7 +213,7 @@ bool Interface::cadastroTratador(string cpf, string nome, string dataNascimento)
     } else {
 
         cout << "Opção Inválida, tente outra" << endl;
-        cadastrado = cadastroTratador(nome, cpf, dataNascimento);
+        cadastroTratador(nome, cpf, dataNascimento);
     }
     
     return cadastrado;

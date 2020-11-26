@@ -14,7 +14,7 @@ protected:
     int temperaturaDoAmbiente;
 public:
 
-	Anfibio(string codigo, 
+    Anfibio(string codigo, 
             string peso, 
             string altura, 
             short idade, 
@@ -28,5 +28,5 @@ public:
     int getTemperaturaDoAmbiente() const;
     void setTemperaturaDoAmbiente(int temperatura);
     virtual string imprimir();
-    virtual void setClasse();	
+    virtual void setClasse();   
 };

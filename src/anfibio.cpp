@@ -1,4 +1,10 @@
 #include "anfibio.hpp"
+#include <string>
+#include <iostream>
+#include <iomanip>
+using std::setfill;
+using std::setw;
+using std::string;
 
 Anfibio::Anfibio(string codigo, 
                 string peso, 
@@ -17,7 +23,7 @@ Anfibio::Anfibio(string codigo,
     } else {
         this->nivelSeguranca = Azul;
     }
-};
+}
 
 //getters e setters
 string Anfibio::getPeriodoDeMudadepele() const{
@@ -44,8 +50,7 @@ void Anfibio::setClasse(){
 string Anfibio::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
-	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
-    " | Muda de Pele: " + this->getPeriodoDeMudadepele() + " | Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) +
-    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
-	return dados;
+    dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente());
+    return dados;
 };
