@@ -4,6 +4,10 @@ Animal::Animal(string codigo, string peso,
 	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
 	idade(idade), especie(especie), perigoso(perigoso){
 }
+
+//getters e setters
+
+//atributo "classe" será definido no construtor de cada classe derivada, por um metódo virtual
 string Animal::getClasse() const{
 	return this->classe;
 }
@@ -104,14 +108,11 @@ void Animal::alterarDados(string codigo, string peso, string altura, short idade
 }
 string Animal::imprimir(){
 	
-	string dados = "notttttt";
-	/*
-	string perigo = this->getPerigoso() ? "sim" : "Não";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: " + perigo + "\n";
-	return dados;
-	*/
+	string dados;
 	return dados;
 };
+
+// caso seja usado o operador << em um animal, como ele será exibido
 ostream& operator<< (ostream &o, Animal a){
 
 	o << "Código" << setfill(' ') << setw(15) 

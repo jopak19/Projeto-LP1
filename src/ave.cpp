@@ -23,6 +23,7 @@ Ave::Ave(string codigo,
             this->nivelSeguranca = Verde;
         }
 };
+//getters e setters
 void Ave::setClasse(){
     this->classe = "ave";
 };
@@ -38,6 +39,8 @@ bool Ave::getPodeVoar() const{
 void Ave::setPodeVoar(bool podeVoar){
     this->podeVoar = podeVoar;
 };
+
+//como uma ave será exibida
 string Ave::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
@@ -46,20 +49,4 @@ string Ave::imprimir(){
 	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
     " Aquatica: " + aqua + " Pode var: " + voa;
 	return dados;
-};
-ostream& operator<< (ostream &o, Ave animal){
-    /*Como a ave será exibido em tela*/
-    o << "Código" << setfill(' ') << setw(5) 
-    << "Peso" << setfill(' ') << setw(5) 
-    << "altura" << setfill(' ') << setw(5)
-    << "idade" << setfill(' ') << setw(5)
-    << "especie" << setfill(' ') << setw(5)  
-    << endl
-    << animal.getCodigo() << setfill(' ') << setw(5) 
-    << animal.getPeso() << setfill(' ') << setw(5) 
-    << animal.getAltura() << setfill(' ') << setw(5) 
-    << animal.getIdade() << setfill(' ') << setw(5)
-    << animal.getEspecie() << setfill(' ') << setw(5) 
-    << endl;
-	return o;
 };

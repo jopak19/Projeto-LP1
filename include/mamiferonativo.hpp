@@ -17,5 +17,4 @@ class MamiferoNativo: public Mamifero, public Nativo{
     public:
         string imprimir();
         void setClasse();
-        friend ostream& operator<< (ostream &o, MamiferoNativo animal);	
 };

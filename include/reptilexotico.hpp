@@ -17,6 +17,5 @@ class ReptilExotico: public Reptil, public Exotico{
                         bool perigoso);
     public:
         string imprimir();
-        void setClasse();
-        friend ostream& operator<< (ostream &o, ReptilExotico animal);	
+        void setClasse();	
 };

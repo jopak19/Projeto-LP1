@@ -17,6 +17,5 @@ class AnfibioNativo: public Anfibio, public Nativo{
                         bool perigoso);
     public:
         string imprimir();
-        void setClasse();
-        friend ostream& operator<< (ostream &o, AnfibioNativo animal);	
+        void setClasse();	
 };

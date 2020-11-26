@@ -29,7 +29,6 @@ public:
     bool getPodeVoar() const;
     void setPodeVoar(bool podeVoar);
     virtual string imprimir();
-    virtual void setClasse();
-	friend ostream& operator<< (ostream &o, Ave animal);	
+    virtual void setClasse();	
 };
 
