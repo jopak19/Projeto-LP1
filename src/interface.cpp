@@ -535,7 +535,7 @@ bool Interface::consultarFuncionario(int tipo){
                 cout << *pet->getVeterinario(cpf) << endl; 
 
             } else{
-                cout << "Tratador não encontrado." << endl;
+                cout << "Veterinário não encontrado." << endl;
             }
         }
 
@@ -906,7 +906,12 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
     return true;
 }
-/* A classe altera animal solicita o código do animal.*/
+
+/* A classe alteraAnimal solicita o código do animal e se ele existir verifica a classe do mesmo.
+ Após verificar a classe são geradas duas etapas de menu. Na primeira etapa é possível alterar 
+ tratador ou veterinário do animal, na segunda é possível alterar outros dados de acordo com a
+ classe. O metódo de alterção conta com outros 4 métodos auxiliares para casos de animais 
+ silvestres, como ocorreu no cadastro de animal.*/
 
 
 bool Interface::alteracaoAnimal(){
@@ -940,7 +945,8 @@ bool Interface::alteracaoAnimal(){
             classes = 4;
     }
 
-    if(alterar=="1"){
+    if(alterar=="1"){ /*Esse caso ocorre quando o usuário quer alterar o veterinário 
+                       do animal. É feita a validação do veterinário.*/
             cout << "CPF do novo veterinário:" << endl;
             string cpfveterinario;
             while (true){
@@ -963,7 +969,10 @@ bool Interface::alteracaoAnimal(){
     
         cout << "Veterinário Alterado" << endl;
 
-    }else if(alterar=="2"){
+    }else if(alterar=="2"){/*Esse caso ocorre quando o usuário quer alterar o tratador 
+                           do animal. É feita a validação tanto da existência do
+                           tratador, quanto do tipo do nível de segurança.*/
+
          cout << "CPF do novo tratador:" << endl;
            string cpftratador;
             while (true){
@@ -1005,7 +1014,11 @@ bool Interface::alteracaoAnimal(){
                 }
             }
 
-    }else{
+    }else{/*Esse ultimo e mais extenço caso serve para as demais alterações.
+           Ele exibe o novo menu baseado na classe do animal e então solicita
+           a uma nova escolha do usuário. Temos então os demais casos baseados
+           escolha do usuário.*/
+
 
         string alteracaoManejo="";
 

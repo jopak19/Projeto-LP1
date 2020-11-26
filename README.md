@@ -8,6 +8,21 @@
     Rodrigo Gomes da Rocha
 
 #### Descrição:
+    O projeto implementa as seguintes classes: PetFera, Interface, Funcionario, 
+    Tratador, Veterinário, Animal, Ave, Anfibio, Reptil, Mamifero, Silvestre, 
+    Nativo, Exotico, além das especificas AveNativo, Ave Exotico etc.
+    As classes Tratador e Veterinário herdam de funcionário. Já as classes de animais
+    herdam de Animal e as Nativo, Exotico herdam de Silvestre.
+    As classes mais especícas, AveNativo por exemplo, possui herança multipla,
+    que no caso de AveNativo do exemplo, configura-se uma herança tanto de Ave, quanto
+    de Nativo.
+
+    A classe PetFera possui três vetores, um para animais, outro pra tratadores e
+    um terceiro pra veterinario. Nela são implementados também os métodos de 
+    cadastro, remoção, venda e consulta na sua forma mais básica.
+
+    A classe interface, por sua vez, usar dos métodos dispostos na classe PetFera
+    e implementa a interface com o usuário.
 
 ### Orientação para Testes:
     Para realizar os testes basta executar o código, escolher uma das opções
@@ -38,6 +53,7 @@
         Listar os animais associados a um tratador
         Listar os animais associados a um veterinário
         Listar os animais por espécie
+        Listar os animais por classe
 
     As consultas podem ser realizadas clicando no menu 3-Gerenciar Animal > 4-Consultar 
 
