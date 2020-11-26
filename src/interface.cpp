@@ -110,8 +110,8 @@ bool Interface::cadastroFuncionario(int tipo){
     << endl;
     cout << "Nome:" << endl;
     while (true){
-
-        cin >> nome;
+        cin.ignore();
+        getline (cin,nome);
         if(validaNome(nome)){
             break;
         }else{
@@ -123,7 +123,7 @@ bool Interface::cadastroFuncionario(int tipo){
     
     while (true){
 
-        cin >> cpf;
+        getline (cin,cpf);
         if(validaCPF(cpf)){
             break;
         }else{
@@ -136,7 +136,7 @@ bool Interface::cadastroFuncionario(int tipo){
 
     while (true){
 
-        cin >> dataNascimento;
+        getline (cin,dataNascimento);
         if(validaData(dataNascimento)){
             break;
         }else{
@@ -222,7 +222,7 @@ bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimen
 bool Interface::alterarFuncionario(int tipo){
 //O usuário começa escolhendo o cpf do usuário que deseja alterar e o dado que será alterado.
     string escolha = "";
-    string cpf = "";
+    string cpf;
     cout << "Informe cpf do funcionário para as alterações:" << endl;
     cin >> cpf;
     bool valida=false;

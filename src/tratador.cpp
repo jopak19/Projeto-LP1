@@ -30,11 +30,11 @@ ostream& operator<< (ostream &o, Tratador t){
     }
 
 /*Como o tratador será exibido em tela*/
-    o << "Nome" << setfill(' ') << setw(15) 
-    << "CPF" << setfill(' ') << setw(15) 
+    o << "Nome" << setfill(' ') << setw(20) 
+    << "CPF" << setfill(' ') << setw(20) 
     << "Nível" << endl
-    << t.getNome() << setfill(' ') << setw(15) 
-    << t.getCpf() << setfill(' ') << setw(15) << nivel << endl;
+    << t.getNome() << setfill(' ') << setw(20) 
+    << t.getCpf() << setfill(' ') << setw(20) << nivel << endl;
 
 	return o;
 }
