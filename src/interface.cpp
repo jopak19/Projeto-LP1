@@ -5,10 +5,14 @@ void Interface::setPet(PetFera* p){
     pet=p;
 }
 
-// Os métodos menu e opções servem para definir qual funcionalidade será utilizada pelo usuário.
+/* Os métodos menu e opções servem para definir qual funcionalidade
+ será utilizada pelo usuário. A partir da funcionalidade escolhida
+ o usuário é direcionado para os métodos específicos.*/
 
 void Interface::menu() {
+
     while(true){
+
         string escolha="";
         cout << "" << endl;
         cout << "========================MENU INICIAL==================" << endl;
@@ -17,7 +21,8 @@ void Interface::menu() {
         cin >> escolha;
 
         if (escolha=="1" || escolha=="2" || escolha=="3"){
-            opcoes(escolha);
+
+            opcoes(escolha); /*Chamando o método para a próxima etapa de Menu*/
 
         } else if(escolha=="4"){
            
@@ -98,7 +103,11 @@ void Interface::opcoes(string escolha){
     }
 }
 
-//Os metodos a seguir dividem o cadastro de funcionário em duas partes
+/*O método cadastrar funcionário recebe um inteiro que indica o tipo de
+ funcionário será cadastrado e solicita os dados comuns a todos. Após os
+ dados comuns estarem preenchidos, são chamados os métodos específicos
+ cadastrarTratador e cadastrarVeterinario baseando-se no tipo passado.*/
+
 
 bool Interface::cadastroFuncionario(int tipo){
         
@@ -170,6 +179,12 @@ bool Interface::cadastroFuncionario(int tipo){
     return true;
 }
 
+/*Os métodos cadastroTratador e cadastroVeterinario recebem os dados já preenchidos
+ em cadastrarFuncionario e então solicitam os demais dados necessários para finalizar
+ o cadastro, isto é, Nível de Segurança para tratador e/ou crvm para veterinário.
+ Após receber os dados o funcionário é implementado de acordo com a classe derivada e
+ inserido no vetor da classe PetFera*/
+ 
 bool Interface::cadastroTratador(string cpf, string nome, string dataNascimento){
 
     string nivel="";
@@ -179,24 +194,29 @@ bool Interface::cadastroTratador(string cpf, string nome, string dataNascimento)
     bool cadastrado = false;
 
     if(nivel == "1"){
+
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Verde);
         cadastrado = pet->cadastrarTratador(tratador);
 
     } else if(nivel == "2"){
+
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Vermelho);
         cadastrado = pet->cadastrarTratador(tratador);
  
     } else if(nivel == "3"){
+
         shared_ptr<Tratador> tratador = make_shared<Tratador>(nome, cpf, dataNascimento,Azul);
         cadastrado = pet->cadastrarTratador(tratador);
 
     } else {
+
         cout << "Opção Inválida, tente outra" << endl;
         cadastrado = cadastroTratador(nome, cpf, dataNascimento);
     }
     
     return cadastrado;
 }
+
 
 bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimento){
 
@@ -207,46 +227,63 @@ bool Interface::cadastroVeterinario(string cpf, string nome, string dataNascimen
     bool cadastrado = false;
 
     if(validaCrmv(codigoCrmv)){
+
         shared_ptr<Veterinario> veterinario = make_shared<Veterinario>(nome, cpf, dataNascimento,codigoCrmv);
         cadastrado = pet->cadastrarVeterinario(veterinario);
 
     } else {
+
         cout << "Código inválido, tente outro!" << endl;
         cadastrado = cadastroVeterinario(nome, cpf, dataNascimento);
     }
+
     return cadastrado;
 }
 
 
-//Método de alteração dos dados dos funionários
+/*O método alterarFuncionario recebe a variável tipo, que indica tratador ou veterinario,
+ e então solicita ao usuário o cpf do funcionário que será alterado e o tipo de alteração
+ que deseja realizar. De acordo com a opção escolhida, o usuário pode informar o novo valor
+ que será setado no atributo do funcionário.*/
     
 bool Interface::alterarFuncionario(int tipo){
-//O usuário começa escolhendo o cpf do usuário que deseja alterar e o dado que será alterado.
+
     string escolha = "";
     string cpf;
     cout << "Informe cpf do funcionário para as alterações:" << endl;
     cin >> cpf;
-    bool valida=false;
     cout << "Informe o que deseja alterar:" << endl;
 
     if(tipo == 1){
+
         cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Nivel de Segurança\n" << endl;
 
     } else {
+
         cout << "1-Nome | 2-CPF | 3-Data de Nascimento | 4- Código CRMV\n" << endl;
+
     }
-    while (valida==false){
+
+    while (true){
+
         cin >> escolha;
         if (escolha=="1" || escolha=="2" || escolha=="3" || escolha=="4"){
-            valida = true;
+            break;
 
         } else {
             cout << "Opção inválida, tente novamente" << endl;
         }
+
     } 
 
-    //Aqui será feita a alteração baseada na escolha do usuário
+    /* Nesse trecho serão solicitados os novos dados de acordo com a opção escolhida.
+     Será feita uma validação semelhante a realizada no momento do cadastro e então o
+     novo dado será setado. Uma das validações que ocorre tanto em alteração quanto em
+     cadastro é garantir que não serão criados dois tratadores ou dois veterinários com
+     mesmo cpf. */
+
     if (escolha=="1"){
+
         string newNome = "";
         cout << "Informe o novo nome:" << endl;
 
@@ -262,10 +299,10 @@ bool Interface::alterarFuncionario(int tipo){
         }
 
         if(tipo==1){
+
             if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setNome(newNome);
                 cout << "Nome alterado!" << endl;
-
             } else {
                 cout << "Tratador não encontrado." << endl;
             }
@@ -275,13 +312,14 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setNome(newNome);
                 cout << "Nome alterado!" << endl;
-
             } else{
                 cout << "Veterinario não encontrado." << endl;
             }
+
         }
 
     } else if (escolha=="2"){
+
         string newCpf = "";
         cout << "Informe o novo cpf:" << endl;
 
@@ -306,7 +344,6 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setCpf(newCpf);
                 cout << "CPF alterado!" << endl;
-
             } else{
                 cout << "Tratador não encontrado." << endl;
             }
@@ -321,7 +358,6 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setCpf(newCpf);
                 cout << "CPF alterado!" << endl;
-
             } else {
                 cout << "Veterinario não encontrado." << endl;
             }
@@ -330,7 +366,6 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="3"){
 
         string newData = "";
-
         cout << "Informe o nova Data de Nascimeto:" << endl;
 
         while (true){
@@ -345,10 +380,10 @@ bool Interface::alterarFuncionario(int tipo){
         }
 
         if(tipo==1){
+
             if (pet->getTratador(cpf)!=nullptr){
                 pet->getTratador(cpf)->setDataNascimento(newData);
                 cout << "Data alterada!" << endl;
-
             } else {
                 cout << "Tratador não encontrado." << endl;
             }
@@ -358,10 +393,10 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setDataNascimento(newData);
                 cout << "Data alterada!" << endl;
-
             } else {
                 cout << "Veterinario não encontrado." << endl;
             }
+
         }
 
     } else if (escolha=="4"){
@@ -376,23 +411,20 @@ bool Interface::alterarFuncionario(int tipo){
             while (valida==false){
 
                 cin >> newNivel;
-
                 if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
                     valida = true;
-
                 } else {
                     cout << "Opção inválida, tente outra." << endl;
                 }
+
             }
 
             if (pet->getTratador(cpf)!=nullptr){
 
                 if(newNivel=="1"){
                     novoNivel = Verde;
-
                 } else if (newNivel=="2"){
                     novoNivel = Vermelho;
-
                 } else{
                     novoNivel = Azul;
                 }
@@ -400,69 +432,80 @@ bool Interface::alterarFuncionario(int tipo){
                 pet->getTratador(cpf)->setNivelSeguranca(novoNivel);
                 cout << "Nivel alterada!" << endl;
 
-                } else{
-                    cout << "Tratador não encontrado." << endl;
-                }
+            }else{
+                cout << "Tratador não encontrado." << endl;
+            }
 
         } else {
+
             string newCodigo="";
             cout << "Informe o novo código do veterinário\n" << endl;
             cin >> newCodigo;
             valida = false;
 
             while (valida==false){
-                cin >> newCodigo;
 
+                cin >> newCodigo;
                 if(not validaCrmv(newCodigo)){
                     cout <<  "Código Inválido, tente outro." << endl;
-
                 }
-
                 valida = validaCrmv(newCodigo);
             }
 
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setCodigoCrmv(newCodigo);
                 cout << "Código alterado!" << endl;
-
             }else{
                 cout << "Veterinario não encontrado." << endl;
-
             }
         }   
     }
+
     return true;    
 }
 
+
+/*O método de apagar funcionário solicita o cpf do funcionario e baseando-se no
+ tipo recebido, remove o objeto do vetor de PetFera.*/
+
 bool Interface::apagarFuncionario(int tipo){
+
     string cpf="";
+
     if(tipo==1){
+
         cout << "Informe CPF do Tratador que deseja remover." << endl;
         cin >> cpf;
 
         if(pet->removerTratador(cpf)){
             cout << "Tratador removido." << endl;
-
         } else{
-            cout << "Tratador não encontrado." << endl; 
+            cout << "Tratador não encontrado." << endl;
+            return false; 
         }  
 
     } else {
+
         cout << "Informe CPF do Veterinario que deseja remover." << endl;
         cin >> cpf;
 
         if(pet->removerVeterinario(cpf)){
             cout << "Veterinário removido." << endl;
-
         } else {
             cout << "Veterinário não encontrado." << endl; 
+            return false;
         } 
+
     }
+
     return true;
 }
 
 
-//Consulta de Funcionario
+/* O método consultarFuncionario oferece duas opções, consultar por cpf, na qual 
+ é solicitado o cpf do funcionário e caso ele exista é imprimido em tela; ou 
+ listar todos, que mostra todos os funcionários de um determinado tipo */
+
 bool Interface::consultarFuncionario(int tipo){ 
 
     string escolha="";
@@ -511,9 +554,11 @@ bool Interface::consultarFuncionario(int tipo){
     return true;
 }
 
-/*Os dois métodos seguintes cadastram os animais
- do petFera, além disso são usados quatro métodos
- auxiliares para o caso de animais silvestres*/
+/*Os dois métodos seguintes cadastram os animais do petFera, além deles são
+ usados quatro métodos auxiliares para o caso de animais silvestres. O método
+ cadastroAnimal solicita os dados comuns a todos os animais e a classe do animal
+ que será cadastrado. A partir dessas informações o proxímo metodo conluirá o
+ cadastro solicitando os dados específicos por classe.*/
 
 bool Interface::cadastroAnimal(){
 
