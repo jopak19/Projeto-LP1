@@ -1,4 +1,6 @@
 #include "anfibionativo.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -37,8 +39,9 @@ string AnfibioNativo::imprimir(){
     if(this->getBiomaOrigem() == CAATINGA) bioma = "Caatinga";
     if(this->getBiomaOrigem() == PANTANAL) bioma = "Pantanal";
     if(this->getBiomaOrigem() == MATAATLANTICA) bioma = "Mata Atlântica";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) +
-    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
-	return dados;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Muda de Pele: " + this->getPeriodoDeMudadepele() + " | Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) +
+    " | Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " | Em extinção: " + extincao + " | Bioma origem: " + bioma +
+	" | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
+    return dados;
 };

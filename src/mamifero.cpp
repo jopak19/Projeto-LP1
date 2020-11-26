@@ -1,4 +1,6 @@
 #include "mamifero.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -43,8 +45,9 @@ string Mamifero::imprimir(){
     if(this->getGestacao() == MONOTREMADO) gestacao = "monotremado";
     if(this->getGestacao() == MARSUPIAL) gestacao = "marsupial";
 
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Gestação: " + gestacao;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " Gestação: " + gestacao +
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };
   

@@ -1,4 +1,6 @@
 #include "ave.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -46,7 +48,8 @@ string Ave::imprimir(){
     string perigo = this->getPerigoso() ? "Sim" : "Não";
     string aqua = this->aquatica ? "aquatica" : "não Aquatica";
     string voa = this->podeVoar ? "voa" : "Não voa";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Aquatica: " + aqua + " Pode var: " + voa;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Aquatica: " + aqua + " | Pode var: " + voa + 
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };

@@ -1,4 +1,6 @@
 #include "mamiferonativo.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -49,6 +51,7 @@ string MamiferoNativo::imprimir(){
 
 	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
     " Gestação: " + gestacao + 
-    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
+    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma + 
+	" | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };

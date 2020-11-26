@@ -1,4 +1,6 @@
 #include "anfibio.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -47,7 +49,8 @@ void Anfibio::setClasse(){
 string Anfibio::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente());
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Muda de Pele: " + this->getPeriodoDeMudadepele() + " | Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) +
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };
