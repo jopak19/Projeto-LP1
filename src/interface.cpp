@@ -589,11 +589,10 @@ bool Interface::cadastroAnimal(){
             cout << "Idade inválida, tente novamente." << endl;
             cin.clear();
             cin.ignore(1000,'\n');
-
         } else{
-           break;
-
+            break;
         }
+
     }
 
     cout << "Espécie (ex.: tartaruga, águia, etc.):" << endl;
@@ -604,7 +603,6 @@ bool Interface::cadastroAnimal(){
 
         if (cin >> perigoso){
             break;
-
         } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
@@ -613,7 +611,10 @@ bool Interface::cadastroAnimal(){
 
     }
     
-    codigo = especie + to_string(pet->getAnimais().size());
+    codigo = especie + to_string(pet->getAnimais().size()); /*Neste ponto é gerado o código
+                                                             do animal, que é composto da 
+                                                             espécie informada junto com a
+                                                             posição do animal no vetor. */
     
     cout << "Informe a classificação do animal: 1-Anfíbio | 2-Réptil | 3-Ave | 4-Mamifero " << endl;
 
@@ -621,13 +622,12 @@ bool Interface::cadastroAnimal(){
 
         if (cin >> classe && (classe == 1 || classe == 2 || classe == 3 || classe == 4)){
             break;
-
         } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-  
         }
+
     }
 
     cout << "Informe o tipo do animal: 1-Doméstico | 2-Silvestre Nativo | 3-Silvestre Exótico" << endl;
@@ -636,26 +636,25 @@ bool Interface::cadastroAnimal(){
 
         if (cin >> manejo && (manejo == 1 || manejo == 2 || manejo == 3)){
             break;
-
         }else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-  
         }
 
     }
 
     /*Aqui serão válidados o tratador e o veterinário do animal, 
-        de forma que será possível prosseguir a operação apenas 
-        se ambos estiverem cadastrados e o tratador tiver o 
-        nível de segurança correto */
+     de forma que será possível prosseguir a operação apenas se
+     ambos estiverem cadastrados e o tratador tiver o nível de
+     segurança correto */
 
     cout << "Informe o CPF do veterinário desse animal:" << endl;
   
     while (true){
 
         cin >> cpfveterinario;
+
         if (pet->getVeterinario(cpfveterinario)){
             break;
 
@@ -666,6 +665,7 @@ bool Interface::cadastroAnimal(){
             if (sair == "1"){
                 return false;
             }
+
             cin.clear();
             cin.ignore(1000,'\n');
             cout << "CPF: ";
@@ -721,13 +721,17 @@ bool Interface::cadastroAnimal(){
         }
     }
 
-    cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, cpfveterinario, cpftratador); //Acrescentar Tratador e Veterinário
+    /*Aqui os dados comuns, juntamente com a classe e com a classsificação de manejo,
+     são enviados para o próximo metódo que concluíra o cadastro de acordo com a divisão.*/
+    cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, cpfveterinario, cpftratador); 
 
     return true;
 
 }
 
-//Esse método prossegue o cadastro do animal baseado na classificação escolhida
+/* O método cadastroClasseAnimal solicita os dados restantes e então finaliza o cadastro
+ do animal na classe específica. Por fim, cada animal é adicionado ao vetor da classe 
+ PetFera.*/
 
 bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, string cpfveterinario, string cpftratador){
     
@@ -748,16 +752,15 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
                 if (cin >> temperaturaDoAmbiente){
                     valida=true;
-
                 } else{
                     cout << "Opção inválida, tente outra." << endl;
                     cin.clear();
                     cin.ignore(1000,'\n'); 
-
                 }
+
             }
         
-            //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
+            //Aqui o anfíbio será cadastrado como Doméstico, Nativo ou Exótico
 
             if (manejo == 1){ //Domético
 
@@ -959,7 +962,9 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
     return true;
 }
 
-//Os métodos a seguir solicitam os demais dados para animais Silvestres nativos e exóticos
+/*Os métodos solicitaMarcacao, solicitaExtincao, solicitaTerritorio e solicitaBioma,
+ são chamados apenas quando necessários a depender do tipo de manejo do animal.
+ */
 
 int Interface::solicitaMarcacao(){
 
@@ -970,12 +975,10 @@ int Interface::solicitaMarcacao(){
 
         if (cin >> marcacao){
             return marcacao;
-
         }else{
             cout << "Opção inválida, tente um inteiro." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-  
         }
 
     }
@@ -992,15 +995,14 @@ bool Interface::solicitaExtincao(){
 
         if (cin >> extincao){
             return extincao;
-
         }else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-  
         }
 
     }
+
     return false;
 }
 
@@ -1057,7 +1059,9 @@ Bioma Interface::solicitaBioma(){
 } 
 
 
-//VenderAnimal
+/*Os métodos de venda e de apagar animal solicitam o código e verificam 
+ se o mesmo existe, isto é, se ele está cadastrado no petFera. Em caso que
+ existe, o animal é removido do vetor.*/
 
 bool Interface::venderAnimal(){
     string codigo="";
@@ -1074,7 +1078,7 @@ bool Interface::venderAnimal(){
 
 }
 
-//ApagarAnimal
+/*Apagar Animal*/
 
 bool Interface::apagarAnimal(){
 
@@ -1085,15 +1089,18 @@ bool Interface::apagarAnimal(){
     if (codigo == ""){
         return false;
     }
+
     pet->removerAnimal(codigo);
     cout << "Animal Removido!" << endl;
     return true;
 }
 
 
-//Consultar Animal
+/*consultarAnimal oferece 6 diferentes tipos de consulta ao usuário. 
+A depender da escolhida a busca é realizada e os animais exibidos em tela*/
 
 bool Interface::consultarAnimal(){
+
     int escolha;
     cout << "Informe o tipo de consulta que deseja realizar: " << endl;
     cout << "1-Por Veterinário | 2-Por Tratador | 3-Por Classe | 4-Listar Todos | 5-Por código | 6-Por Espécie"  << endl;
@@ -1102,25 +1109,25 @@ bool Interface::consultarAnimal(){
 
         if (cin >> escolha && (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4 || escolha == 5 || escolha == 6)){
             break;
-
         }else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-  
         }
 
     }
 
     switch (escolha){
 
-        case 1:{
+        case 1:{ /*No caso 1, é solicitado cpf do veterinário e então
+                  são exibidos os animais que se encontram no vetor de
+                  animais tratados desse veterinário*/
 
             string cpf = "";
             string sair = "";
             cout << "Informe o CPF do veterinário:" << endl;
   
-            while (true){
+            while (true){ 
 
                 cin >> cpf;
                 if (pet->getVeterinario(cpf)){
@@ -1128,6 +1135,7 @@ bool Interface::consultarAnimal(){
                     break;
 
                 }else{
+
                     cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
  
@@ -1142,6 +1150,7 @@ bool Interface::consultarAnimal(){
             }
 
             int tamanho = pet->getVeterinario(cpf)->getAnimaisTratados().size();
+
             if (tamanho == 0){
                 cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
             }else{
@@ -1154,7 +1163,9 @@ bool Interface::consultarAnimal(){
             break;
 
         }
-        case 2:{
+        case 2:{/*No caso 2, é solicitado cpf do tratador e então
+                  são exibidos os animais que se encontram no vetor de
+                  animais tratados desse tratador*/
 
             string cpf = "";
             string sair = "";
@@ -1168,7 +1179,8 @@ bool Interface::consultarAnimal(){
                     break;
 
                 }else{
-                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+
+                    cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
  
                     if (sair == "1"){
@@ -1183,7 +1195,7 @@ bool Interface::consultarAnimal(){
 
             int tamanho = pet->getTratador(cpf)->getAnimaisTratados().size();
             if (tamanho == 0){
-                cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+                cout << "Esse tratador ainda não tratou nenhum animal!" << endl;
             }else{
                 for (int i = 0; i < tamanho; i++){
                     cout << ((pet->getTratador(cpf))->getAnimaisTratados()).at(i)->imprimir() << endl;
@@ -1192,7 +1204,10 @@ bool Interface::consultarAnimal(){
 
              break;
         }
-        case 3:{
+        case 3:{/*No caso 3, é solicitada a escolha de uma das classes 
+                  dentre as disponíveis. De acordo com a escolha do usuário
+                  são exibidos os animais que se encontram no vetor da petFera
+                  e que possuem o atributo classe igual o informado.*/
 
              string classe;
              string escolha;
@@ -1261,13 +1276,16 @@ bool Interface::consultarAnimal(){
              }
              break;
         }
-        case 4:{
+        case 4:{ /*No caso 4, chamado o método listarAnimais do
+                  petFera, que lista todos os animais do vetor.*/
 
              pet->listarAnimais();
              break;
 
         }
-        case 5:{
+        case 5:{ /*No caso 5, é solicitado o código do animal.
+                  Se ele existir no sistema, os dados serão
+                  exibidos em tela..*/
 
              string codigo;
              cout << "Informe o código do animal:" << endl;
@@ -1282,7 +1300,9 @@ bool Interface::consultarAnimal(){
              break;
 
         }
-        case 6:{
+        case 6:{/*No caso 6, é solicitada uma espécie de animal. 
+                 São exibidos, então, todos os animais no vetor
+                 petFera que possuem espécie igual a informada.*/
 
              string especie;
              cout << "Informe a espécie que deseja buscar:" << endl;
@@ -1307,7 +1327,8 @@ bool Interface::consultarAnimal(){
 }
 
 
-//Seguem alguns métodos auxiliares para validação
+/*Os métodos a seguir são auxialires e servem para fazer as validações
+ básicas dos dados informados pelo usuário.*/
 
 
 string Interface::animalExiste(){
@@ -1403,16 +1424,15 @@ bool Interface::validaCPF(string cpf){
 bool Interface::validaNome(string nome){
 
     int t = nome.size();
+
     if(!(nome=="")){
         for (int i = 0; i < t ; i++){
 
             if(isdigit(nome[i])){
                 return false;
             }
-         }  
- 
+         } 
     }else{
-
         return false;
 
     }
