@@ -100,7 +100,16 @@ void Animal::alterarDados(string codigo, string peso, string altura, short idade
 		this->especie = especie;
 	*/
 }
-
+string Animal::imprimir(){
+	
+	string dados = "notttttt";
+	/*
+	string perigo = this->getPerigoso() ? "sim" : "Não";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: " + perigo + "\n";
+	return dados;
+	*/
+	return dados;
+};
 ostream& operator<< (ostream &o, Animal a){
 
 	o << "Código" << setfill(' ') << setw(15) 

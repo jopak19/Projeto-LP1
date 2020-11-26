@@ -211,7 +211,7 @@ bool PetFera::existeVeterinario(string cpfVeterinario) const {
 void PetFera::listarAnimais() const{
 
 	for(int i = 0; i < (int) this->animais.size(); i++){
-		cout << *this->animais.at(i) << endl;
+		cout << this->animais.at(i)->imprimir() << endl;
 	}
 }
 

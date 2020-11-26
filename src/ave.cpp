@@ -36,7 +36,15 @@ bool Ave::getPodeVoar() const{
 void Ave::setPodeVoar(bool podeVoar){
     this->podeVoar = podeVoar;
 };
-   
+string Ave::imprimir(){
+    string dados;
+    string perigo = this->getPerigoso() ? "Sim" : "Não";
+    string aqua = this->aquatica ? "aquatica" : "não Aquatica";
+    string voa = this->podeVoar ? "voa" : "Não voa";
+	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
+    " Aquatica: " + aqua + " Pode var: " + voa;
+	return dados;
+};
 ostream& operator<< (ostream &o, Ave animal){
     /*Como a ave será exibido em tela*/
     o << "Código" << setfill(' ') << setw(5) 

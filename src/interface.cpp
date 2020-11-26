@@ -110,14 +110,41 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "Preencha os dados pessoais do funcionário solicitados a seguir.\n"
     << endl;
     cout << "Nome:" << endl;
-    cin >> nome;
-    //validaNome();
+    while (true){
+
+        cin >> nome;
+        if(validaNome(nome)){
+            break;
+        }else{
+            cout << "Nome inválido, tente novamente." << endl;
+        }
+
+    }
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
-    cin >> cpf;
-    //validaCPF();
+    
+    while (true){
+
+        cin >> cpf;
+        if(validaCPF(cpf)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
+
     cout << "Data de Nascimento XX/XX/XXXX:" << endl;
-    cin >> dataNascimento;
-    //validaData();
+
+    while (true){
+
+        cin >> dataNascimento;
+        if(validaData(dataNascimento)){
+            break;
+        }else{
+            cout << "Formato incorreto, tente novamente." << endl;
+        }
+
+    }
         
     bool cadastrado = false;
 
@@ -222,7 +249,17 @@ bool Interface::alterarFuncionario(int tipo){
     if (escolha=="1"){
         string newNome = "";
         cout << "Informe o novo nome:" << endl;
-        cin >> newNome;
+
+        while (true){
+
+            cin >> newNome;
+            if(validaNome(newNome)){
+                break;
+            }else{
+                cout << "Nome inválido, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=nullptr){
@@ -247,7 +284,17 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="2"){
         string newCpf = "";
         cout << "Informe o novo cpf:" << endl;
-        cin >> newCpf;
+
+        while (true){
+
+            cin >> newCpf;
+            if(validaCPF(newCpf)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
 
         if(tipo==1){
 
@@ -283,8 +330,23 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="3"){
 
         string newData = "";
+<<<<<<< HEAD
         cout << "Informe a nova Data de Nascimento:" << endl;
         cin >> newData;
+=======
+        cout << "Informe o nova Data de Nascimeto:" << endl;
+
+        while (true){
+
+            cin >> newData;
+            if(validaData(newData)){
+                break;
+            }else{
+                cout << "Formato incorreto, tente novamente." << endl;
+            }
+
+        }
+>>>>>>> a9de187d1ff9583acef857d15005c10fe81d36a3
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=nullptr){
@@ -1171,5 +1233,83 @@ bool Interface::validaCrmv(string codigoCrmv){
     return true;
 }
 
+bool Interface::validaData(string data){
+    //xx/xx/xxxx
+    if(data.size() == 10){
+        for (int i = 0; i < 10; i++){
+            if(i == 2 ||i == 5){
+
+                if(data[i]!='/'){
+                    return false;
+                } 
+
+            }else if(!isdigit(data[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
+
+
+
+bool Interface::validaCPF(string cpf){
+    //xxx.xxx.xxx-xx
+    if(cpf.size() == 14){
+        for (int i = 0; i < 14; i++){
+            if(i == 3 ||i == 7){
+
+                if(cpf[i]!='.'){
+                    return false;
+                } 
+
+            }else if(i == 11){
+
+                if(cpf[i]!='-'){
+                    return false;
+                } 
+
+            }else if(!isdigit(cpf[i])){
+
+                    return false;
+
+            }
+        }
+        return true;
+  
+    }else{
+
+     return false;
+
+    }
+}
+
+
+bool Interface::validaNome(string nome){
+
+    int t = nome.size();
+    if(!(nome=="")){
+        for (int i = 0; i < t ; i++){
+
+            if(isdigit(nome[i])){
+                return false;
+            }
+         }  
+ 
+    }else{
+
+        return false;
+
+    }
+    
+    return true;
+}
 
 

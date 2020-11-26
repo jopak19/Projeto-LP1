@@ -15,5 +15,6 @@ class MamiferoNativo: public Mamifero, public Nativo{
                         Bioma biomaOrigem,
                         bool perigoso);
     public:
+        string imprimir();
         friend ostream& operator<< (ostream &o, MamiferoNativo animal);	
 };
