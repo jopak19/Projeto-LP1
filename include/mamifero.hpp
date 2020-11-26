@@ -31,6 +31,5 @@ public:
     Gestacao getGestacao() const;
     void setGestacao(Gestacao gestacao);
     virtual string imprimir();
-    void setClasse();
-	friend ostream& operator<< (ostream &o, Mamifero animal);	
+    virtual void setClasse();	
 };

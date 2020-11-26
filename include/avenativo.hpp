@@ -17,6 +17,5 @@ class AveNativo: public Ave, public Nativo{
                         bool perigoso);
     public:
         string imprimir();
-        void setClasse();
-        friend ostream& operator<< (ostream &o, AveNativo animal);	
+        void setClasse();	
 };

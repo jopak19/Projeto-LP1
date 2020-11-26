@@ -42,6 +42,8 @@ void Reptil::setTipoDePele(TipoDePele tipo){
 void Reptil::setClasse(){
     this->classe = "reptil";
 };
+
+//como reptil será exibido
 string Reptil::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
@@ -52,34 +54,4 @@ string Reptil::imprimir(){
 	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
     " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele;
 	return dados;
-};
-
-ostream& operator<< (ostream &o, Reptil animal){
-     /*Como o Reptil será exibido em tela*/
-    string tipoPele;
-
-    if(animal.getTipoDepele() == CARAPACA){
-        tipoPele = "carapaça";
-    } else if(animal.getTipoDepele() == ESCAMAS){
-        tipoPele = "escamas";
-    }else{
-        tipoPele = "placa dérmica";
-    };
-    o << "Código" << setfill(' ') << setw(5) 
-    << "Peso" << setfill(' ') << setw(5) 
-    << "altura" << setfill(' ') << setw(5)
-    << "idade" << setfill(' ') << setw(5)
-    << "especie" << setfill(' ') << setw(5) 
-    << "Muda de pele" << setfill(' ') << setw(5)
-    << "Tipo de pele" << setfill(' ') << setw(5)  
-    << endl
-    << animal.getCodigo() << setfill(' ') << setw(5) 
-    << animal.getPeso() << setfill(' ') << setw(5) 
-    << animal.getAltura() << setfill(' ') << setw(5) 
-    << animal.getIdade() << setfill(' ') << setw(5)
-    << animal.getEspecie() << setfill(' ') << setw(5)
-    << animal.getPeriodoDeMudadepele() << setfill(' ') << setw(5)
-    << tipoPele << setfill(' ') << setw(5) 
-    << endl;
-	return o;
 };

@@ -18,5 +18,4 @@ class AveExotico: public Ave, public Exotico{
     public:
         string imprimir();
         void setClasse();
-        friend ostream& operator<< (ostream &o, AveExotico animal);	
 };

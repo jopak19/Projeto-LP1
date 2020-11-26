@@ -30,6 +30,8 @@ MamiferoNativo::MamiferoNativo (string codigo,
 void MamiferoNativo::setClasse(){
     this->classe = "mamiferonativo";
 };
+
+//como mamífero nativo será exibido
 string MamiferoNativo::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
@@ -49,33 +51,4 @@ string MamiferoNativo::imprimir(){
     " Gestação: " + gestacao + 
     " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
 	return dados;
-};
-
-ostream& operator<< (ostream &o, MamiferoNativo animal){
-     /*Como o mamifero será exibido em tela*/
-    string gestacao_;
-
-    if(animal.getGestacao() == MONOTREMADO){
-        gestacao_ = "monotremado";
-    } else if(animal.getGestacao() == MARSUPIAL){
-        gestacao_ = "marsupial";
-    }else{
-        gestacao_ = "placentario";
-    };
-    o << "Código" << setfill(' ') << setw(5) 
-    << "Peso" << setfill(' ') << setw(5) 
-    << "altura" << setfill(' ') << setw(5)
-    << "idade" << setfill(' ') << setw(5)
-    << "especie" << setfill(' ') << setw(5) 
-    << "Gestação" << setfill(' ') << setw(5)  
-    //TODO: saida dados nativos
-    << endl
-    << animal.getCodigo() << setfill(' ') << setw(5) 
-    << animal.getPeso() << setfill(' ') << setw(5) 
-    << animal.getAltura() << setfill(' ') << setw(5) 
-    << animal.getIdade() << setfill(' ') << setw(5)
-    << animal.getEspecie() << setfill(' ') << setw(5)
-    << gestacao_ << setfill(' ') << setw(5)
-    << endl;
-	return o;
 };
