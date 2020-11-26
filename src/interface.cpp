@@ -92,7 +92,7 @@ void Interface::opcoes(string escolha){
 
             } else if(opcao=="3"){
                 if(!apagarAnimal()){
-                cout << "Nenhum animal foi removido!"<< endl;
+                    cout << "Nenhum animal foi removido!"<< endl;
                 }
 
             } else if(opcao=="4"){
@@ -107,7 +107,6 @@ void Interface::opcoes(string escolha){
  funcionário será cadastrado e solicita os dados comuns a todos. Após os
  dados comuns estarem preenchidos, são chamados os métodos específicos
  cadastrarTratador e cadastrarVeterinario baseando-se no tipo passado.*/
-
 
 bool Interface::cadastroFuncionario(int tipo){
         
@@ -139,10 +138,10 @@ bool Interface::cadastroFuncionario(int tipo){
         getline (cin,cpf);
         if(validaCPF(cpf)){
             break;
-        }else{
+
+        } else{
             cout << "Formato incorreto, tente novamente." << endl;
         }
-
     }
 
     cout << "Data de Nascimento XX/XX/XXXX:" << endl;
@@ -376,7 +375,8 @@ bool Interface::alterarFuncionario(int tipo){
             cin >> newData;
             if(validaData(newData)){
                 break;
-            }else{
+
+            } else{
                 cout << "Formato incorreto, tente novamente." << endl;
             }
 
@@ -396,6 +396,7 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setDataNascimento(newData);
                 cout << "Data alterada!" << endl;
+
             } else {
                 cout << "Veterinario não encontrado." << endl;
             }
@@ -415,6 +416,7 @@ bool Interface::alterarFuncionario(int tipo){
                 cin >> newNivel;
                 if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
                     break;
+
                 } else {
                     cout << "Opção inválida, tente outra." << endl;
                 }
@@ -425,8 +427,10 @@ bool Interface::alterarFuncionario(int tipo){
 
                 if(newNivel=="1"){
                     novoNivel = Verde;
-                } else if (newNivel=="2"){
+
+                } else if (newNivel=="2"){ 
                     novoNivel = Vermelho;
+
                 } else{
                     novoNivel = Azul;
                 }
@@ -457,7 +461,8 @@ bool Interface::alterarFuncionario(int tipo){
             if (pet->getVeterinario(cpf)!=nullptr){
                 pet->getVeterinario(cpf)->setCodigoCrmv(newCodigo);
                 cout << "Código alterado!" << endl;
-            }else{
+
+            } else {
                 cout << "Veterinario não encontrado." << endl;
             }
         }   
@@ -544,7 +549,7 @@ bool Interface::consultarFuncionario(int tipo){
         if(tipo==1){
             pet->listarTratadores();
 
-        }else{
+        } else {
             pet->listarVeterinarios();
 
         }
@@ -605,6 +610,7 @@ bool Interface::cadastroAnimal(){
 
         if (cin >> classe && (classe == 1 || classe == 2 || classe == 3 || classe == 4)){
             break;
+
         } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
@@ -619,7 +625,8 @@ bool Interface::cadastroAnimal(){
 
         if (cin >> manejo && (manejo == 1 || manejo == 2 || manejo == 3)){
             break;
-        }else{
+
+        } else {
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
@@ -683,12 +690,10 @@ bool Interface::cadastroAnimal(){
 
                 cin.clear();
                 cin.ignore(1000,'\n');
-
                 cout << "CPF: ";
-
             }
 
-        }else{
+        } else {
             cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
             cin >> sair;
             
@@ -709,7 +714,6 @@ bool Interface::cadastroAnimal(){
     cadastroClasseAnimal(classe, manejo, codigo, peso, altura, idade, especie, perigoso, cpfveterinario, cpftratador); 
 
     return true;
-
 }
 
 /* O método cadastroClasseAnimal solicita os dados restantes e então finaliza o cadastro
@@ -754,6 +758,7 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
             break;
         }
+
         case 2:{ //Réptil
         
             string periodoDeMudaDePele="";
@@ -771,23 +776,21 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                     tipoDePele = ESCAMAS;
                     break;
 
-                }else if (tipo== "2"){
+                } else if (tipo== "2"){
                     tipoDePele = CARAPACA;
                     break;
 
-                }else if (tipo == "3"){
+                } else if (tipo == "3"){
                     tipoDePele = PLACADERMICA;
                     break;
 
-                }else{
+                } else {
                     cout << "Opção inválida, tente outra." << endl;
                     cin.clear();
                     cin.ignore(1000,'\n'); 
 
                 }
-
             }
-        
 
              //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
 
@@ -797,13 +800,13 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
                 cout << "Réptil doméstico cadastrado: " << codigo << endl;
 
-            }else if (manejo ==2) { //Nativo
+            } else if (manejo ==2) { //Nativo
 
                 shared_ptr<ReptilNativo> reptil = make_shared<ReptilNativo>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
                 pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
                 cout << "Réptil Silvestre Nativo cadastrado: " << codigo << endl;
 
-            }else{ //Exótico
+            } else { //Exótico
 
                 shared_ptr<ReptilExotico> reptil = make_shared<ReptilExotico>(codigo, peso, altura, idade, especie, periodoDeMudaDePele, tipoDePele, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
                 pet->cadastrarAnimal(reptil, cpftratador, cpfveterinario);
@@ -812,17 +815,16 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
             break;
         }
+
         case 3:{ //Ave
 
             bool aquatica = false;
             bool podeVoar = false;
 
-
             cout << "A ave é aquática? 0-NÃO | 1-SIM" << endl;
             aquatica = validaBool(aquatica);
             cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
             podeVoar = validaBool(podeVoar);
-
 
              //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
 
@@ -832,22 +834,22 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
                 cout << "Ave doméstico cadastrado: " << codigo << endl;
 
-            }else if (manejo ==2) { //Nativo
+            } else if(manejo ==2) { //Nativo
 
                 shared_ptr<AveNativo> ave = make_shared<AveNativo>(codigo, peso, altura, idade, especie, aquatica, podeVoar, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
                 pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
                 cout << "Ave Silvestre Nativo cadastrado: "  << codigo << endl;
 
-            }else{ //Exótico
+            } else{ //Exótico
 
                 shared_ptr<AveExotico> ave = make_shared<AveExotico>(codigo, peso, altura, idade, especie, aquatica, podeVoar, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
                 pet->cadastrarAnimal(ave, cpftratador, cpfveterinario);
                 cout << "Ave Silvestre Exótico cadastrado: " << codigo << endl;
             }
 
-
             break;
         }
+
         case 4:{ //Mamífero
 
             Gestacao gestacao;
@@ -861,21 +863,19 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                     gestacao= MONOTREMADO;
                     break;
 
-                }else if (escolha== "2"){
+                } else if (escolha== "2"){
                     gestacao = MARSUPIAL;
                     break;
 
-                }else if (escolha == "3"){
+                } else if (escolha == "3"){
                     gestacao = PLACENTARIO;
                     break;
 
-                }else{
+                } else{
                     cout << "Opção inválida, tente outra." << endl;
                     cin.clear();
                     cin.ignore(1000,'\n'); 
-
-                }
-
+                } 
             }
 
             //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
@@ -886,13 +886,13 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
                 pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
                 cout << "Mamífero doméstico cadastrado: "<< codigo << endl;
 
-            }else if (manejo ==2) { //Nativo
+            } else if (manejo ==2) { //Nativo
 
                 shared_ptr<MamiferoNativo> mamifero = make_shared<MamiferoNativo>(codigo, peso, altura, idade, especie,  gestacao, solicitaMarcacao(), solicitaExtincao(), solicitaBioma(), perigoso);
                 pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
                 cout << "Mamífero Silvestre Nativo cadastrado: " << codigo << endl;
 
-            }else{ //Exótico
+            } else{ //Exótico
 
                 shared_ptr<MamiferoExotico> mamifero = make_shared<MamiferoExotico>(codigo, peso, altura, idade, especie,  gestacao, solicitaMarcacao(), solicitaExtincao(), solicitaTerritorio(), perigoso);
                 pet->cadastrarAnimal(mamifero, cpftratador, cpfveterinario);
@@ -930,23 +930,29 @@ bool Interface::alteracaoAnimal(){
     if(classe == "ave" || classe == "avenativo" || classe == "aveexotico" ){
             alteracaoClasse = "5-Aquatica | 6-Pode Voar";
             classes = 3;
-    }else if(classe == "anfibio" || classe== "anfibionativo" || classe == "anfibioexotico" ){
+
+    } else if(classe == "anfibio" || classe== "anfibionativo" || classe == "anfibioexotico" ){
             alteracaoClasse = "5-Periodo Muda de Pele | 6-Temperatura do ambiente";
-    }else if(classe == "reptil" || classe=="reptilnativo" ||  classe == "reptilexotico"){
+
+    } else if(classe == "reptil" || classe=="reptilnativo" ||  classe == "reptilexotico"){
             alteracaoClasse = "5-Periodo Muda de Pele | 6-Tipo de Pele";
             classes = 2;
-    }else if(classe == "mamifero" ||  classe=="mamiferonativo" || classe == "mamiferoexotico"){
+
+    } else if(classe == "mamifero" ||  classe=="mamiferonativo" || classe == "mamiferoexotico"){
             alteracaoClasse = "5-Tipo de Gestação";
             classes = 4;
     }
 
     if(alterar=="1"){
+
             cout << "CPF do novo veterinário:" << endl;
             string cpfveterinario;
+
             while (true){
                 cin >> cpfveterinario;
                 if (pet->getVeterinario(cpfveterinario)){
                     break;
+
                 } else {
                     cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
@@ -963,7 +969,7 @@ bool Interface::alteracaoAnimal(){
     
         cout << "Veterinário Alterado" << endl;
 
-    }else if(alterar=="2"){
+    } else if(alterar=="2"){
          cout << "CPF do novo tratador:" << endl;
            string cpftratador;
             while (true){
@@ -973,10 +979,13 @@ bool Interface::alteracaoAnimal(){
                
                     if (pet->getTratador(cpftratador)->getNivelSeguranca() == Vermelho){
                         break;
+
                     } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Azul && (pet->getAnimal(codigo))->getPerigoso() == false && (classes == 2 || classes == 3 || classes == 4)){
                         break;
+
                     } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && (pet->getAnimal(codigo))->getPerigoso() == false && classes == 3){
                         break;
+
                     } else{
                         cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                         cin >> sair;
@@ -991,27 +1000,28 @@ bool Interface::alteracaoAnimal(){
 
                     }
 
-                }else{
+                } else{
                     cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
                     
                     if (sair == "1"){
                          return false;
-                    
                     }
+
                     cin.clear();
                     cin.ignore(1000,'\n');
                     cout << "CPF: ";
                 }
             }
 
-    }else{
+    } else {
 
         string alteracaoManejo="";
 
         if(classe == "avenativo" || classe== "anfibionativo" || classe=="reptilnativo" || classe=="mamiferonativo"){
                         alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Bioma";
-        }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
+
+        } else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
                         alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Territorio";
         }
 
@@ -1022,7 +1032,8 @@ bool Interface::alteracaoAnimal(){
 
             if (cin >> escolha && (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4 || escolha == 5 || escolha == 6 || escolha ==8|| escolha == 7 || escolha == 9)){
                 break;
-            }else{
+
+            } else{
                 cout << "Opção inválida, tente um inteiro." << endl;
                 cin.clear();
                 cin.ignore(1000,'\n'); 
@@ -1042,6 +1053,7 @@ bool Interface::alteracaoAnimal(){
                 break;
 
             }
+
             case 2:{
 
                 string newAltura;
@@ -1051,6 +1063,7 @@ bool Interface::alteracaoAnimal(){
                 cout << "Altura Alterada!" << endl;
                 break;
             }
+
             case 3:{
                  short idade;
                  cout << "Idade do animal:" << endl;
@@ -1067,6 +1080,7 @@ bool Interface::alteracaoAnimal(){
                 pet->getAnimal(codigo)->setIdade(idade);
                 break;
             }
+
             case 4:{
                 string newEspecie;
                 cout << "Nova espécie:" << endl;
@@ -1074,6 +1088,7 @@ bool Interface::alteracaoAnimal(){
                 pet->getAnimal(codigo)->setEspecie(newEspecie);
                 break;
             }
+
             case 5:{
                 if(classe == "ave"){
                     bool aquatica = false;
@@ -1082,21 +1097,21 @@ bool Interface::alteracaoAnimal(){
                     shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
                     ave->setAquatica(aquatica);
 
-                }else if(classe == "anfibio"){
+                } else if(classe == "anfibio"){
                     string periodo = "";
                     cout << "Novo período de muda de pele:" << endl;
                     cin >> periodo;
                     shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
                     anfibio->setPeriodoDeMudadepele(periodo);
 
-                }else if(classe == "reptil"){
+                } else if(classe == "reptil"){
                     string periodo = "";
                     cout << "Novo período de muda de pele:" << endl;
                     cin >> periodo;
                     shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
                     reptil->setPeriodoDeMudadepele(periodo);
 
-                }else if(classe == "mamifero"){
+                } else if(classe == "mamifero"){
                     Gestacao gestacao;
                     string escolha = ""; 
                     cout << "Informe o tipo de gestação do animal: 1-MONOTREMADO | 2-MARSUPIAL | 3-PLACENTARIO" << endl;
@@ -1108,15 +1123,15 @@ bool Interface::alteracaoAnimal(){
                             gestacao= MONOTREMADO;
                             break;
 
-                        }else if (escolha== "2"){
+                        } else if (escolha== "2"){
                             gestacao = MARSUPIAL;
                             break;
 
-                        }else if (escolha == "3"){
+                        } else if (escolha == "3"){
                             gestacao = PLACENTARIO;
                             break;
 
-                        }else{
+                        } else{
                             cout << "Opção inválida, tente outra." << endl;
                             cin.clear();
                             cin.ignore(1000,'\n'); 
@@ -1129,7 +1144,9 @@ bool Interface::alteracaoAnimal(){
                 }
                 break;
             }
+
             case 6:{
+
                 if(classe == "ave"){
                     bool podeVoar = false;
                     cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
@@ -1137,14 +1154,14 @@ bool Interface::alteracaoAnimal(){
                     shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
                     ave->setPodeVoar(podeVoar);
 
-                }else if(classe == "anfibio"){
+                } else if(classe == "anfibio"){
                     int temp=0;
                     cout << "Nova temperatuda:" << endl;
                     temp = validaInt(temp);
                     shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
                     anfibio->setTemperaturaDoAmbiente(temp);
 
-                }else if(classe == "reptil"){
+                } else if(classe == "reptil"){
                     string tipo ="";
                     TipoDePele tipoDePele;
                     cout << "Novo Tipo: 1- ESCAMAS | 2-CARAPACA | 3-PLACADERMICA" << endl;
@@ -1156,28 +1173,25 @@ bool Interface::alteracaoAnimal(){
                             tipoDePele = ESCAMAS;
                             break;
 
-                        }else if (tipo== "2"){
+                        } else if (tipo== "2"){
                             tipoDePele = CARAPACA;
                             break;
 
-                        }else if (tipo == "3"){
+                        } else if (tipo == "3"){
                             tipoDePele = PLACADERMICA;
                             break;
 
-                        }else{
+                         }else {
                             cout << "Opção inválida, tente outra." << endl;
                             cin.clear();
                             cin.ignore(1000,'\n'); 
-        
                         }
-
                     }
             
-                    
                     shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
                     reptil->setTipoDePele(tipoDePele);
 
-                }else if(classe == "mamifero"){
+                } else if(classe == "mamifero"){
                     cout << "Escolha inválida!"<< endl;
                 }
                 break;
@@ -1206,17 +1220,18 @@ bool Interface::alteracaoAnimal(){
                     if(alteraBioma(classe, codigo)){
                         cout << "Bioma Alterado" << endl;
                     }
-                }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
+
+                } else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
                     if(alteraTerritorio(classe, codigo)){
                         cout << "Territorio Alterado" << endl;
                     }
-                }else{
+
+                } else{
                     cout << "Escolha Inválida" << endl;
                 }
 
                 break;
             }
-        
         }
     }
     return true;
@@ -1237,7 +1252,8 @@ int Interface::solicitaMarcacao(){
 
         if (cin >> marcacao){
             return marcacao;
-        }else{
+
+        } else{
             cout << "Opção inválida, tente um inteiro." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
@@ -1257,14 +1273,13 @@ bool Interface::solicitaExtincao(){
 
         if (cin >> extincao){
             return extincao;
-        }else{
+
+        } else{
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
         }
-
     }
-
     return false;
 }
 
@@ -1275,9 +1290,7 @@ string Interface::solicitaTerritorio(){
     cout << "Informe o território de origem do animal" << endl;
     cin >> territorio;
     return territorio;
-
 }
-
 
 Bioma Interface::solicitaBioma(){
     string escolha="";
@@ -1286,40 +1299,31 @@ Bioma Interface::solicitaBioma(){
     while (true){
         cin >> escolha;
         if (escolha == "1"){
-
             return AMAZONIA;
         
-        }else if(escolha == "2"){
-
+        } else if(escolha == "2"){
             return CAATINGA;
 
-        }else if(escolha == "3"){
-
+        } else if(escolha == "3"){
             return PAMPA;
 
-        }else if(escolha == "4"){
-
+        } else if(escolha == "4"){
             return CERRADO;
 
-        }else if(escolha == "5"){
-
+        } else if(escolha == "5"){
             return PANTANAL;
 
-        }else if(escolha == "6"){
-
+        } else if(escolha == "6"){
             return MATAATLANTICA;
 
-        }else{
+        } else {
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
   
         }
-
     }
-
 } 
-
 
 /*Os métodos de venda e de apagar animal solicitam o código e verificam 
  se o mesmo existe, isto é, se ele está cadastrado no petFera. Em caso que
@@ -1393,10 +1397,9 @@ bool Interface::consultarAnimal(){
 
                 cin >> cpf;
                 if (pet->getVeterinario(cpf)){
-
                     break;
 
-                }else{
+                } else {
 
                     cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
@@ -1415,6 +1418,7 @@ bool Interface::consultarAnimal(){
 
             if (tamanho == 0){
                 cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
+
             }else{
                 for (int i = 0; i < tamanho; i++){
                     cout << "entrou" << endl;
@@ -1425,6 +1429,7 @@ bool Interface::consultarAnimal(){
             break;
 
         }
+
         case 2:{/*No caso 2, é solicitado cpf do tratador e então
                   são exibidos os animais que se encontram no vetor de
                   animais tratados desse tratador*/
@@ -1437,10 +1442,9 @@ bool Interface::consultarAnimal(){
 
                 cin >> cpf;
                 if (pet->getTratador(cpf)){
-
                     break;
 
-                }else{
+                } else {
 
                     cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
                     cin >> sair;
@@ -1458,14 +1462,16 @@ bool Interface::consultarAnimal(){
             int tamanho = pet->getTratador(cpf)->getAnimaisTratados().size();
             if (tamanho == 0){
                 cout << "Esse tratador ainda não tratou nenhum animal!" << endl;
-            }else{
+
+            } else {
                 for (int i = 0; i < tamanho; i++){
                     cout << ((pet->getTratador(cpf))->getAnimaisTratados()).at(i)->imprimir() << endl;
                 }
             }  
 
-             break;
+            break;
         }
+
         case 3:{/*No caso 3, é solicitada a escolha de uma das classes 
                   dentre as disponíveis. De acordo com a escolha do usuário
                   são exibidos os animais que se encontram no vetor da petFera
@@ -1485,66 +1491,76 @@ bool Interface::consultarAnimal(){
                 if(escolha=="1"){
                     classe = "ave";
                     break;
-                }else if(escolha == "2"){
+
+                } else if(escolha == "2"){
                     classe = "anfibio";
                     break;
+
                 }else if(escolha == "3"){
                     classe = "reptil";
                     break;
-                }else if(escolha == "4"){
+
+                } else if(escolha == "4"){
                     classe = "mamifero";
                     break;
+
                 }else if(escolha == "5"){
                     classe = "avenativo";
                     break;
-                }else if(escolha == "6"){
+
+                } else if(escolha == "6"){
                     classe = "anfibionativo";
                     break;
-                }else if(escolha == "7"){
+
+                } else if(escolha == "7"){
                     classe = "reptilnativo";
                     break;
-                }else if(escolha == "8"){
+
+                } else if(escolha == "8"){
                     classe = "mamiferonativo";
                     break;
-                }else if(escolha == "9"){
+
+                } else if(escolha == "9"){
                     classe = "aveexotico";
                     break;
-                }else if(escolha == "10"){
+
+                } else if(escolha == "10"){
                     classe = "anfibioexotico";
                     break;
-                }else if(escolha == "11"){
+
+                } else if(escolha == "11"){
                     classe = "reptilexotico";
                     break;
-                }else if(escolha == "12"){
+
+                } else if(escolha == "12"){
                     classe = "mamiferoexotico";
                     break;
-                }else{
+
+                } else {
                     cout << "Opção inválida, tente outra" << endl;
                 }
             }
 
+            int tamanho = pet->getAnimais().size();
 
-             int tamanho = pet->getAnimais().size();
-
-             cout << "------------------Animais Encontrados-----------------" << endl;
-             for (int i = 0; i < tamanho; i++){
+            cout << "------------------Animais Encontrados-----------------" << endl;
+            for (int i = 0; i < tamanho; i++){
                 
                 if (pet->getAnimais()[i]->getClasse() == classe){
                     cout << "----------------------" << endl;
                     cout << pet->getAnimais().at(i)->imprimir() << endl;
-                    
                 }
-
              }
              break;
         }
+
         case 4:{ /*No caso 4, chamado o método listarAnimais do
                   petFera, que lista todos os animais do vetor.*/
-
              pet->listarAnimais();
              break;
 
         }
+
         case 5:{ /*No caso 5, é solicitado o código do animal.
                   Se ele existir no sistema, os dados serão
                   exibidos em tela..*/
@@ -1555,44 +1571,43 @@ bool Interface::consultarAnimal(){
 
              if (codigo==""){
                 return false;
-             }else{
+
+             } else {
                 cout << pet->getAnimal(codigo)->imprimir() << endl;
              } 
 
              break;
 
         }
+
         case 6:{/*No caso 6, é solicitada uma espécie de animal. 
                  São exibidos, então, todos os animais no vetor
                  petFera que possuem espécie igual a informada.*/
 
-             string especie;
-             cout << "Informe a espécie que deseja buscar:" << endl;
-             cin >> especie;
+            string especie;
+            cout << "Informe a espécie que deseja buscar:" << endl;
+            cin >> especie;
                
-             int tamanho = pet->getAnimais().size();
+            int tamanho = pet->getAnimais().size();
 
-             cout << "------------------Animais Encontrados-----------------" << endl;
-             for (int i = 0; i < tamanho; i++){
+            cout << "------------------Animais Encontrados-----------------" << endl;
+            for (int i = 0; i < tamanho; i++){
                 
                 if (pet->getAnimais()[i]->getEspecie() == especie){
                     cout << "----------------------" << endl;
                     cout << pet->getAnimais().at(i)->imprimir() << endl;
                 }
 
-             }
+            }
 
-             break;
+            break;
         }
     }
     return true;
 }
 
-
-
 /*Os métodos a seguir são auxialires e servem para fazer as validações
  básicas dos dados informados pelo usuário.*/
-
 
 string Interface::animalExiste(){
     string sair;
@@ -1602,10 +1617,9 @@ string Interface::animalExiste(){
         cin >> codigo;
                 
         if(pet->getAnimal(codigo)){
-
             return codigo;
 
-        }else{
+        } else {
 
              cout << "Animal não encontrado, digite 1 para sair ou outra tecla para tentar novamente." << endl;
              cin >> sair;
@@ -1635,22 +1649,19 @@ bool Interface::validaData(string data){
                     return false;
                 } 
 
-            }else if(!isdigit(data[i])){
+            } else if(!isdigit(data[i])){
 
-                    return false;
-
+                return false;
             }
         }
         return true;
   
-    }else{
+    } else {
 
-     return false;
+        return false;
 
     }
 }
-
-
 
 bool Interface::validaCPF(string cpf){
     //xxx.xxx.xxx-xx
@@ -1662,23 +1673,22 @@ bool Interface::validaCPF(string cpf){
                     return false;
                 } 
 
-            }else if(i == 11){
+            } else if(i == 11){
 
                 if(cpf[i]!='-'){
                     return false;
                 } 
 
-            }else if(!isdigit(cpf[i])){
+            } else if(!isdigit(cpf[i])){
 
-                    return false;
-
+                return false;
             }
         }
         return true;
   
-    }else{
+    } else { 
 
-     return false;
+    return false;
 
     }
 }
@@ -1691,7 +1701,7 @@ int Interface::validaInt(int num){
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-         }
+        }
     }
 }
 
@@ -1699,13 +1709,15 @@ bool Interface::validaBool(bool boleano){
     while (true){
         if (cin >> boleano){
             return boleano;
-        } else{
+
+        } else {
             cout << "Opção inválida, tente outra." << endl;
             cin.clear();
             cin.ignore(1000,'\n'); 
-         }
+        }
     }
 }
+
 bool Interface::validaNome(string nome){
 
     int t = nome.size();
@@ -1716,8 +1728,9 @@ bool Interface::validaNome(string nome){
             if(isdigit(nome[i])){
                 return false;
             }
-         } 
-    }else{
+        } 
+
+    } else {
         return false;
 
     }
@@ -1731,128 +1744,152 @@ bool Interface::validaNome(string nome){
 
 bool Interface::alteraMarcacao(string classe, string codigo){
 
-            if(classe == "avenativo"){
-                shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe== "anfibionativo"){
-                shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe=="reptilnativo"){
-                shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe=="mamiferonativo"){
-                shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;           
-            }else if (classe == "aveexotico"){
-                shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe == "anfibioexotico"){
-                shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe == "reptilexotico"){
-                shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else if (classe == "mamiferoexotico"){
-                shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
-                animal->setMarcacaoPermanente(solicitaMarcacao());
-                return true;
-            }else{
-                cout << "Escolha Inválida";
-                return false;
-            }
+    if(classe == "avenativo"){
+        shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
 
+    } else if (classe== "anfibionativo"){
+        shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else if (classe=="reptilnativo"){
+        shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else if (classe=="mamiferonativo"){
+        shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true; 
+
+    } else if (classe == "aveexotico"){
+        shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else if (classe == "anfibioexotico"){
+        shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else if (classe == "reptilexotico"){
+        shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else if (classe == "mamiferoexotico"){
+        shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
+        animal->setMarcacaoPermanente(solicitaMarcacao());
+        return true;
+
+    } else {
+        cout << "Escolha Inválida";
+        return false;
+    }
 }
 
 bool Interface::alteraExtincao(string classe, string codigo){
 
-            if(classe == "avenativo"){
-                shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe== "anfibionativo"){
-                shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
-                 animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe=="reptilnativo"){
-                shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe=="mamiferonativo"){
-                shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;           
-            }else if (classe == "aveexotico"){
-                shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe == "anfibioexotico"){
-                shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe == "reptilexotico"){
-                shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else if (classe == "mamiferoexotico"){
-                shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
-                animal->setEmExtincao(solicitaExtincao());
-                return true;
-            }else{
-                cout << "Escolha Inválida";
-                return false;
-            }
+    if(classe == "avenativo"){
+        shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
 
+    } else if (classe== "anfibionativo"){
+        shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else if (classe=="reptilnativo"){
+        shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else if (classe=="mamiferonativo"){
+        shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true; 
+
+    } else if (classe == "aveexotico"){
+        shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else if (classe == "anfibioexotico"){
+        shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else if (classe == "reptilexotico"){
+        shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else if (classe == "mamiferoexotico"){
+        shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
+        animal->setEmExtincao(solicitaExtincao());
+        return true;
+
+    } else{
+        cout << "Escolha Inválida";
+        return false;
+    }
 }
 
 bool Interface::alteraBioma(string classe, string codigo){
-            if(classe == "avenativo"){
-                shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
-                animal->setBiomaOrigem(solicitaBioma());
-                return true;
-            }else if (classe== "anfibionativo"){
-                shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
-                animal->setBiomaOrigem(solicitaBioma());
-                return true;
-            }else if (classe=="reptilnativo"){
-                shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
-                animal->setBiomaOrigem(solicitaBioma());
-                return true;
-            }else if (classe=="mamiferonativo"){
-                shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
-                animal->setBiomaOrigem(solicitaBioma());
-                return true;           
-            }else{
-                cout << "Escolha inválida" << endl;
-                return false;
-            }
+
+    if(classe == "avenativo"){
+        shared_ptr<AveNativo> animal = static_pointer_cast<AveNativo>(pet->getAnimal(codigo));
+        animal->setBiomaOrigem(solicitaBioma());
+        return true;
+
+    } else if (classe== "anfibionativo"){
+        shared_ptr<AnfibioNativo> animal = static_pointer_cast<AnfibioNativo>(pet->getAnimal(codigo));
+        animal->setBiomaOrigem(solicitaBioma());
+        return true;
+
+    } else if (classe=="reptilnativo"){
+        shared_ptr<ReptilNativo> animal = static_pointer_cast<ReptilNativo>(pet->getAnimal(codigo));
+        animal->setBiomaOrigem(solicitaBioma());
+        return true;
+
+    } else if (classe=="mamiferonativo"){
+        shared_ptr<MamiferoNativo> animal = static_pointer_cast<MamiferoNativo>(pet->getAnimal(codigo));
+        animal->setBiomaOrigem(solicitaBioma());
+        return true;   
+
+    } else{
+        cout << "Escolha inválida" << endl;
+        return false;
+    }
 }
 
 bool Interface::alteraTerritorio(string classe, string codigo){
-            if (classe == "aveexotico"){
-                shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
-                animal->setTerritorioDeOrigem(solicitaTerritorio());
-                return true;
-            }else if (classe == "anfibioexotico"){
-                shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
-                animal->setTerritorioDeOrigem(solicitaTerritorio());
-                return true;
-            }else if (classe == "reptilexotico"){
-                shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
-                animal->setTerritorioDeOrigem(solicitaTerritorio());
-                return true;
-            }else if (classe == "mamiferoexotico"){
-                shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
-                animal->setTerritorioDeOrigem(solicitaTerritorio());
-                return true;
-            }else{
-                cout << "Escolha Inválida";
-                return false;
-            }
+
+    if (classe == "aveexotico"){
+        shared_ptr<AveExotico> animal = static_pointer_cast<AveExotico>(pet->getAnimal(codigo));
+        animal->setTerritorioDeOrigem(solicitaTerritorio());
+        return true;
+
+    }else if (classe == "anfibioexotico"){
+        shared_ptr<AnfibioExotico> animal = static_pointer_cast<AnfibioExotico>(pet->getAnimal(codigo));
+        animal->setTerritorioDeOrigem(solicitaTerritorio());
+        return true;
+
+    } else if (classe == "reptilexotico"){
+        shared_ptr<ReptilExotico> animal = static_pointer_cast<ReptilExotico>(pet->getAnimal(codigo));
+        animal->setTerritorioDeOrigem(solicitaTerritorio());
+        return true;
+
+    } else if (classe == "mamiferoexotico"){
+        shared_ptr<MamiferoExotico> animal = static_pointer_cast<MamiferoExotico>(pet->getAnimal(codigo));
+        animal->setTerritorioDeOrigem(solicitaTerritorio());
+        return true;
+
+    } else {
+        cout << "Escolha Inválida";
+        return false;
+    }
 }

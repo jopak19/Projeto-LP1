@@ -24,24 +24,28 @@ Reptil::Reptil(string codigo,
     } else {
         this->nivelSeguranca = Azul;
     }
-};
+}
 
 //getters e setters
 string Reptil::getPeriodoDeMudadepele() const{
     return this->periodoDeMudaDePele;
-};
+}
+
 void Reptil::setPeriodoDeMudadepele(string periodo){
     this->periodoDeMudaDePele = periodo;
-};
+}
+
 TipoDePele Reptil::getTipoDepele() const{
     return this->tipoDePele;
-};
+}
+
 void Reptil::setTipoDePele(TipoDePele tipo){
     this->tipoDePele = tipo;
-};
+}
+
 void Reptil::setClasse(){
     this->classe = "reptil";
-};
+}
 
 //como reptil será exibido
 string Reptil::imprimir(){
@@ -54,4 +58,4 @@ string Reptil::imprimir(){
 	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
     " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele;
 	return dados;
-};
+}

@@ -1,10 +1,4 @@
 #include "anfibio.hpp"
-#include <string>
-#include <iostream>
-#include <iomanip>
-using std::setfill;
-using std::setw;
-using std::string;
 
 Anfibio::Anfibio(string codigo, 
                 string peso, 
@@ -23,25 +17,28 @@ Anfibio::Anfibio(string codigo,
     } else {
         this->nivelSeguranca = Azul;
     }
-    
 };
 
 //getters e setters
 string Anfibio::getPeriodoDeMudadepele() const{
     return this->periodoDeMudaDePele;
-};
+}
+
 void Anfibio::setPeriodoDeMudadepele(string periodo){
     this->periodoDeMudaDePele = periodo;
-};
+}
+
 int Anfibio::getTemperaturaDoAmbiente() const{
     return this->temperaturaDoAmbiente;
-};
+}
+
 void Anfibio::setTemperaturaDoAmbiente(int temperatura){
     this->temperaturaDoAmbiente = temperatura;
-};
+}
+
 void Anfibio::setClasse(){
     this->classe = "anfibio";
-};
+}
 
 //como anfibio será exibido
 string Anfibio::imprimir(){

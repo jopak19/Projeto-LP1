@@ -1,10 +1,4 @@
 #include "aveexotico.hpp"
-#include <string>
-#include <iostream>
-#include <iomanip>
-using std::setfill;
-using std::setw;
-using std::string;
 
 AveExotico::AveExotico (string codigo, 
                         string peso, 
@@ -26,11 +20,12 @@ AveExotico::AveExotico (string codigo,
     } else {
         this->nivelSeguranca = Verde;
     }
+}
 
-};
 void AveExotico::setClasse(){
     this->classe = "aveexotico";
-};
+}
+
 //como uma ave exótica será exibida
 string AveExotico::imprimir(){
     string dados;
@@ -42,4 +37,4 @@ string AveExotico::imprimir(){
     " Aquatica: " + aqua + " Pode var: " + voa + 
     " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();;
 	return dados;
-};
+}
