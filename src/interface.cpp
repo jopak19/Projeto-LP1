@@ -119,7 +119,9 @@ bool Interface::cadastroFuncionario(int tipo){
     cout << "Preencha os dados pessoais do funcionário solicitados a seguir.\n"
     << endl;
     cout << "Nome:" << endl;
+
     while (true){
+
         cin.ignore();
         getline (cin,nome);
         if(validaNome(nome)){
@@ -129,6 +131,7 @@ bool Interface::cadastroFuncionario(int tipo){
         }
 
     }
+
     cout << "CPF XXX.XXX.XXX-XX:" << endl;
     
     while (true){
@@ -566,7 +569,7 @@ bool Interface::cadastroAnimal(){
     string altura="";
     short idade=0;
     string especie="";
-    bool perigoso;
+    bool perigoso = false;
     short classe=0;
     short manejo=0;   
  
@@ -578,37 +581,18 @@ bool Interface::cadastroAnimal(){
 
     cout << "======================CADASTRO ANIMAL======================" << endl;
     cout << "Informe os dados gerais do animal que deseja cadastrar." << endl;
+
     cout << "PESO e ALTURA respectivamente:" << endl;
     cin >> peso >> altura;
+
     cout << "Idade do animal:" << endl;
-        
-    while (true){
-
-        if (!(cin >> idade)){
-            cout << "Idade inválida, tente novamente." << endl;
-            cin.clear();
-            cin.ignore(1000,'\n');
-        } else{
-            break;
-        }
-
-    }
-
+    idade = validaInt(idade);
+   
     cout << "Espécie (ex.: tartaruga, águia, etc.):" << endl;
     cin >> especie;
+
     cout << "O animal é perigoso ou venenoso? 0-NÃO | 1-SIM" << endl;
-
-    while (true){
-
-        if (cin >> perigoso){
-            break;
-        } else{
-            cout << "Opção inválida, tente outra." << endl;
-            cin.clear();
-            cin.ignore(1000,'\n');   
-        }
-
-    }
+    perigoso = validaBool(perigoso);
     
     codigo = especie + to_string(pet->getAnimais().size()); /*Neste ponto é gerado o código
                                                              do animal, que é composto da 
@@ -734,7 +718,6 @@ bool Interface::cadastroAnimal(){
 
 bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, string peso, string altura, short idade, string especie, bool perigoso, string cpfveterinario, string cpftratador){
     
-    bool valida=false;
 
     switch (classe){
     
@@ -746,19 +729,8 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
             cout << "Informe o período de muda de pele do animal" << endl;
             cin >> periodoDeMudaDePele;
             cout << "Informe a temperatura média do ambiente para o animal." << endl;
-
-            while (!valida){
-
-                if (cin >> temperaturaDoAmbiente){
-                    valida=true;
-                } else{
-                    cout << "Opção inválida, tente outra." << endl;
-                    cin.clear();
-                    cin.ignore(1000,'\n'); 
-                }
-
-            }
-        
+            temperaturaDoAmbiente = validaInt(temperaturaDoAmbiente);
+            
             //Aqui o anfíbio será cadastrado como Doméstico, Nativo ou Exótico
 
             if (manejo == 1){ //Domético
@@ -842,40 +814,14 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
         }
         case 3:{ //Ave
 
-            bool aquatica;
-            bool podeVoar;
+            bool aquatica = false;
+            bool podeVoar = false;
+
 
             cout << "A ave é aquática? 0-NÃO | 1-SIM" << endl;
-            
-            while (true){
-
-                if (cin >> aquatica){
-                    break;
-
-                }else{
-                    cout << "Opção inválida, tente outra." << endl;
-                    cin.clear();
-                    cin.ignore(1000,'\n'); 
-
-                }
-
-            }
-
+            aquatica = validaBool(aquatica);
             cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
-
-            while (true){
-
-                if (cin >> podeVoar){
-                    break;
-
-                }else{
-                    cout << "Opção inválida, tente outra." << endl;
-                    cin.clear();
-                    cin.ignore(1000,'\n'); 
-
-                }
-
-            }
+            podeVoar = validaBool(podeVoar);
 
 
              //Aqui o animal será cadastrado como Doméstico, Nativo ou Exótico
@@ -960,7 +906,7 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 
     return true;
 }
-
+/* A classe altera animal solicita o código do animal.*/
 
 
 bool Interface::alteracaoAnimal(){
@@ -968,6 +914,11 @@ bool Interface::alteracaoAnimal(){
     cout << "=================ALTERAR ANIMAL================" << endl;
     cout << "Informe o código do animal que deseja alterar:" << endl;
     string codigo = animalExiste();
+
+    if (codigo == ""){
+        return false;
+    }
+
     cout << "O que deseja alterar: 1-Veterinario | 2-Tratador | Qualquer tecla pra outros" << endl;
     string alterar;
     cin >> alterar;
