@@ -32,6 +32,7 @@ class Animal {
 		shared_ptr<Tratador> tratador;
 		NivelSeguranca nivelSeguranca;
 		bool perigoso;
+		string classe;
 
 	public:
 
@@ -43,7 +44,7 @@ class Animal {
 			string especie,
 			bool perigoso
 		);
-
+		string getClasse() const;
 		bool getPerigoso() const;
 		void setPerigoso(bool perigoso);
 		string getCodigo() const;

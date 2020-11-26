@@ -17,7 +17,7 @@ Reptil::Reptil(string codigo,
                 bool perigoso = false):
                 Animal(codigo, peso, altura, idade, especie, perigoso),
                 periodoDeMudaDePele(periodoDeMudadepele), tipoDePele(tipoDePele){
-
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -39,7 +39,9 @@ TipoDePele Reptil::getTipoDepele() const{
 void Reptil::setTipoDePele(TipoDePele tipo){
     this->tipoDePele = tipo;
 };
-
+void Reptil::setClasse(){
+    this->classe = "reptil";
+};
 string Reptil::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";

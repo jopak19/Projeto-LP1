@@ -19,6 +19,7 @@ AveNativo::AveNativo (string codigo,
                                 bool perigoso):
                                 Ave(codigo, peso, altura,idade, especie, aquatica, podeVoar, perigoso),
                                 Nativo(marcacaoPermanente, emExtincao, biomaOrigem){
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -26,6 +27,9 @@ AveNativo::AveNativo (string codigo,
         this->nivelSeguranca = Verde;
     }
 
+};
+void AveNativo::setClasse(){
+    this->classe = "avenativo";
 };
 string AveNativo::imprimir(){
     string dados;

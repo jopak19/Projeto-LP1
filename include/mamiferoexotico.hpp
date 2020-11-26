@@ -16,5 +16,6 @@ class MamiferoExotico: public Mamifero, public Exotico{
                         bool perigoso);
     public:
         string imprimir();
+        void setClasse();
         friend ostream& operator<< (ostream &o, MamiferoExotico animal);	
 };

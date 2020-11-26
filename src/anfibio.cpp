@@ -16,7 +16,7 @@ Anfibio::Anfibio(string codigo,
                 bool perigoso = false):
                 Animal(codigo, peso, altura, idade, especie, perigoso),
                 periodoDeMudaDePele(periodoDeMudadepele), temperaturaDoAmbiente(temperaturaDoAmbiente){
-
+    setClasse();
     if(perigoso){
         this->nivelSeguranca = Vermelho;
 
@@ -38,6 +38,9 @@ int Anfibio::getTemperaturaDoAmbiente() const{
 };
 void Anfibio::setTemperaturaDoAmbiente(int temperatura){
     this->temperaturaDoAmbiente = temperatura;
+};
+void Anfibio::setClasse(){
+    this->classe = "anfibio";
 };
 string Anfibio::imprimir(){
     string dados;
