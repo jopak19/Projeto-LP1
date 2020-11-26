@@ -44,6 +44,7 @@ public:
     bool venderAnimal();
     bool apagarAnimal();
     bool consultarAnimal();
+    bool alteracaoAnimal();
     
     //Validações
     bool validaCrmv(string codigoCrmv);

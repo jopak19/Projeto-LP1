@@ -88,7 +88,7 @@ void Interface::opcoes(string escolha){
                 cadastroAnimal();
 
             } else if(opcao=="2"){
-            //alterarAnimal();
+                alteracaoAnimal();
 
             } else if(opcao=="3"){
                 if(!apagarAnimal()){
@@ -406,13 +406,12 @@ bool Interface::alterarFuncionario(int tipo){
             NivelSeguranca novoNivel;
             cout << "Informe o nível de segurança.\n" << endl;
             cout << "1-Verde | 2-Vermelho | 3-Azul\n";
-            valida=false;
-
-            while (valida==false){
+          
+            while (true){
 
                 cin >> newNivel;
                 if (newNivel=="1" || newNivel=="2" || newNivel=="3"){
-                    valida = true;
+                    break;
                 } else {
                     cout << "Opção inválida, tente outra." << endl;
                 }
@@ -441,7 +440,7 @@ bool Interface::alterarFuncionario(int tipo){
             string newCodigo="";
             cout << "Informe o novo código do veterinário\n" << endl;
             cin >> newCodigo;
-            valida = false;
+            bool valida = false;
 
             while (valida==false){
 
@@ -1326,6 +1325,16 @@ bool Interface::consultarAnimal(){
     return true;
 }
 
+
+bool Interface::alteracaoAnimal(){
+
+    cout << "=================ALTERAR ANIMAL================" << endl;
+    cout << "Informe o código do animal que deseja alterar:" << endl;
+    string codigo = animalExiste();
+
+    string classe = pet->getAnimal(codigo)->getClasse();
+
+}
 
 /*Os métodos a seguir são auxialires e servem para fazer as validações
  básicas dos dados informados pelo usuário.*/
