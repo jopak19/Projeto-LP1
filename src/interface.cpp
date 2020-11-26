@@ -1102,7 +1102,7 @@ bool Interface::consultarAnimal(){
             }else{
                 for (int i = 0; i < tamanho; i++){
                     cout << "entrou" << endl;
-                    cout << *((pet->getVeterinario(cpf))->getAnimaisTratados())[i] << endl;
+                    cout << ((pet->getVeterinario(cpf))->getAnimaisTratados()).at(i)->imprimir()<< endl;
                 }
             }  
 
@@ -1141,13 +1141,79 @@ bool Interface::consultarAnimal(){
                 cout << "Esse veterinário ainda não tratou nenhum animal!" << endl;
             }else{
                 for (int i = 0; i < tamanho; i++){
-                    cout << *((pet->getTratador(cpf))->getAnimaisTratados())[i] << endl;
+                    cout << ((pet->getTratador(cpf))->getAnimaisTratados()).at(i)->imprimir() << endl;
                 }
             }  
 
              break;
         }
         case 3:{
+
+             string classe;
+             string escolha;
+             cout << "Informe a classe que deseja buscar:" << endl;
+             cout << "Doméstico: 1-Ave | 2-Anfibio | 3-Reptil | 4-Mamifero "  << endl;
+             cout << "Nativos: 5-Ave | 6-Anfibio | 7-Reptil | 8-Mamifero"  << endl;
+             cout << "Exóticos: 9-Ave | 10-Anfibio | 11-Reptil | 12-Mamifero "  << endl;
+
+             while (true){
+
+                cin >> escolha;
+
+                if(escolha=="1"){
+                    classe = "ave";
+                    break;
+                }else if(escolha == "2"){
+                    classe = "anfibio";
+                    break;
+                }else if(escolha == "3"){
+                    classe = "reptil";
+                    break;
+                }else if(escolha == "4"){
+                    classe = "mamifero";
+                    break;
+                }else if(escolha == "5"){
+                    classe = "avenativo";
+                    break;
+                }else if(escolha == "6"){
+                    classe = "anfibionativo";
+                    break;
+                }else if(escolha == "7"){
+                    classe = "reptilnativo";
+                    break;
+                }else if(escolha == "8"){
+                    classe = "mamiferonativo";
+                    break;
+                }else if(escolha == "9"){
+                    classe = "aveexotico";
+                    break;
+                }else if(escolha == "10"){
+                    classe = "anfibioexotico";
+                    break;
+                }else if(escolha == "11"){
+                    classe = "reptilexotico";
+                    break;
+                }else if(escolha == "12"){
+                    classe = "mamiferoexotico";
+                    break;
+                }else{
+                    cout << "Opção inválida, tente outra" << endl;
+                }
+            }
+
+
+             int tamanho = pet->getAnimais().size();
+
+             cout << "------------------Animais Encontrados-----------------" << endl;
+             for (int i = 0; i < tamanho; i++){
+                
+                if (pet->getAnimais()[i]->getClasse() == classe){
+                    cout << "----------------------" << endl;
+                    cout << pet->getAnimais().at(i)->imprimir() << endl;
+                    
+                }
+
+             }
              break;
         }
         case 4:{
@@ -1165,7 +1231,7 @@ bool Interface::consultarAnimal(){
              if (codigo==""){
                 return false;
              }else{
-                cout << *pet->getAnimal(codigo) << endl;
+                cout << pet->getAnimal(codigo)->imprimir() << endl;
              } 
 
              break;
@@ -1176,14 +1242,15 @@ bool Interface::consultarAnimal(){
              string especie;
              cout << "Informe a espécie que deseja buscar:" << endl;
              cin >> especie;
-
+               
              int tamanho = pet->getAnimais().size();
 
              cout << "------------------Animais Encontrados-----------------" << endl;
              for (int i = 0; i < tamanho; i++){
                 
                 if (pet->getAnimais()[i]->getEspecie() == especie){
-                    cout << *pet->getAnimais()[i] << endl;
+                    cout << "----------------------" << endl;
+                    cout << pet->getAnimais().at(i)->imprimir() << endl;
                 }
 
              }
