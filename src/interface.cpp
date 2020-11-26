@@ -962,235 +962,311 @@ bool Interface::cadastroClasseAnimal(short classe, short manejo, string codigo, 
 }
 
 
+
 bool Interface::alteracaoAnimal(){
 
     cout << "=================ALTERAR ANIMAL================" << endl;
     cout << "Informe o código do animal que deseja alterar:" << endl;
     string codigo = animalExiste();
-
+    cout << "O que deseja alterar: 1-Veterinario | 2-Tratador | Qualquer tecla pra outros" << endl;
+    string alterar;
+    cin >> alterar;
+    string sair;
     string classe = pet->getAnimal(codigo)->getClasse();
-
+    int classes =0;
     string alteracaoClasse="";
-    string alteracaoManejo="";
 
     if(classe == "ave" || classe == "avenativo" || classe == "aveexotico" ){
-        alteracaoClasse = "5-Aquatica | 6-Pode Voar";
+            alteracaoClasse = "5-Aquatica | 6-Pode Voar";
+            classes = 3;
     }else if(classe == "anfibio" || classe== "anfibionativo" || classe == "anfibioexotico" ){
-        alteracaoClasse = "5-Periodo Muda de Pele | 6-Temperatura do ambiente";
+            alteracaoClasse = "5-Periodo Muda de Pele | 6-Temperatura do ambiente";
     }else if(classe == "reptil" || classe=="reptilnativo" ||  classe == "reptilexotico"){
-        alteracaoClasse = "5-Periodo Muda de Pele | 6-Tipo de Pele";
+            alteracaoClasse = "5-Periodo Muda de Pele | 6-Tipo de Pele";
+            classes = 2;
     }else if(classe == "mamifero" ||  classe=="mamiferonativo" || classe == "mamiferoexotico"){
-        alteracaoClasse = "5-Tipo de Gestação";
+            alteracaoClasse = "5-Tipo de Gestação";
+            classes = 4;
     }
 
-    if(classe == "avenativo" || classe== "anfibionativo" || classe=="reptilnativo" || classe=="mamiferonativo"){
-                    alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Bioma";
-    }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
-                    alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Territorio";
-    }
-
-    int escolha;
-    cout << "Informe o que deseja alterar para o animal:" << endl;
-    cout << "1-Peso | 2-Altura | 3-Idade | 4-Especie | " << alteracaoClasse << " | " << alteracaoManejo << endl;
-    while (true){
-
-        if (cin >> escolha && (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4 || escolha == 5 || escolha == 6 || escolha ==8|| escolha == 7 || escolha == 9)){
-            break;
-        }else{
-            cout << "Opção inválida, tente um inteiro." << endl;
-            cin.clear();
-            cin.ignore(1000,'\n'); 
-        }
-
-    }
-
-    switch (escolha){
-
-        case 1:{
-
-            string newPeso;
-            cout << "Novo Peso:" << endl;
-            cin >> newPeso;
-            pet->getAnimal(codigo)->setPeso(newPeso);
-            cout << "Peso Alterado!" << endl;
-            break;
-
-        }
-        case 2:{
-
-            string newAltura;
-            cout << "Novo altura:" << endl;
-            cin >> newAltura;
-            pet->getAnimal(codigo)->setAltura(newAltura);
-            cout << "Altura Alterada!" << endl;
-            break;
-        }
-        case 3:{
-             short idade;
-             cout << "Idade do animal:" << endl;
-
-             while (true){
-                if (!(cin >> idade)){
-                cout << "Idade inválida, tente novamente." << endl;
-                cin.clear();
-                cin.ignore(1000,'\n');
-                } else{
+    if(alterar=="1"){
+            cout << "CPF do novo veterinário:" << endl;
+            string cpfveterinario;
+            while (true){
+                cin >> cpfveterinario;
+                if (pet->getVeterinario(cpfveterinario)){
                     break;
-                }
-             }
-            pet->getAnimal(codigo)->setIdade(idade);
-            break;
-        }
-        case 4:{
-            string newEspecie;
-            cout << "Nova espécie:" << endl;
-            cin >> newEspecie;
-            pet->getAnimal(codigo)->setEspecie(newEspecie);
-            break;
-        }
-        case 5:{
-            if(classe == "ave"){
-                bool aquatica = false;
-                cout << "Ave aquática? 0-NÃO | 1-SIM" << endl;
-                aquatica = validaBool(aquatica);
-                shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
-                ave->setAquatica(aquatica);
-
-            }else if(classe == "anfibio"){
-                string periodo = "";
-                cout << "Novo período de muda de pele:" << endl;
-                cin >> periodo;
-                shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
-                anfibio->setPeriodoDeMudadepele(periodo);
-
-            }else if(classe == "reptil"){
-                string periodo = "";
-                cout << "Novo período de muda de pele:" << endl;
-                cin >> periodo;
-                shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
-                reptil->setPeriodoDeMudadepele(periodo);
-
-            }else if(classe == "mamifero"){
-                Gestacao gestacao;
-                string escolha = ""; 
-                cout << "Informe o tipo de gestação do animal: 1-MONOTREMADO | 2-MARSUPIAL | 3-PLACENTARIO" << endl;
-
-                while (true){
-                
-                    cin >> escolha;
-                    if (escolha == "1"){
-                        gestacao= MONOTREMADO;
-                        break;
-
-                    }else if (escolha== "2"){
-                        gestacao = MARSUPIAL;
-                        break;
-
-                    }else if (escolha == "3"){
-                        gestacao = PLACENTARIO;
-                        break;
-
-                    }else{
-                        cout << "Opção inválida, tente outra." << endl;
-                        cin.clear();
-                        cin.ignore(1000,'\n'); 
-
+                } else {
+                    cout << "Veterinário não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+                    
+                    if (sair == "1"){
+                        return false;
                     }
 
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
                 }
-                shared_ptr<Mamifero> mamifero = static_pointer_cast<Mamifero>(pet->getAnimal(codigo));
-                mamifero->setGestacao(gestacao);
             }
-            break;
-        }
-        case 6:{
-            if(classe == "ave"){
-                bool podeVoar = false;
-                cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
-                podeVoar = validaBool(podeVoar);       
-                shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
-                ave->setPodeVoar(podeVoar);
-
-            }else if(classe == "anfibio"){
-                int temp=0;
-                cout << "Nova temperatuda:" << endl;
-                temp = validaInt(temp);
-                shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
-                anfibio->setTemperaturaDoAmbiente(temp);
-
-            }else if(classe == "reptil"){
-                string tipo ="";
-                TipoDePele tipoDePele;
-                cout << "Novo Tipo: 1- ESCAMAS | 2-CARAPACA | 3-PLACADERMICA" << endl;
-
-                while (true){
-                
-                    cin >> tipo;
-                    if (tipo == "1"){
-                        tipoDePele = ESCAMAS;
-                        break;
-
-                    }else if (tipo== "2"){
-                        tipoDePele = CARAPACA;
-                        break;
-
-                    }else if (tipo == "3"){
-                        tipoDePele = PLACADERMICA;
-                        break;
-
-                    }else{
-                        cout << "Opção inválida, tente outra." << endl;
-                        cin.clear();
-                        cin.ignore(1000,'\n'); 
     
+        cout << "Veterinário Alterado" << endl;
+
+    }else if(alterar=="2"){
+         cout << "CPF do novo tratador:" << endl;
+           string cpftratador;
+            while (true){
+                cin >> cpftratador ;
+
+                if (pet->getTratador(cpftratador)){
+               
+                    if (pet->getTratador(cpftratador)->getNivelSeguranca() == Vermelho){
+                        break;
+                    } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Azul && (pet->getAnimal(codigo))->getPerigoso() == false && (classes == 2 || classes == 3 || classes == 4)){
+                        break;
+                    } else if (pet->getTratador(cpftratador)->getNivelSeguranca() == Verde && (pet->getAnimal(codigo))->getPerigoso() == false && classes == 3){
+                        break;
+                    } else{
+                        cout << "Tratador inválido para o animal! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                        cin >> sair;
+                    
+                        if (sair == "1"){
+                            return false;
+                        }
+
+                        cin.clear();
+                        cin.ignore(1000,'\n');
+                        cout << "CPF: ";
+
                     }
 
+                }else{
+                    cout << "Tratador não encontrado! Digite 1 para SAIR ou outra tecla para tentar outro" << endl;
+                    cin >> sair;
+                    
+                    if (sair == "1"){
+                         return false;
+                    
+                    }
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    cout << "CPF: ";
                 }
-        
-                
-                shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
-                reptil->setTipoDePele(tipoDePele);
-
-            }else if(classe == "mamifero"){
-                cout << "Escolha inválida!"<< endl;
-            }
-            break;
-        }
-
-        case 7:{
-            
-            if(alteraMarcacao(classe, codigo)){
-                cout << "Marcação Alterada" << endl;
-            }
-            break;
-        }
-
-        case 8:{
-           
-            if(alteraExtincao(classe, codigo)){
-                cout << "Extinção Alterada" << endl;
             }
 
-            break;
+    }else{
+
+        string alteracaoManejo="";
+
+        if(classe == "avenativo" || classe== "anfibionativo" || classe=="reptilnativo" || classe=="mamiferonativo"){
+                        alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Bioma";
+        }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
+                        alteracaoManejo= "7- Marcacao | 8-Extincao | 9-Territorio";
         }
 
-        case 9:{
-           
-            if(classe == "avenativo" || classe== "anfibionativo" || classe=="reptilnativo" || classe=="mamiferonativo"){
-                if(alteraBioma(classe, codigo)){
-                    cout << "Bioma Alterado" << endl;
-                }
-            }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
-                if(alteraTerritorio(classe, codigo)){
-                    cout << "Territorio Alterado" << endl;
-                }
+        int escolha;
+        cout << "Informe o que deseja alterar para o animal:" << endl;
+        cout << "1-Peso | 2-Altura | 3-Idade | 4-Especie | " << alteracaoClasse << " | " << alteracaoManejo << endl;
+        while (true){
+
+            if (cin >> escolha && (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4 || escolha == 5 || escolha == 6 || escolha ==8|| escolha == 7 || escolha == 9)){
+                break;
             }else{
-                cout << "Escolha Inválida" << endl;
+                cout << "Opção inválida, tente um inteiro." << endl;
+                cin.clear();
+                cin.ignore(1000,'\n'); 
             }
 
-            break;
         }
-    
+
+        switch (escolha){
+
+            case 1:{
+
+                string newPeso;
+                cout << "Novo Peso:" << endl;
+                cin >> newPeso;
+                pet->getAnimal(codigo)->setPeso(newPeso);
+                cout << "Peso Alterado!" << endl;
+                break;
+
+            }
+            case 2:{
+
+                string newAltura;
+                cout << "Novo altura:" << endl;
+                cin >> newAltura;
+                pet->getAnimal(codigo)->setAltura(newAltura);
+                cout << "Altura Alterada!" << endl;
+                break;
+            }
+            case 3:{
+                 short idade;
+                 cout << "Idade do animal:" << endl;
+
+                 while (true){
+                    if (!(cin >> idade)){
+                    cout << "Idade inválida, tente novamente." << endl;
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    } else{
+                        break;
+                    }
+                 }
+                pet->getAnimal(codigo)->setIdade(idade);
+                break;
+            }
+            case 4:{
+                string newEspecie;
+                cout << "Nova espécie:" << endl;
+                cin >> newEspecie;
+                pet->getAnimal(codigo)->setEspecie(newEspecie);
+                break;
+            }
+            case 5:{
+                if(classe == "ave"){
+                    bool aquatica = false;
+                    cout << "Ave aquática? 0-NÃO | 1-SIM" << endl;
+                    aquatica = validaBool(aquatica);
+                    shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
+                    ave->setAquatica(aquatica);
+
+                }else if(classe == "anfibio"){
+                    string periodo = "";
+                    cout << "Novo período de muda de pele:" << endl;
+                    cin >> periodo;
+                    shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
+                    anfibio->setPeriodoDeMudadepele(periodo);
+
+                }else if(classe == "reptil"){
+                    string periodo = "";
+                    cout << "Novo período de muda de pele:" << endl;
+                    cin >> periodo;
+                    shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
+                    reptil->setPeriodoDeMudadepele(periodo);
+
+                }else if(classe == "mamifero"){
+                    Gestacao gestacao;
+                    string escolha = ""; 
+                    cout << "Informe o tipo de gestação do animal: 1-MONOTREMADO | 2-MARSUPIAL | 3-PLACENTARIO" << endl;
+
+                    while (true){
+                    
+                        cin >> escolha;
+                        if (escolha == "1"){
+                            gestacao= MONOTREMADO;
+                            break;
+
+                        }else if (escolha== "2"){
+                            gestacao = MARSUPIAL;
+                            break;
+
+                        }else if (escolha == "3"){
+                            gestacao = PLACENTARIO;
+                            break;
+
+                        }else{
+                            cout << "Opção inválida, tente outra." << endl;
+                            cin.clear();
+                            cin.ignore(1000,'\n'); 
+
+                        }
+
+                    }
+                    shared_ptr<Mamifero> mamifero = static_pointer_cast<Mamifero>(pet->getAnimal(codigo));
+                    mamifero->setGestacao(gestacao);
+                }
+                break;
+            }
+            case 6:{
+                if(classe == "ave"){
+                    bool podeVoar = false;
+                    cout << "A ave voa? 0-NÃO | 1-SIM " << endl;
+                    podeVoar = validaBool(podeVoar);       
+                    shared_ptr<Ave> ave = static_pointer_cast<Ave>(pet->getAnimal(codigo));
+                    ave->setPodeVoar(podeVoar);
+
+                }else if(classe == "anfibio"){
+                    int temp=0;
+                    cout << "Nova temperatuda:" << endl;
+                    temp = validaInt(temp);
+                    shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(pet->getAnimal(codigo));
+                    anfibio->setTemperaturaDoAmbiente(temp);
+
+                }else if(classe == "reptil"){
+                    string tipo ="";
+                    TipoDePele tipoDePele;
+                    cout << "Novo Tipo: 1- ESCAMAS | 2-CARAPACA | 3-PLACADERMICA" << endl;
+
+                    while (true){
+                    
+                        cin >> tipo;
+                        if (tipo == "1"){
+                            tipoDePele = ESCAMAS;
+                            break;
+
+                        }else if (tipo== "2"){
+                            tipoDePele = CARAPACA;
+                            break;
+
+                        }else if (tipo == "3"){
+                            tipoDePele = PLACADERMICA;
+                            break;
+
+                        }else{
+                            cout << "Opção inválida, tente outra." << endl;
+                            cin.clear();
+                            cin.ignore(1000,'\n'); 
+        
+                        }
+
+                    }
+            
+                    
+                    shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(pet->getAnimal(codigo));
+                    reptil->setTipoDePele(tipoDePele);
+
+                }else if(classe == "mamifero"){
+                    cout << "Escolha inválida!"<< endl;
+                }
+                break;
+            }
+
+            case 7:{
+                
+                if(alteraMarcacao(classe, codigo)){
+                    cout << "Marcação Alterada" << endl;
+                }
+                break;
+            }
+
+            case 8:{
+               
+                if(alteraExtincao(classe, codigo)){
+                    cout << "Extinção Alterada" << endl;
+                }
+
+                break;
+            }
+
+            case 9:{
+               
+                if(classe == "avenativo" || classe== "anfibionativo" || classe=="reptilnativo" || classe=="mamiferonativo"){
+                    if(alteraBioma(classe, codigo)){
+                        cout << "Bioma Alterado" << endl;
+                    }
+                }else if(classe == "aveexotico" || classe == "anfibioexotico" || classe == "reptilexotico" || classe == "mamiferoexotico"){
+                    if(alteraTerritorio(classe, codigo)){
+                        cout << "Territorio Alterado" << endl;
+                    }
+                }else{
+                    cout << "Escolha Inválida" << endl;
+                }
+
+                break;
+            }
+        
+        }
     }
     return true;
 }
