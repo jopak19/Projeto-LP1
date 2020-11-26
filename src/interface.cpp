@@ -330,10 +330,7 @@ bool Interface::alterarFuncionario(int tipo){
     } else if (escolha=="3"){
 
         string newData = "";
-<<<<<<< HEAD
-        cout << "Informe a nova Data de Nascimento:" << endl;
-        cin >> newData;
-=======
+
         cout << "Informe o nova Data de Nascimeto:" << endl;
 
         while (true){
@@ -346,7 +343,6 @@ bool Interface::alterarFuncionario(int tipo){
             }
 
         }
->>>>>>> a9de187d1ff9583acef857d15005c10fe81d36a3
 
         if(tipo==1){
             if (pet->getTratador(cpf)!=nullptr){
