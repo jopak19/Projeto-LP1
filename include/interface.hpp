@@ -34,12 +34,15 @@ public:
     //silvestre
     int solicitaMarcacao();
     bool solicitaExtincao();
+    bool alteraMarcacao(string classe, string codigo);
+    bool alteraExtincao(string classe, string codigo);
 
     //exotico
     string solicitaTerritorio();
-
+    bool alteraTerritorio(string classe, string codigo);
     //nativo
     Bioma solicitaBioma();  
+    bool alteraBioma(string classe, string codigo);
 
     bool venderAnimal();
     bool apagarAnimal();
@@ -47,6 +50,8 @@ public:
     bool alteracaoAnimal();
     
     //Validações
+    int validaInt(int num);
+    bool validaBool(bool boleano);
     bool validaCrmv(string codigoCrmv);
     string animalExiste();
     bool validaData(string data);
