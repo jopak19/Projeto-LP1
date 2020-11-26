@@ -1,4 +1,6 @@
 #include "avenativo.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -46,8 +48,9 @@ string AveNativo::imprimir(){
     if(this->getBiomaOrigem() == CAATINGA) bioma = "Caatinga";
     if(this->getBiomaOrigem() == PANTANAL) bioma = "Pantanal";
     if(this->getBiomaOrigem() == MATAATLANTICA) bioma = "Mata Atlântica";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Aquatica: " + aqua + " Pode var: " + voa + 
-    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Bioma origem: " + bioma;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Aquatica: " + aqua + " | Pode var: " + voa + 
+    " | Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " | Em extinção: " + extincao + " | Bioma origem: " + bioma + 
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };

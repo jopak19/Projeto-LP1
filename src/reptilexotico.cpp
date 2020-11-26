@@ -1,4 +1,6 @@
 #include "reptilexotico.hpp"
+#include "tratador.hpp"
+#include "veterinario.hpp"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -40,9 +42,9 @@ string ReptilExotico::imprimir(){
     if(this->getTipoDepele() == CARAPACA) tipoPele = "Carapaça";
     if(this->getTipoDepele() == ESCAMAS) tipoPele = "Escamas";
     if(this->getTipoDepele() == PLACADERMICA) tipoPele = "Placa dérmica";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Tipo de Pele: " + tipoPele +
-    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();
-;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Muda de Pele: " + this->getPeriodoDeMudadepele() + " | Tipo de Pele: " + tipoPele +
+    " | Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " | Em extinção: " + extincao + " | Território origem: " + this->getTerritorioDeOrigem() +
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 };

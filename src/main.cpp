@@ -4,10 +4,13 @@
 
 int main(int argc, char const *argv[])
 {
+
 	PetFera *petfera = new PetFera();
     Interface *inter = new Interface();
     inter->setPet(petfera);
     inter->menu();
 	delete petfera;
+	delete inter;
+	
 	return 0;
 }

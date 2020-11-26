@@ -33,8 +33,9 @@ string AveExotico::imprimir(){
     string extincao = this->getEmExtincao() ? "Sim" : "Não";
     string aqua = this->aquatica ? "aquatica" : "não Aquatica";
     string voa = this->podeVoar ? "voa" : "Não voa";
-	dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Aquatica: " + aqua + " Pode var: " + voa + 
-    " Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem();;
+	dados = "codigo: " + this->getCodigo() + " | Peso: " + this->getPeso() + " | Altura: "+this->getAltura() + " | Especie: " + this->getEspecie() + " | Perigoso: "  + perigo + 
+    " | Aquatica: " + aqua + " | Pode var: " + voa + 
+    " | Marcação Permanente: " + to_string(this->getMarcacaoPermanente()) + " Em extinção: " + extincao + " Território origem: " + this->getTerritorioDeOrigem() +
+	" | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
 	return dados;
 }
