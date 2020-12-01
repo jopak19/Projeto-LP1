@@ -81,7 +81,7 @@
     As consultas podem ser realizadas clicando no menu 3-Gerenciar Animal > 4-Consultar 
 
 #### Endereço do repositório: 
-    [https://github.com/jopak19/Projeto-LP1] (https://youtu.be/re82-B9qOHQ)
+     https://github.com/jopak19/Projeto-LP1
     
 #### Vídeo Explicativo:
-    [https://youtu.be/re82-B9qOHQ] (https://youtu.be/re82-B9qOHQ)
+     https://youtu.be/re82-B9qOHQ
