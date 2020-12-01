@@ -82,3 +82,6 @@
 
 #### Endereço do repositório: 
     https://github.com/jopak19/Projeto-LP1
+    
+#### Vídeo Explicativo:
+    https://youtu.be/re82-B9qOHQ
