@@ -284,14 +284,14 @@ bool Interface::alterarFuncionario(int tipo){
      cadastro é garantir que não serão criados dois tratadores ou dois veterinários com
      mesmo cpf. */
 
+    cin.ignore();
     if (escolha=="1"){
 
         string newNome = "";
         cout << "Informe o novo nome:" << endl;
 
         while (true){
-
-            cin >> newNome;
+            getline (cin,newNome);
             if(validaNome(newNome)){
                 break;
             }else{
@@ -299,7 +299,7 @@ bool Interface::alterarFuncionario(int tipo){
             }
 
         }
-
+        cout << endl;
         if(tipo==1){
 
             if (pet->getTratador(cpf)!=nullptr){
@@ -327,7 +327,7 @@ bool Interface::alterarFuncionario(int tipo){
 
         while (true){
 
-            cin >> newCpf;
+            getline (cin,newCpf);
             if(validaCPF(newCpf)){
                 break;
             }else{
@@ -339,7 +339,7 @@ bool Interface::alterarFuncionario(int tipo){
         if(tipo==1){
 
             if(pet->existeTratador(newCpf)){
-                cout << "CPF Não alterado. Já existe Veterinario com esse CPF!" << endl;
+                cout << "CPF Não alterado. Já existe Tratador com esse CPF!" << endl;
                 return false;
             }
 
@@ -372,7 +372,7 @@ bool Interface::alterarFuncionario(int tipo){
 
         while (true){
 
-            cin >> newData;
+            getline (cin,newData);
             if(validaData(newData)){
                 break;
 
@@ -547,9 +547,11 @@ bool Interface::consultarFuncionario(int tipo){
     } else if(escolha=="2"){
 
         if(tipo==1){
+            cout << "-----------Tratadores encontrados--------------" <<endl;
             pet->listarTratadores();
 
         } else {
+            cout << "-----------Veterinários encontrados--------------" <<endl;
             pet->listarVeterinarios();
 
         }
@@ -586,9 +588,13 @@ bool Interface::cadastroAnimal(){
 
     cout << "======================CADASTRO ANIMAL======================" << endl;
     cout << "Informe os dados gerais do animal que deseja cadastrar." << endl;
+    
+    
+    cout << "Informe peso do animal" << endl;
+    cin >> peso;
 
-    cout << "PESO e ALTURA respectivamente:" << endl;
-    cin >> peso >> altura;
+    cout << "Informe altura do animal" << endl;
+    cin >> altura;
 
     cout << "Idade do animal:" << endl;
     idade = validaInt(idade);
@@ -1433,7 +1439,7 @@ bool Interface::consultarAnimal(){
 
             }else{
                 for (int i = 0; i < tamanho; i++){
-                    cout << "entrou" << endl;
+                    cout << "---------------" << endl;
                     cout << ((pet->getVeterinario(cpf))->getAnimaisTratados()).at(i)->imprimir()<< endl;
                 }
             }  
@@ -1559,8 +1565,8 @@ bool Interface::consultarAnimal(){
             for (int i = 0; i < tamanho; i++){
                 
                 if (pet->getAnimais()[i]->getClasse() == classe){
-                    cout << "----------------------" << endl;
                     cout << pet->getAnimais().at(i)->imprimir() << endl;
+                    cout << "----------------------" << endl;
                 }
              }
              break;
