@@ -7,6 +7,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <iostream>
 
 using std::string;
 using std::shared_ptr;

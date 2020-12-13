@@ -42,9 +42,10 @@ class PetFera {
     private:
 
         string nome;
-        int identificador;
         vector<shared_ptr<Animal>> animais;
         vector<shared_ptr<Tratador>> tratadores;
         vector<shared_ptr<Veterinario>> veterinarios;
-
+        IO *gerenciadorArquivos;
+        void carregarDados();
+        void salvarDados();
 };

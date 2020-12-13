@@ -1,10 +1,13 @@
 #include "petfera.hpp"
 
-
-PetFera::PetFera(){}
+PetFera::PetFera(){
+	this->gerenciadorArquivos = new IO();
+	this->carregarDados();
+}
 
 PetFera::~PetFera(){
-	
+	this->salvarDados();
+	delete this->gerenciadorArquivos;
 }
 
 vector<shared_ptr<Animal>> PetFera::getAnimais() const{
@@ -236,4 +239,15 @@ void PetFera::listarVeterinarios() const{
 	}
 }
 
+void PetFera::carregarDados(){
+	cout << "carregando dados..." << endl;
+}
+
+void PetFera::salvarDados(){
+
+	cout << "salvando veterinários..." << endl;
+	this->gerenciadorArquivos->salvarVeterinarios(this->getVeterinarios());
+	cout << "salvando tratadores..." << endl;
+	this->gerenciadorArquivos->salvarTratadores(this->getTratadores());
+}
 
