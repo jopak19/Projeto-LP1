@@ -7,7 +7,7 @@ PROG = $(BIN)/programa
 CC = g++
 CPPFLAGS = -Wall -std=c++11 -I./include
 
-OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o $(BIN)/anfibioexotico.o $(BIN)/anfibionativo.o $(BIN)/aveexotico.o $(BIN)/avenativo.o $(BIN)/mamiferoexotico.o $(BIN)/mamiferonativo.o $(BIN)/reptilexotico.o $(BIN)/reptilnativo.o
+OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o $(BIN)/anfibioexotico.o $(BIN)/anfibionativo.o $(BIN)/aveexotico.o $(BIN)/avenativo.o $(BIN)/mamiferoexotico.o $(BIN)/mamiferonativo.o $(BIN)/reptilexotico.o $(BIN)/reptilnativo.o $(BIN)/io.o
 
 all : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
@@ -59,6 +59,8 @@ $(BIN)/reptilexotico.o : $(SRC)/reptilexotico.cpp $(INC)/reptilexotico.hpp
 	$(CC) $(CPPFLAGS) -c $(SRC)/reptilexotico.cpp -o $@
 $(BIN)/reptilnativo.o : $(SRC)/reptilnativo.cpp $(INC)/reptilnativo.hpp 
 	$(CC) $(CPPFLAGS) -c $(SRC)/reptilnativo.cpp -o $@
+$(BIN)/io.o : $(SRC)/io.cpp $(INC)/io.hpp 
+	$(CC) $(CPPFLAGS) -c $(SRC)/io.cpp -o $@
 
 clean:
 	rm -f core $(PROG) $(OBJS)

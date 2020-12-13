@@ -3,6 +3,7 @@
 #include "animal.hpp"
 #include "tratador.hpp"
 #include "veterinario.hpp"
+#include "io.hpp"
 #include <vector>
 #include <string>
 #include <memory>
@@ -15,6 +16,8 @@ class PetFera {
 
     public:
        
+        PetFera();
+        ~PetFera();
         vector<shared_ptr<Animal>> getAnimais() const;
         vector<shared_ptr<Tratador>> getTratadores() const;
         vector<shared_ptr<Veterinario>> getVeterinarios() const;
@@ -43,4 +46,5 @@ class PetFera {
         vector<shared_ptr<Animal>> animais;
         vector<shared_ptr<Tratador>> tratadores;
         vector<shared_ptr<Veterinario>> veterinarios;
+
 };

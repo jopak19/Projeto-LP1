@@ -1,5 +1,12 @@
 #include "petfera.hpp"
 
+
+PetFera::PetFera(){}
+
+PetFera::~PetFera(){
+	
+}
+
 vector<shared_ptr<Animal>> PetFera::getAnimais() const{
 	return this->animais;
 }
