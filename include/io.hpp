@@ -3,15 +3,18 @@
 #include "animal.hpp"
 #include "tratador.hpp"
 #include "veterinario.hpp"
+#include "nivelseguranca.hpp"
 
 #include <fstream>
 #include <vector>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using std::string;
 using std::shared_ptr;
 using std::vector;
+
 #include <memory>
 
 class IO {

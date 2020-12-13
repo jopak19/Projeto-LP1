@@ -29,6 +29,7 @@ void Funcionario::setNome(string nome){
 
 void Funcionario::adicionarAnimalTratado(shared_ptr<Animal> animal){
 	this->animaisTratados.push_back(animal);
+	this->quantidadeAnimaisTratados += 1;
 }
 
 bool Funcionario::removerAnimalTratado(string codigoAnimal){
@@ -40,6 +41,7 @@ bool Funcionario::removerAnimalTratado(string codigoAnimal){
 	
 		if(codigo.compare(codigoAnimal) == 0){
 			this->animaisTratados.erase(this->animaisTratados.begin() + i);
+			this->quantidadeAnimaisTratados -= 1;
 			return true;
 		}
 	}

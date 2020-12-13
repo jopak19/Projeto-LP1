@@ -240,14 +240,12 @@ void PetFera::listarVeterinarios() const{
 }
 
 void PetFera::carregarDados(){
-	cout << "carregando dados..." << endl;
+	this->veterinarios = this->gerenciadorArquivos->carregarVeterinarios();
+	this->tratadores = this->gerenciadorArquivos->carregarTratadores();
 }
 
 void PetFera::salvarDados(){
-
-	cout << "salvando veterinários..." << endl;
 	this->gerenciadorArquivos->salvarVeterinarios(this->getVeterinarios());
-	cout << "salvando tratadores..." << endl;
 	this->gerenciadorArquivos->salvarTratadores(this->getTratadores());
 }
 
