@@ -5,6 +5,19 @@
 #include "veterinario.hpp"
 #include "nivelseguranca.hpp"
 
+#include "ave.hpp"
+#include "anfibio.hpp"
+#include "reptil.hpp"
+#include "mamifero.hpp"
+#include "anfibionativo.hpp"
+#include "anfibioexotico.hpp"
+#include "reptilnativo.hpp"
+#include "reptilexotico.hpp"
+#include "aveexotico.hpp"
+#include "avenativo.hpp"
+#include "mamiferonativo.hpp"
+#include "mamiferoexotico.hpp"
+
 #include <fstream>
 #include <vector>
 #include <string>
@@ -29,4 +42,6 @@ public:
 	vector<shared_ptr<Animal>> carregarAnimais() const;
 	vector<shared_ptr<Veterinario>> carregarVeterinarios() const;
 	vector<shared_ptr<Tratador>> carregarTratadores() const;
+
+    string atributosExtras(shared_ptr<Animal> animal);
 };

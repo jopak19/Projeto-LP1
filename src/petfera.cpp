@@ -247,5 +247,6 @@ void PetFera::carregarDados(){
 void PetFera::salvarDados(){
 	this->gerenciadorArquivos->salvarVeterinarios(this->getVeterinarios());
 	this->gerenciadorArquivos->salvarTratadores(this->getTratadores());
+    this->gerenciadorArquivos->salvarAnimais(this->getAnimais());
 }
 
