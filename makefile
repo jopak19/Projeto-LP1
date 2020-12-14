@@ -11,7 +11,7 @@ CPPFLAGS = -Wall -std=c++11 -I./include
 OBJS = $(BIN)/main.o $(BIN)/petfera.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/anfibio.o $(BIN)/mamifero.o $(BIN)/reptil.o $(BIN)/funcionario.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/interface.o $(BIN)/nativo.o $(BIN)/exotico.o $(BIN)/silvestre.o $(BIN)/anfibioexotico.o $(BIN)/anfibionativo.o $(BIN)/aveexotico.o $(BIN)/avenativo.o $(BIN)/mamiferoexotico.o $(BIN)/mamiferonativo.o $(BIN)/reptilexotico.o $(BIN)/reptilnativo.o $(BIN)/io.o
 
 all :
-	mkdir -p bin
+	mkdir -p bin; mkdir -p dados
 	make petshop.so
 	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(SRC)/petfera.cpp $(SRC)/interface.cpp $(LIB_DIR)/petshop.so -o $(PROG)
 
