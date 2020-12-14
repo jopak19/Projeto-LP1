@@ -25,6 +25,8 @@ Ave::Ave(string codigo,
             this->nivelSeguranca = Verde;
         }
 };
+
+Ave::~Ave(){}
 //getters e setters
 void Ave::setClasse(){
     this->classe = "ave";

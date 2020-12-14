@@ -23,6 +23,7 @@ public:
 
     Bioma getBiomaOrigem() const;
     void setBiomaOrigem(Bioma bioma);
+    virtual ~Nativo();
     	
 };
 

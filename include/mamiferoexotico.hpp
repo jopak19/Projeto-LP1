@@ -17,4 +17,5 @@ class MamiferoExotico: public Mamifero, public Exotico{
     public:
         string imprimir();
         void setClasse();	
+        virtual ~MamiferoExotico();
 };

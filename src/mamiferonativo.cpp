@@ -29,6 +29,7 @@ MamiferoNativo::MamiferoNativo (string codigo,
     }
 
 };
+MamiferoNativo::~MamiferoNativo(){}
 void MamiferoNativo::setClasse(){
     this->classe = "mamiferonativo";
 };

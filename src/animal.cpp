@@ -4,7 +4,7 @@ Animal::Animal(string codigo, string peso,
 	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
 	idade(idade), especie(especie), perigoso(perigoso){
 }
-
+Animal::~Animal(){}
 //getters e setters
 
 //atributo "classe" será definido no construtor de cada classe derivada, por um metódo virtual

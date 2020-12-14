@@ -29,6 +29,7 @@ public:
     bool getPodeVoar() const;
     void setPodeVoar(bool podeVoar);
     virtual string imprimir();
-    virtual void setClasse();	
+    virtual void setClasse();
+    virtual ~Ave();	
 };
 

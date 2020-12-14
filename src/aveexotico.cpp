@@ -28,7 +28,7 @@ AveExotico::AveExotico (string codigo,
     }
 
 }
-
+AveExotico::~AveExotico(){}
 void AveExotico::setClasse(){
     this->classe = "aveexotico";
 }

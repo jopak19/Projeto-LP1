@@ -64,6 +64,7 @@ class Animal {
 		void setEspecie(string especie);
 		void alterarDados(string codigo, string peso, string altura, short idade, string especie);
 		virtual string imprimir();
+		virtual ~Animal();
 
 		friend ostream& operator<< (ostream &o, Animal a);
 };

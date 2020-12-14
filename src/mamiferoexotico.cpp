@@ -29,6 +29,7 @@ MamiferoExotico::MamiferoExotico (string codigo,
     }
 
 };
+MamiferoExotico::~MamiferoExotico(){}
 void MamiferoExotico::setClasse(){
     this->classe = "mamiferoexotico";
 };

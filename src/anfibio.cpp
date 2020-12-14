@@ -24,7 +24,7 @@ Anfibio::Anfibio(string codigo,
         this->nivelSeguranca = Azul;
     }
 }
-
+Anfibio::~Anfibio(){}
 //getters e setters
 string Anfibio::getPeriodoDeMudadepele() const{
     return this->periodoDeMudaDePele;

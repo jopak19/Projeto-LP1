@@ -30,6 +30,7 @@ AveNativo::AveNativo (string codigo,
     }
 
 };
+AveNativo::~AveNativo(){}
 void AveNativo::setClasse(){
     this->classe = "avenativo";
 };

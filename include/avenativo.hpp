@@ -18,4 +18,5 @@ class AveNativo: public Ave, public Nativo{
     public:
         string imprimir();
         void setClasse();	
+        virtual ~AveNativo();
 };

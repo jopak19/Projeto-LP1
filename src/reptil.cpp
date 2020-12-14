@@ -27,7 +27,7 @@ Reptil::Reptil(string codigo,
         this->nivelSeguranca = Azul;
     }
 }
-
+Reptil::~Reptil(){}
 //getters e setters
 string Reptil::getPeriodoDeMudadepele() const{
     return this->periodoDeMudaDePele;

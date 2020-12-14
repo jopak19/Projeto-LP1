@@ -3,7 +3,7 @@
 Nativo::Nativo (int marcacaoPermanente, bool emExtincao, Bioma biomaOrigem):
                 Silvestre(marcacaoPermanente, emExtincao),
                 biomaOrigem(biomaOrigem){};
-
+Nativo::~Nativo(){}
 //getters e setters
 Bioma Nativo::getBiomaOrigem() const{
     return this->biomaOrigem;

@@ -18,4 +18,5 @@ class ReptilExotico: public Reptil, public Exotico{
     public:
         string imprimir();
         void setClasse();	
+        virtual ~ReptilExotico();
 };
