@@ -43,5 +43,7 @@ public:
 	vector<shared_ptr<Veterinario>> carregarVeterinarios() const;
 	vector<shared_ptr<Tratador>> carregarTratadores() const;
 
-    string atributosExtras(shared_ptr<Animal> animal);
+private:
+    string atributosExtrasAnimais(shared_ptr<Animal> animal);
+    
 };
