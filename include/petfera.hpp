@@ -49,4 +49,5 @@ class PetFera {
         void carregarDados();
         void salvarDados();
         void carregarDadosAnimais(vector<vector<string>> animais);
+        void carregarInteracoes();
 };

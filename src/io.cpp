@@ -323,6 +323,5 @@ string IO::atributosExtrasAnimais(shared_ptr<Animal> animal){
 
     }
     
-
     return atributos;
 }
