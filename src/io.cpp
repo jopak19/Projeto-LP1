@@ -4,6 +4,7 @@ IO::IO(){}
 
 
 bool IO::salvarAnimais(vector<shared_ptr<Animal>> animais){
+
     fstream stream;
 	stream.open("dados/animais_data.csv", ios::out | ios::trunc);
 
@@ -19,8 +20,8 @@ bool IO::salvarAnimais(vector<shared_ptr<Animal>> animais){
         << animal-> getVeterinario()->getCpf() << ","
         << animal-> getTratador()->getCpf() << ","
         << animal-> getClasse() << ","
-        << this->atributosExtrasAnimais(animal) << ","
-        << animal->getPerigoso()
+        << animal->getPerigoso() << ","
+        << this->atributosExtrasAnimais(animal)
 		<< endl;
 	}
 
@@ -85,9 +86,37 @@ bool IO::salvarTratadores(vector<shared_ptr<Tratador>> tratadores){
 }
 
 
-/*vector<shared_ptr<Animal>> IO::carregarAnimais() const {
+vector<vector<string>> IO::carregarAnimais() const {
 
-}*/
+    std::vector<vector<string>> animais;
+
+    fstream stream;
+    stream.open("dados/animais_data.csv");
+
+    if(!stream.is_open()){
+        return animais;
+    }
+
+    vector<string> dados; 
+    string linha;
+    string dado;
+    string temp;
+
+    while(getline(stream, linha)) {
+        
+        dados.clear();
+        stringstream s(linha); 
+  
+        while (getline(s, dado, ',')) { 
+            dados.push_back(dado);
+        }
+
+        animais.push_back(dados);
+    }
+
+    stream.close();
+    return animais;
+}
 
 vector<shared_ptr<Veterinario>> IO::carregarVeterinarios() const {
 

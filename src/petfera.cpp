@@ -242,6 +242,7 @@ void PetFera::listarVeterinarios() const{
 void PetFera::carregarDados(){
 	this->veterinarios = this->gerenciadorArquivos->carregarVeterinarios();
 	this->tratadores = this->gerenciadorArquivos->carregarTratadores();
+	this->carregarDadosAnimais(this->gerenciadorArquivos->carregarAnimais());
 }
 
 void PetFera::salvarDados(){
@@ -250,3 +251,34 @@ void PetFera::salvarDados(){
     this->gerenciadorArquivos->salvarAnimais(this->getAnimais());
 }
 
+void PetFera::carregarDadosAnimais(vector<vector<string>> animais){
+
+	/*
+	stream << animal->getCodigo() << "," 
+		<< animal->getPeso() << "," 
+		<< animal->getAltura() << "," 
+		<< animal->getIdade() << ","
+        << animal->getEspecie() << ","
+        << animal-> getVeterinario()->getCpf() << ","
+        << animal-> getTratador()->getCpf() << ","
+        << animal-> getClasse() << ","
+        << this->atributosExtrasAnimais(animal) << ","
+        << animal->getPerigoso()
+		<< endl;
+
+	*/
+	
+	for(int i = 0; i < (int) this->animais.size(); i++) {
+
+		vector<string> animal = animais[i];
+		string codigo = animal[0];
+		string altura = animal[1];
+		string peso = animal[2];
+		short idade = (short) stoi(animal[3]);
+		string especie = animal[4];
+		shared_ptr<Veterinario> vet = this->getVeterinario(animal[5]);
+		shared_ptr<Tratador> tratador = this->getTratador(animal[6]);
+		string classe = animal[7];
+		bool perigoso = (animal[8].compare("1") == 0);
+	}
+}
