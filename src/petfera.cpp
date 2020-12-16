@@ -253,9 +253,8 @@ void PetFera::salvarDados(){
 }
 
 void PetFera::carregarDadosAnimais(vector<vector<string>> animais){
-	
-	for(int i = 0; i < (int) this->animais.size(); i++) {
-
+	cout << "cheguei";//================================================================
+	for(int i = 0; i < (int) animais.size(); i++) {
 		vector<string> animal = animais[i];
 		string codigo = animal[0];
 		string peso = animal[1];
@@ -268,61 +267,66 @@ void PetFera::carregarDadosAnimais(vector<vector<string>> animais){
         string cpfVet = animal[5];
 		string classe = animal[7];
 		bool perigoso = (animal[8].compare("1") == 0);
-
+        cout << "classe " << classe;//================================================================
 		if(classe == "ave"){
 
 			 shared_ptr<Ave> ave = make_shared<Ave>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), perigoso);
-             cadastrarAnimal(ave, cpfVet, cpfTratador);
+             cadastrarAnimal(ave, cpfTratador,cpfVet);
 
 	    } else if(classe == "anfibio"){
             shared_ptr<Anfibio> anfibio = make_shared<Anfibio>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), perigoso);
-            cadastrarAnimal(anfibio,  cpfVet, cpfTratador);
+            cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
 
 	    
 	    } else if(classe == "reptil"){
              shared_ptr<Reptil> reptil = make_shared<Reptil>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), perigoso);
-             cadastrarAnimal(reptil, cpfVet, cpfTratador);
+             cadastrarAnimal(reptil, cpfTratador,cpfVet);
 
 
 	    } else if(classe == "mamifero" ){
             shared_ptr<Mamifero> mamifero = make_shared<Mamifero>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), perigoso);
-            cadastrarAnimal(mamifero, cpfVet, cpfTratador);
+            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 
 	    }else if (classe == "avenativo"){
 
 	    	shared_ptr<AveNativo> ave = make_shared<AveNativo>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), (short) stoi(animal[11]),(animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(ave, cpfVet, cpfTratador);
+            cadastrarAnimal(ave, cpfTratador,cpfVet);
 	    
 	    } else if (classe == "aveexotico"){
             shared_ptr<AveExotico> ave = make_shared<AveExotico>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), (short) stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(ave, cpfVet, cpfTratador);
+            cadastrarAnimal(ave,cpfTratador,cpfVet);
 
 	    } else if(classe == "anfibionativo"){
+
+            cout << "cheguei dentro do if, vc q lute";
             shared_ptr<AnfibioNativo> anfibio = make_shared<AnfibioNativo>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(anfibio,  cpfVet, cpfTratador);
+            if (cadastrarAnimal(anfibio,  cpfTratador,cpfVet)){
+                
+                cout << "deu certo tbm";
+            }
 
 	    } else if(classe == "anfibioexotico"){
             shared_ptr<AnfibioExotico> anfibio = make_shared<AnfibioExotico>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(anfibio,  cpfVet, cpfTratador);
+            cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
 
 
 	    } else if(classe == "reptilnativo"){
             shared_ptr<ReptilNativo> reptil = make_shared<ReptilNativo>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(reptil, cpfVet, cpfTratador);
+            cadastrarAnimal(reptil,cpfTratador,cpfVet);
 
 	    } else if (classe == "reptilexotico"){
             shared_ptr<ReptilExotico> reptil = make_shared<ReptilExotico>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(reptil, cpfVet, cpfTratador);
+            cadastrarAnimal(reptil, cpfTratador,cpfVet);
 
 	    } else if(classe == "mamiferonativo"){
 
             shared_ptr<MamiferoNativo> mamifero = make_shared<MamiferoNativo>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), stoi(animal[10]), (animal[11].compare("1") == 0), converteBioma(animal[12]), perigoso);
-            cadastrarAnimal(mamifero, cpfVet, cpfTratador);
+            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 
 
 	    } else if(classe == "mamiferoexotico"){
             shared_ptr<MamiferoExotico> mamifero = make_shared<MamiferoExotico>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), stoi(animal[10]), (animal[11].compare("1") == 0), animal[12], perigoso);
-            cadastrarAnimal(mamifero, cpfVet, cpfTratador);
+            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 	    	
 	    }
 	}
