@@ -4,6 +4,7 @@
 #include "tratador.hpp"
 #include "veterinario.hpp"
 #include "io.hpp"
+#include "nativo.hpp"
 #include <vector>
 #include <string>
 #include <memory>
@@ -38,6 +39,7 @@ class PetFera {
         void listarAnimais() const;
         void listarTratadores() const;
         void listarVeterinarios() const;
+        
 
     private:
 
@@ -50,4 +52,8 @@ class PetFera {
         void salvarDados();
         void carregarDadosAnimais(vector<vector<string>> animais);
         void carregarInteracoes();
+        Gestacao converteGestacao(string gest);
+        Bioma converteBioma(string bioma);
+        TipoDePele convertePele(string pele);
+        
 };
