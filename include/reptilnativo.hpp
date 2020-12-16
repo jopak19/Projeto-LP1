@@ -18,4 +18,5 @@ class ReptilNativo: public Reptil, public Nativo{
     public:
         string imprimir();
         void setClasse();	
+        virtual ~ReptilNativo();
 };

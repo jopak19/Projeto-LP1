@@ -32,4 +32,5 @@ public:
     void setGestacao(Gestacao gestacao);
     virtual string imprimir();
     virtual void setClasse();	
+    virtual ~Mamifero();
 };

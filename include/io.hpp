@@ -39,9 +39,11 @@ public:
 	bool salvarVeterinarios(vector<shared_ptr<Veterinario>> veterinarios);
 	bool salvarTratadores(vector<shared_ptr<Tratador>> tratadores);
 
-	vector<shared_ptr<Animal>> carregarAnimais() const;
+	vector<vector<string>> carregarAnimais() const;
 	vector<shared_ptr<Veterinario>> carregarVeterinarios() const;
 	vector<shared_ptr<Tratador>> carregarTratadores() const;
 
-    string atributosExtras(shared_ptr<Animal> animal);
+private:
+    string atributosExtrasAnimais(shared_ptr<Animal> animal);
+    
 };

@@ -11,6 +11,7 @@ public:
     void setMarcacaoPermanente(int marcacao);
     bool getEmExtincao() const;
     void setEmExtincao(bool emExtincao);
+    virtual ~Silvestre();
 };
 
 

@@ -29,6 +29,7 @@ ReptilExotico::ReptilExotico (  string codigo,
         this->nivelSeguranca = Azul;
     }
 };
+ReptilExotico::~ReptilExotico(){}
 void ReptilExotico::setClasse(){
     this->classe = "reptilexotico";
 };

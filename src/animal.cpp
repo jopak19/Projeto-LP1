@@ -1,10 +1,10 @@
 #include "animal.hpp"
-
+using std::static_pointer_cast;
 Animal::Animal(string codigo, string peso, 
 	string altura, short idade, string especie, bool perigoso):codigo(codigo), peso(peso), altura(altura), 
 	idade(idade), especie(especie), perigoso(perigoso){
 }
-
+Animal::~Animal(){}
 //getters e setters
 
 //atributo "classe" será definido no construtor de cada classe derivada, por um metódo virtual
@@ -108,22 +108,12 @@ void Animal::alterarDados(string codigo, string peso, string altura, short idade
 }
 string Animal::imprimir(){
 	
-	string dados;
+	string dados = "classe base";
 	return dados;
 };
 
 // caso seja usado o operador << em um animal, como ele será exibido
-ostream& operator<< (ostream &o, Animal a){
-
-	o << "Código" << setfill(' ') << setw(15) 
-    << "Peso" << setfill(' ') << setw(15) 
-    << "Altura" 
-    << "Especie" << endl
-    << a.getCodigo() << setfill(' ') << setw(15) 
-    << a.getPeso() << setfill(' ') << setw(15) 
-   	<< a.getAltura() << setfill(' ') << setw(15)
-   	<< a.getEspecie() << setfill(' ') << setw(15)
-    << endl;
-
+ostream& operator<< (ostream &o, shared_ptr<Animal> a){
+	o << a->imprimir() << endl;
 	return o;
 }

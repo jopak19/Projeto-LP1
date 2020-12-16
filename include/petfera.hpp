@@ -48,4 +48,6 @@ class PetFera {
         IO *gerenciadorArquivos;
         void carregarDados();
         void salvarDados();
+        void carregarDadosAnimais(vector<vector<string>> animais);
+        void carregarInteracoes();
 };

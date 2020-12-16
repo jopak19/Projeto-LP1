@@ -24,6 +24,7 @@ AnfibioExotico::AnfibioExotico (string codigo,
                                     setClasse();
                                 };
 
+AnfibioExotico::~AnfibioExotico(){}
 void AnfibioExotico::setClasse(){
     this->classe = "anfibioexotico";
 };

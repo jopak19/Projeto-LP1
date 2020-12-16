@@ -4,6 +4,7 @@ IO::IO(){}
 
 
 bool IO::salvarAnimais(vector<shared_ptr<Animal>> animais){
+
     fstream stream;
 	stream.open("dados/animais_data.csv", ios::out | ios::trunc);
 
@@ -19,17 +20,14 @@ bool IO::salvarAnimais(vector<shared_ptr<Animal>> animais){
         << animal-> getVeterinario()->getCpf() << ","
         << animal-> getTratador()->getCpf() << ","
         << animal-> getClasse() << ","
-        << atributosExtras(animal) << ","
-        << animal->getPerigoso()
+        << animal->getPerigoso() << ","
+        << this->atributosExtrasAnimais(animal)
 		<< endl;
-
 	}
 
 	stream.close();
 	return true;
 }
-
-
 
 bool IO::salvarVeterinarios(vector<shared_ptr<Veterinario>> veterinarios){
 
@@ -39,11 +37,19 @@ bool IO::salvarVeterinarios(vector<shared_ptr<Veterinario>> veterinarios){
 	for(int i = 0; i < (int) veterinarios.size(); i++){
 
 		shared_ptr<Veterinario> vet = veterinarios[i];
+        string animaisTratadosStr;
+        vector<shared_ptr<Animal>> animaisTratados = vet->getAnimaisTratados();
+
+        for(int i = 0; i < (int) animaisTratados.size(); i++){
+            string temp = "," + animaisTratados[i]->getCodigo();
+            animaisTratadosStr += temp;
+        }
 
 		stream << vet->getCpf() << "," 
 		<< vet->getNome() << "," 
 		<< vet->getDataNascimento() << "," 
 		<< vet->getCodigoCrmv()
+        << animaisTratadosStr
 		<< endl;
 	}
 
@@ -59,11 +65,19 @@ bool IO::salvarTratadores(vector<shared_ptr<Tratador>> tratadores){
 	for(int i = 0; i < (int) tratadores.size(); i++){
 
 		shared_ptr<Tratador> tratador = tratadores[i];
+        string animaisTratadosStr;
+        vector<shared_ptr<Animal>> animaisTratados = tratador->getAnimaisTratados();
+
+        for(int i = 0; i < (int) animaisTratados.size(); i++){
+            string temp = "," + animaisTratados[i]->getCodigo();
+            animaisTratadosStr += temp;
+        }
 
 		stream << tratador->getCpf() << "," 
 		<< tratador->getNome() << "," 
 		<< tratador->getDataNascimento() << "," 
 		<< tratador->getNivelSeguranca()
+        << animaisTratadosStr
 		<< endl;
 	}
 
@@ -72,9 +86,37 @@ bool IO::salvarTratadores(vector<shared_ptr<Tratador>> tratadores){
 }
 
 
-/*vector<shared_ptr<Animal>> IO::carregarAnimais() const {
+vector<vector<string>> IO::carregarAnimais() const {
 
-}*/
+    std::vector<vector<string>> animais;
+
+    fstream stream;
+    stream.open("dados/animais_data.csv");
+
+    if(!stream.is_open()){
+        return animais;
+    }
+
+    vector<string> dados; 
+    string linha;
+    string dado;
+    string temp;
+
+    while(getline(stream, linha)) {
+        
+        dados.clear();
+        stringstream s(linha); 
+  
+        while (getline(s, dado, ',')) { 
+            dados.push_back(dado);
+        }
+
+        animais.push_back(dados);
+    }
+
+    stream.close();
+    return animais;
+}
 
 vector<shared_ptr<Veterinario>> IO::carregarVeterinarios() const {
 
@@ -165,7 +207,7 @@ vector<shared_ptr<Tratador>> IO::carregarTratadores() const {
 
 }
 
-string IO::atributosExtras(shared_ptr<Animal> animal){
+string IO::atributosExtrasAnimais(shared_ptr<Animal> animal){
                 
     string classe = animal->getClasse();
     string atributos = "";    
@@ -180,24 +222,28 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(ave->getPodeVoar()? "1" : "0");
 
-    }else if(classe == "anfibio" || classe == "anfibionativo" || classe == "anfibioexotico"){
+    } else if(classe == "anfibio" || classe == "anfibionativo" || classe == "anfibioexotico"){
+
         shared_ptr<Anfibio> anfibio = static_pointer_cast<Anfibio>(animal);
         atributos.append(anfibio->getPeriodoDeMudadepele());
         atributos.append(",");
         atributos.append(to_string(anfibio->getTemperaturaDoAmbiente()));
     
-    }else if(classe == "reptil" || classe == "reptilnativo" || classe == "reptilexotico" ){
+    } else if(classe == "reptil" || classe == "reptilnativo" || classe == "reptilexotico" ){
+
         shared_ptr<Reptil> reptil = static_pointer_cast<Reptil>(animal);
         atributos.append(reptil->getPeriodoDeMudadepele());
         atributos.append(",");
         atributos.append(to_string(reptil->getTipoDepele()));
 
-    }else if(classe == "mamifero" || classe == "mamiferonativo" || classe == "mamiferoexotico" ){
+    } else if(classe == "mamifero" || classe == "mamiferonativo" || classe == "mamiferoexotico" ){
+
         shared_ptr<Mamifero> mamifero = static_pointer_cast<Mamifero>(animal);
         atributos.append(to_string(mamifero->getGestacao()));
     }
 
     if (classe == "avenativo"){
+
         shared_ptr<AveNativo> ave = static_pointer_cast<AveNativo>(animal);
         atributos.append(",");
         atributos.append(to_string(ave->getMarcacaoPermanente()));
@@ -206,7 +252,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(to_string(ave->getBiomaOrigem()));
     
-    }else if (classe == "aveexotico"){
+    } else if (classe == "aveexotico"){
+
         shared_ptr<AveExotico> ave = static_pointer_cast<AveExotico>(animal);
         atributos.append(",");
         atributos.append(to_string(ave->getMarcacaoPermanente()));
@@ -215,7 +262,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(ave->getTerritorioDeOrigem());
 
-    }else if(classe == "anfibionativo"){
+    } else if(classe == "anfibionativo"){
+
         shared_ptr<AnfibioNativo> anfibio = static_pointer_cast<AnfibioNativo>(animal);
         atributos.append(",");
         atributos.append(to_string(anfibio->getMarcacaoPermanente()));
@@ -224,7 +272,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(to_string(anfibio->getBiomaOrigem()));
 
-    }else if(classe == "anfibioexotico"){
+    } else if(classe == "anfibioexotico"){
+
         shared_ptr<AnfibioExotico> anfibio = static_pointer_cast<AnfibioExotico>(animal);
         atributos.append(",");
         atributos.append(to_string(anfibio->getMarcacaoPermanente()));
@@ -233,7 +282,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(anfibio->getTerritorioDeOrigem());
 
-    }else if(classe == "reptilnativo"){
+    } else if(classe == "reptilnativo"){
+
         shared_ptr<ReptilNativo> reptil = static_pointer_cast<ReptilNativo>(animal);
         atributos.append(",");
         atributos.append(to_string(reptil->getMarcacaoPermanente()));
@@ -242,7 +292,7 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(to_string(reptil->getBiomaOrigem()));
 
-    }else if (classe == "reptilexotico"){
+    } else if (classe == "reptilexotico"){
         shared_ptr<ReptilExotico> reptil = static_pointer_cast<ReptilExotico>(animal);
         atributos.append(",");
         atributos.append(to_string(reptil->getMarcacaoPermanente()));
@@ -251,7 +301,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(reptil->getTerritorioDeOrigem());
     
-    }else if(classe == "mamiferonativo"){
+    } else if(classe == "mamiferonativo"){
+
         shared_ptr<MamiferoNativo> mamifero = static_pointer_cast<MamiferoNativo>(animal);
         atributos.append(",");
         atributos.append(to_string(mamifero->getMarcacaoPermanente()));
@@ -260,7 +311,8 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
         atributos.append(",");
         atributos.append(to_string(mamifero->getBiomaOrigem()));
 
-    }else if(classe == "mamiferoexotico"){
+    } else if(classe == "mamiferoexotico"){
+
         shared_ptr<MamiferoExotico> mamifero = static_pointer_cast<MamiferoExotico>(animal);
         atributos.append(",");
         atributos.append(to_string(mamifero->getMarcacaoPermanente()));
@@ -271,6 +323,5 @@ string IO::atributosExtras(shared_ptr<Animal> animal){
 
     }
     
-
     return atributos;
 }

@@ -18,7 +18,6 @@ using std::endl;
 //Resolve problema de dependência circular
 class Tratador;
 class Veterinario;
-
 class Animal {
 
 	protected:
@@ -64,6 +63,7 @@ class Animal {
 		void setEspecie(string especie);
 		void alterarDados(string codigo, string peso, string altura, short idade, string especie);
 		virtual string imprimir();
+		virtual ~Animal();
 
-		friend ostream& operator<< (ostream &o, Animal a);
+		friend ostream& operator<< (ostream &o, shared_ptr<Animal> a);
 };

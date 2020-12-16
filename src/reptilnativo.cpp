@@ -30,6 +30,7 @@ ReptilNativo::ReptilNativo(string codigo,
     }
 
 };
+ReptilNativo::~ReptilNativo(){}
 void ReptilNativo::setClasse(){
     this->classe = "reptilnativo";
 };

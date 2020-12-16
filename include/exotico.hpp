@@ -18,5 +18,6 @@ class Exotico : public Silvestre{
 
         string getTerritorioDeOrigem() const;
         void setTerritorioDeOrigem(string territorio);
+        virtual ~Exotico();
     	
 };

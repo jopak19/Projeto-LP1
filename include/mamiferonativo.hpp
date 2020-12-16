@@ -17,4 +17,5 @@ class MamiferoNativo: public Mamifero, public Nativo{
     public:
         string imprimir();
         void setClasse();
+        virtual ~MamiferoNativo();
 };

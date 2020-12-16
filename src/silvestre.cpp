@@ -4,6 +4,7 @@ Silvestre::Silvestre(int marcacaoPermanente,
                     bool emExtincao):
                     marcacaoPermanente(marcacaoPermanente),emExtincao(emExtincao){};
 
+Silvestre::~Silvestre(){}
 //getters e setters
 int Silvestre::getMarcacaoPermanente() const{
     return this->marcacaoPermanente;

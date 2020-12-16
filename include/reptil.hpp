@@ -35,4 +35,5 @@ class Reptil : public Animal{
 
         virtual string imprimir();
         virtual void setClasse();
+        virtual ~Reptil();
 };

@@ -24,6 +24,7 @@ AnfibioNativo::AnfibioNativo (string codigo,
                                     setClasse();
                                 };
 
+AnfibioNativo::~AnfibioNativo(){}
 void AnfibioNativo::setClasse(){
     this->classe = "anfibionativo";
 };

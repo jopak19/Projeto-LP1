@@ -17,5 +17,6 @@ class AnfibioNativo: public Anfibio, public Nativo{
                         bool perigoso);
     public:
         string imprimir();
-        void setClasse();	
+        void setClasse();
+        virtual ~AnfibioNativo();	
 };

@@ -18,4 +18,5 @@ class AveExotico: public Ave, public Exotico{
     public:
         string imprimir();
         void setClasse();
+        virtual ~AveExotico();
 };

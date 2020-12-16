@@ -1440,7 +1440,7 @@ bool Interface::consultarAnimal(){
             }else{
                 for (int i = 0; i < tamanho; i++){
                     cout << "---------------" << endl;
-                    cout << ((pet->getVeterinario(cpf))->getAnimaisTratados()).at(i)->imprimir()<< endl;
+                    cout << ((pet->getVeterinario(cpf))->getAnimaisTratados()).at(i) << endl;
                 }
             }  
 
@@ -1483,7 +1483,7 @@ bool Interface::consultarAnimal(){
 
             } else {
                 for (int i = 0; i < tamanho; i++){
-                    cout << ((pet->getTratador(cpf))->getAnimaisTratados()).at(i)->imprimir() << endl;
+                    cout << ((pet->getTratador(cpf))->getAnimaisTratados()).at(i) << endl;
                 }
             }  
 
@@ -1565,7 +1565,7 @@ bool Interface::consultarAnimal(){
             for (int i = 0; i < tamanho; i++){
                 
                 if (pet->getAnimais()[i]->getClasse() == classe){
-                    cout << pet->getAnimais().at(i)->imprimir() << endl;
+                    cout << pet->getAnimais().at(i) << endl;
                     cout << "----------------------" << endl;
                 }
              }
@@ -1591,7 +1591,7 @@ bool Interface::consultarAnimal(){
                 return false;
 
              } else {
-                cout << pet->getAnimal(codigo)->imprimir() << endl;
+                cout << pet->getAnimal(codigo) << endl;
              } 
 
              break;
@@ -1613,7 +1613,7 @@ bool Interface::consultarAnimal(){
                 
                 if (pet->getAnimais()[i]->getEspecie() == especie){
                     cout << "----------------------" << endl;
-                    cout << pet->getAnimais().at(i)->imprimir() << endl;
+                    cout << pet->getAnimais().at(i) << endl;
                 }
 
             }

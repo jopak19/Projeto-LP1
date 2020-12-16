@@ -25,6 +25,7 @@ Mamifero::Mamifero(string codigo,
         this->nivelSeguranca = Azul;
     }
 };
+Mamifero::~Mamifero(){}
 //getters e setters
 void Mamifero::setClasse(){
     this->classe = "mamifero";
