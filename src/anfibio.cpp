@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include "tratador.hpp"
+#include "veterinario.hpp"
 using std::setfill;
 using std::setw;
 using std::string;
@@ -51,6 +53,7 @@ string Anfibio::imprimir(){
     string dados;
     string perigo = this->getPerigoso() ? "Sim" : "Não";
     dados = "codigo: " + this->getCodigo() + " Peso: " + this->getPeso() + " Altura: "+this->getAltura() + " Especie: " + this->getEspecie() + " Perigoso: "  + perigo + 
-    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente());
+    " Muda de Pele: " + this->getPeriodoDeMudadepele() + " Temperatura do Ambiente: " + to_string(this->getTemperaturaDoAmbiente()) + 
+    " | CPF Tratador: " + this->getTratador()->getCpf() + " | CPF Veterinario: " + this->getVeterinario()->getCpf() + "\n";
     return dados;
 };
