@@ -14,7 +14,8 @@ all :
 	mkdir -p bin; mkdir -p dados
 	make petshop.so
 	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(SRC)/petfera.cpp $(SRC)/interface.cpp $(LIB_DIR)/petshop.so -o $(PROG)
-
+	$(CC) $(CPPFLAGS) $(SRC)/auxiliar.cpp $(LIB_DIR)/petshop.so -o exportar
+	
 debug: CPPFLAGS += -DDEBUG -g -O0
 debug: clean all
 
@@ -42,6 +43,6 @@ petshop.so: $(SRC)/anfibio.cpp $(SRC)/anfibioexotico.cpp $(SRC)/anfibionativo.cp
 	mkdir -p lib
 	$(CC) -shared -fPIC -o $(LIB_DIR)/$@ $(BIN)/anfibio.o $(BIN)/anfibioexotico.o $(BIN)/anfibionativo.o $(BIN)/animal.o $(BIN)/ave.o $(BIN)/aveexotico.o $(BIN)/avenativo.o $(BIN)/exotico.o $(BIN)/funcionario.o $(BIN)/mamifero.o $(BIN)/mamiferoexotico.o $(BIN)/mamiferonativo.o $(BIN)/nativo.o $(BIN)/reptil.o $(BIN)/reptilexotico.o $(BIN)/reptilnativo.o $(BIN)/silvestre.o $(BIN)/tratador.o $(BIN)/veterinario.o $(BIN)/io.o
 	@echo "biblioteca criada ..."
- 
+
 clean:
-	rm -f core $(PROG) $(OBJS)
+	rm -f core $(PROG) $(OBJS) exportar
