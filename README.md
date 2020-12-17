@@ -60,7 +60,7 @@
 
     Caso deseje compilar somente a biblioteca:
 
-    make petshop.io
+    make petshop.so
     
 
 #### Orientação para Testes:
@@ -104,8 +104,6 @@
 
     ./exportar <nome-arquivo>
 
-    ./exportar -c anfíbio nome
-
     Exportando todos os animais da classe Anfíbio (podendo ser exóticos ou nativos):
 
     ./exportar -c anfibio <nome-arquivo>
@@ -126,5 +124,8 @@
 #### Endereço do repositório: 
      https://github.com/jopak19/Projeto-LP1
     
-#### Vídeo Explicativo:
+#### Vídeo Explicativo (Parte I):
      https://youtu.be/re82-B9qOHQ
+     
+#### Vídeo Explicativo (Parte II):
+     https://youtu.be/nQ9RdGt71Vg
