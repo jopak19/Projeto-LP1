@@ -272,59 +272,59 @@ void PetFera::carregarDadosAnimais(vector<vector<string>> animais){
 
 		if(classe == "ave"){
 
-			 shared_ptr<Ave> ave = make_shared<Ave>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), perigoso);
-             cadastrarAnimal(ave, cpfTratador,cpfVet);
+			shared_ptr<Ave> ave = make_shared<Ave>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), perigoso);
+            this->cadastrarAnimal(ave, cpfTratador,cpfVet);
 
 	    } else if(classe == "anfibio"){
             shared_ptr<Anfibio> anfibio = make_shared<Anfibio>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), perigoso);
-            cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
+            this->cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
 
 	    
 	    } else if(classe == "reptil"){
-             shared_ptr<Reptil> reptil = make_shared<Reptil>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), perigoso);
-             cadastrarAnimal(reptil, cpfTratador,cpfVet);
+            shared_ptr<Reptil> reptil = make_shared<Reptil>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), perigoso);
+            this->cadastrarAnimal(reptil, cpfTratador,cpfVet);
 
 
 	    } else if(classe == "mamifero" ){
             shared_ptr<Mamifero> mamifero = make_shared<Mamifero>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), perigoso);
-            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
+            this->cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 
-	    }else if (classe == "avenativo"){
+	    } else if (classe == "avenativo"){
 
 	    	shared_ptr<AveNativo> ave = make_shared<AveNativo>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0),  stoi(animal[11]),(animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(ave, cpfTratador,cpfVet);
+            this->cadastrarAnimal(ave, cpfTratador,cpfVet);
 	    
 	    } else if (classe == "aveexotico"){
             shared_ptr<AveExotico> ave = make_shared<AveExotico>(codigo, peso, altura, idade, especie, (animal[9].compare("1") == 0), (animal[10].compare("1") == 0), stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(ave,cpfTratador,cpfVet);
+            this->cadastrarAnimal(ave,cpfTratador,cpfVet);
 
 	    } else if(classe == "anfibionativo"){
 
             shared_ptr<AnfibioNativo> anfibio = make_shared<AnfibioNativo>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
+            this->cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
 
 	    } else if(classe == "anfibioexotico"){
             shared_ptr<AnfibioExotico> anfibio = make_shared<AnfibioExotico>(codigo, peso, altura, idade, especie, animal[9], stoi(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
+            this->cadastrarAnimal(anfibio,  cpfTratador,cpfVet);
 
 
 	    } else if(classe == "reptilnativo"){
             shared_ptr<ReptilNativo> reptil = make_shared<ReptilNativo>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), converteBioma(animal[13]), perigoso);
-            cadastrarAnimal(reptil,cpfTratador,cpfVet);
+            this->cadastrarAnimal(reptil,cpfTratador,cpfVet);
 
 	    } else if (classe == "reptilexotico"){
             shared_ptr<ReptilExotico> reptil = make_shared<ReptilExotico>(codigo, peso, altura, idade, especie, animal[9], convertePele(animal[10]), stoi(animal[11]), (animal[12].compare("1") == 0), animal[13], perigoso);
-            cadastrarAnimal(reptil, cpfTratador,cpfVet);
+            this->cadastrarAnimal(reptil, cpfTratador,cpfVet);
 
 	    } else if(classe == "mamiferonativo"){
 
             shared_ptr<MamiferoNativo> mamifero = make_shared<MamiferoNativo>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), stoi(animal[10]), (animal[11].compare("1") == 0), converteBioma(animal[12]), perigoso);
-            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
+            this->cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 
 
 	    } else if(classe == "mamiferoexotico"){
             shared_ptr<MamiferoExotico> mamifero = make_shared<MamiferoExotico>(codigo, peso, altura, idade, especie, converteGestacao(animal[9]), stoi(animal[10]), (animal[11].compare("1") == 0), animal[12], perigoso);
-            cadastrarAnimal(mamifero, cpfTratador,cpfVet);
+            this->cadastrarAnimal(mamifero, cpfTratador,cpfVet);
 	    	
 	    }
 	}
@@ -359,17 +359,23 @@ Bioma PetFera::converteBioma(string bioma){
 
     if(bioma == "0"){
         return AMAZONIA;
-    }else if(bioma == "1"){ 
+
+    } else if(bioma == "1"){ 
         return CAATINGA;
-    }else if(bioma == "2"){
+
+    } else if(bioma == "2"){
         return PAMPA;
-    }else if(bioma == "3"){
+
+    } else if(bioma == "3"){
         return CERRADO;
-    }else if(bioma == "4"){
+
+    } else if(bioma == "4"){
         return PANTANAL;
-    }else if(bioma =="5"){
+
+    } else if(bioma =="5"){
         return MATAATLANTICA;
-    }else{
+
+    } else {
         return CAATINGA;
     }
 }
@@ -378,9 +384,11 @@ TipoDePele PetFera::convertePele(string pele){
 
     if(pele == "0"){
         return ESCAMAS;
-    }else if(pele == "1"){
+
+    } else if(pele == "1"){
         return CARAPACA;
-    }else{
+
+    } else {
         return PLACADERMICA;
     }
 };
@@ -389,9 +397,11 @@ Gestacao PetFera::converteGestacao(string gest){
    
     if(gest == "0"){
         return MONOTREMADO;
-    }else if(gest == "1"){
+
+    } else if(gest == "1"){
         return MARSUPIAL;
-    }else{
+
+    } else {
         return PLACENTARIO;
     }
 

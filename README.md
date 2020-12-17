@@ -14,6 +14,7 @@
     (Loja de comercialização de animais silvestres autorizados pelo IBAMA).
 
 #### Descrição da Implementação:
+
     O projeto implementa as seguintes classes: PetFera, Interface, Funcionario, 
     Tratador, Veterinário, Animal, Ave, Anfibio, Reptil, Mamifero, Silvestre, 
     Nativo, Exotico, além das especificas AveNativo, Ave Exotico etc.
@@ -30,6 +31,16 @@
     A classe interface, por sua vez, usar dos métodos dispostos na classe PetFera
     e implementa a interface com o usuário.
 
+    O armazenamento dos dados cadastrados no programa é feito através de arquivos csv, sendo
+    cada arquivo responsável por salvar as informações de cada um desses vetores.
+
+    As classes modelo são compiladas em uma biblioteca (petshop.io) para reaproveitamento em
+    outros programas.
+
+    O projeto também contém um programa auxiliar para fazer uma exportação dos dados armazenados
+    do programa de acordo com alguns parâmetros.
+
+
 #### Executar o programa:
     
     Para executar o programa, é necessário ter g++ instalado.
@@ -38,7 +49,7 @@
 
     git clone https://github.com/jopak19/Projeto-LP1.git
 
-    Para compilar:
+    Para compilar o programa:
  
     cd Projeto-LP1
     make
@@ -47,7 +58,13 @@
 
     ./bin/programa
 
+    Caso deseje compilar somente a biblioteca:
+
+    make petshop.io
+    
+
 #### Orientação para Testes:
+
     Para realizar os testes basta executar o código, escolher uma das opções
     do menu e então fornecer os dados solicitados.
 
@@ -78,7 +95,33 @@
         Listar os animais por espécie
         Listar os animais por classe
 
-    As consultas podem ser realizadas clicando no menu 3-Gerenciar Animal > 4-Consultar 
+    As consultas podem ser realizadas indo no menu 3-Gerenciar Animal > 4-Consultar 
+
+
+#### Exportando dados do programa:
+
+    Exportando todos os animais para um arquivo csv:
+
+    ./exportar <nome-arquivo>
+
+    ./exportar -c anfíbio nome
+
+    Exportando todos os animais da classe Anfíbio (podendo ser exóticos ou nativos):
+
+    ./exportar -c anfibio <nome-arquivo>
+
+    Exportando todos os Ańfíbios Nativos:
+
+     ./exportar -c anfibionativo <nome-arquivo>
+
+     Exportando todos os animais de determinado Veterinário:
+
+     ./exportar -v <nome-veterinario> <nome-arquivo>
+
+     Exportando todos os animais de determinado Tratador:
+
+     ./exportar -t <nome-tratador> <nome-arquivo>
+
 
 #### Endereço do repositório: 
      https://github.com/jopak19/Projeto-LP1
